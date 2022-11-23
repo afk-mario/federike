@@ -1,0 +1,15 @@
+:root {
+  --border-width: 1px;
+  --border-radius: 0;
+  --border-color: var(--color-fg-alt);
+  --border: var(--border-width) solid var(--border-color);
+}
+
+.border {
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.border-bottom {
+  border-bottom: var(--border);
+}

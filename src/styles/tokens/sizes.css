@@ -1,0 +1,13 @@
+:root {
+  --size-base: 1rem;
+  --size-100: calc(var(--size-base) * 0.25);
+  --size-200: calc(var(--size-base) * 0.5);
+  --size-300: calc(var(--size-base) * 0.8);
+  --size-400: var(--size-base);
+  --size-500: calc(var(--size-base) * 1.25);
+  --size-600: calc(var(--size-base) * 1.6);
+  --size-700: calc(var(--size-base) * 2);
+  --size-800: calc(var(--size-base) * 3);
+  --size-900: calc(var(--size-base) * 4);
+  --size-1000: calc(var(--size-base) * 5);
+}

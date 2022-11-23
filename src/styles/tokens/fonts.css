@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap");
+
+:root {
+  /* fonts */
+  --font-sans: "Inter", sans-serif;
+  --font-weight-light: 100;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+
+  /* text */
+  --text-paragraph: normal var(--font-weight-normal) var(--size-400) / 1.65
+    var(--font-sans);
+  --text-page-title: normal var(--font-weight-normal) var(--size-800) / 1.25
+    var(--font-sans);
+  --text-heading-2: normal var(--font-weight-bold) var(--size-500) / 1.25
+    var(--font-sans);
+  --text-heading-3: normal var(--font-weight-normal) var(--size-500) / 1.25
+    var(--font-sans);
+}

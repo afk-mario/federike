@@ -1,0 +1,19 @@
+/* .splitter > :last-child { */
+
+/* } */
+
+@media @include media-query('md') {
+  .splitter {
+    display: flex;
+
+    > * {
+      flex-grow: 1;
+    }
+
+    > :last-child {
+      margin-top: 0;
+      margin-left: var(--spacing-05);
+      min-width: 22rem;
+    }
+  }
+}

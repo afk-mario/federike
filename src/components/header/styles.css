@@ -1,0 +1,9 @@
+.header-site {
+  /* padding: var(--spacing-02) 0; */
+  background-color: var(--color-bg-alt);
+}
+
+.header-site ul {
+  padding: 0;
+  list-style: none;
+}

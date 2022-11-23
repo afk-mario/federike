@@ -1,0 +1,11 @@
+.page {
+  flex: 1 1 auto;
+}
+
+.page > .wrapper {
+  padding-top: var(--spacing-02);
+}
+
+/* .page-header { */
+
+/* } */

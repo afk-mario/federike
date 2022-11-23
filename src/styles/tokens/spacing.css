@@ -1,0 +1,14 @@
+:root {
+  --spacing-01: 8px;
+  --spacing-q: calc(var(--spacing-01) * 0.25);
+  --spacing-h: calc(var(--spacing-01));
+  --spacing-02: calc(var(--spacing-01) * 2);
+  --spacing-03: calc(var(--spacing-01) * 3);
+  --spacing-04: calc(var(--spacing-01) * 4);
+  --spacing-05: calc(var(--spacing-01) * 5);
+  --spacing-06: calc(var(--spacing-01) * 6);
+  --spacing-07: calc(var(--spacing-01) * 7);
+  --spacing-08: calc(var(--spacing-01) * 8);
+  --spacing-09: calc(var(--spacing-01) * 9);
+  --spacing-10: calc(var(--spacing-01) * 10);
+}

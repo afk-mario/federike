@@ -1,0 +1,88 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+tbody::before {
+  content: "@";
+  display: block;
+  line-height: var(--margin-02);
+  text-indent: -99999px;
+}
+
+tr {
+  transition: background-color 0.2s ease;
+}
+
+th,
+td {
+  margin: 0;
+  padding: 0.5rem;
+  position: relative;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+th:last-child,
+td:last-child {
+}
+
+:not(.-loading) tr:hover {
+}
+
+th.-collapse,
+td.-collapse {
+  width: 0.0000000001%;
+}
+
+tr {
+  --border-color: var(--color-bg-alt);
+
+  transition: background-color 0.2s ease;
+}
+
+td {
+  overflow: hidden;
+}
+
+tr:nth-child(odd) td {
+  background-color: var(--color-bg-alt);
+}
+
+tr:first-child td {
+  border-top: 2px solid var(--border-color);
+}
+
+tr:last-child td {
+  border-bottom: 2px solid var(--border-color);
+}
+
+tr td:first-child {
+  border-left: 2px solid var(--border-color);
+}
+
+tr td:last-child {
+  border-right: 2px solid var(--border-color);
+}
+
+tr:first-child td:first-child {
+  border-radius: var(--spacing-01) 0 0 0;
+}
+
+tr:first-child td:last-child {
+  border-radius: 0 var(--margin-01) 0 0;
+}
+
+tr:last-child td:first-child {
+  border-radius: 0 0 0 var(--margin-01);
+}
+
+tr:last-child td:last-child {
+  border-radius: 0 0 var(--margin-01) 0;
+}
