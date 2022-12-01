@@ -1,0 +1,25 @@
+.lists-page {
+  flex-flow: row nowrap;
+}
+
+.lists-page > header {
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.lists-page .content-wrapper {
+  flex-flow: row nowrap;
+}
+
+.lists-page .list-wrapper {
+  display: flex;
+  flex-flow: column;
+  height: min-content;
+}
+
+.lists-page .c-list-list {
+  position: sticky;
+  top: var(--spacing-02);
+  height: min-content;
+}
+/* margin-bottom: auto; */

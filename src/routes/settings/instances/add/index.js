@@ -7,7 +7,8 @@ import { useMastodonApp } from "lib/mastodon/provider";
 
 function Add() {
   const [searchParams] = useSearchParams();
-  const { redirectToOauth, handleAuthCode, app } = useMastodonApp();
+  const { redirectToOauth, handleAuthCode, app, auth, clear } =
+    useMastodonApp();
   const { register, handleSubmit } = useForm();
   const code = searchParams.get("code");
   const { clientId, clientSecret, instance } = app || {};
@@ -29,6 +30,12 @@ function Add() {
 
   return (
     <div className="stack">
+      {app || auth ? (
+        <>
+          <pre>{JSON.stringify({ app, auth }, null, 2)} </pre>
+          <button onClick={clear}>Clear</button>
+        </>
+      ) : null}
       {code ? (
         <>
           <span>code: {code}</span>{" "}

@@ -11,6 +11,9 @@ function Header() {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
+            <NavLink to="/lists">Lists</NavLink>
+          </li>
+          <li>
             <NavLink to="/following">Following</NavLink>
           </li>
           <li>

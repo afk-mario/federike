@@ -19,7 +19,7 @@ function FollowingTable({ accountId }) {
 
   if (isLoading) return "Loading ...";
 
-  if (data.length === 0) {
+  if (followers.length === 0) {
     return (
       <div>
         <h3>No follower yet :(</h3>

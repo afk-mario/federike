@@ -9,7 +9,7 @@ function getText({ isLoading, isFetchingNextPage, hasNextPage }) {
   return "idle";
 }
 
-function FollowingLoadAll({ accountId }) {
+function FollowingLoadAll({ accountId, showText = true }) {
   const { data, hasNextPage, isFetchingNextPage, isLoading, fetchNextPage } =
     useGetFollowing({
       accountId,
@@ -25,6 +25,8 @@ function FollowingLoadAll({ accountId }) {
     if (isFetchingNextPage) return;
     fetchNextPage();
   });
+
+  if (!showText) return null;
 
   return (
     <div className="cluster">

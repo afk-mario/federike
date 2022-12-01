@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider } from "react-router-dom";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
 import { MastodonAppProvider } from "lib/mastodon/provider";
 import { FetchProvider } from "lib/fetch";
@@ -12,7 +14,13 @@ import reportWebVitals from "./reportWebVitals";
 
 import "styles/styles.css";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +28,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <MastodonAppProvider>
         <FetchProvider>
-          <RouterProvider router={router} />
+          <DndProvider backend={HTML5Backend}>
+            <RouterProvider router={router} />
+          </DndProvider>
         </FetchProvider>
       </MastodonAppProvider>
       <ReactQueryDevtools initialIsOpen={false} />

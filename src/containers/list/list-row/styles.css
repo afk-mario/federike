@@ -1,0 +1,20 @@
+.c-list-row {
+  --space: var(--spacing-02);
+
+  border: 1px solid var(--color-bg-alt);
+  padding: var(--spacing-02) var(--spacing-06);
+}
+
+.c-list-row[data-is-over="true"] {
+  color: var(--color-hl);
+  background-color: var(--color-bg);
+  border-color: var(--color-hl);
+}
+
+.c-list-row-label {
+  min-height: 40px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}

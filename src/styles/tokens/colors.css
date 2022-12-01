@@ -1,18 +1,11 @@
 :root {
-  --color-neutral-01: #fff;
-  --color-neutral-02: #efeeee;
-  --color-neutral-03: #1d1d1b;
-  --color-neutral-04: #000;
-  --color-primary-01: #ff6358;
-  --color-primary-02: #ff3b2e;
+  --color-bg: #1d1d1b;
+  --color-bg-alt: #000;
+  --color-fg: #fff;
+  --color-fg-alt: #efeeee;
 
-  --color-bg: var(--color-neutral-03);
-  --color-bg-alt: var(--color-neutral-04);
-  --color-fg: var(--color-neutral-01);
-  --color-fg-alt: var(--color-neutral-02);
-
-  --color-hl: var(--color-primary-01);
-  --color-hl-alt: var(--color-primary-02);
+  --color-hl: #72dec2;
+  --color-hl-alt: #9ffce3;
 
   --color-error: #ff0000;
 }

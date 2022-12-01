@@ -11,12 +11,7 @@ const columns = [
     cell: (props) => {
       const { url } = props.row.original;
       return (
-        <a
-          className="redacted"
-          href={url}
-          rel="me noreferrer noopener"
-          target="_blank"
-        >
+        <a href={url} rel="me noreferrer noopener" target="_blank">
           {props.getValue()}
         </a>
       );
@@ -28,12 +23,7 @@ const columns = [
     cell: (props) => {
       const { url } = props.row.original;
       return (
-        <a
-          className="redacted"
-          href={url}
-          rel="me noreferrer noopener"
-          target="_blank"
-        >
+        <a href={url} rel="me noreferrer noopener" target="_blank">
           {props.getValue()}
         </a>
       );
@@ -44,7 +34,7 @@ const columns = [
     accessorKey: "acct",
     cell: (props) => {
       const value = props.getValue().split("@")[1];
-      return <span className="redacted">{value ? value : null}</span>;
+      return <span>{value ? value : null}</span>;
     },
   },
   {

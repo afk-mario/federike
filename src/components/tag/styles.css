@@ -1,0 +1,6 @@
+.c-tag {
+  padding: 0 var(--spacing-01);
+  border-radius: var(--spacing-h);
+  background-color: var(--color-hl);
+  color: var(--color-bg);
+}

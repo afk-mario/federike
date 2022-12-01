@@ -3,10 +3,10 @@ import axios from "axios";
 
 const MastodonAppContext = React.createContext();
 
-const LOCAL_STORAGE_KEY = "MOU_MOU_MASTODON_APP";
+const LOCAL_STORAGE_KEY = "FEDERIKE_MASTODON_APP";
 const WEBSITE = "http://localhost:3000";
-const SCOPES = "read write follow push";
-const CLIENT_NAME = "MouMou";
+const SCOPES = ["read", "write", "follow", "push"];
+const CLIENT_NAME = "Federike";
 const REDIRECT_URI = `http://localhost:3000/settings/instances/add`;
 
 async function getAccessTokenFromAuthCode(props = {}) {
@@ -86,7 +86,7 @@ function MastodonAppProvider(props) {
     const res = await axios.post(`https://${instance}/api/v1/apps`, {
       client_name: CLIENT_NAME,
       redirect_uris: REDIRECT_URI,
-      scopes: SCOPES,
+      scopes: SCOPES.join(" "),
       website: WEBSITE,
     });
 
@@ -135,7 +135,7 @@ function MastodonAppProvider(props) {
     loginURL.searchParams.append("client_id", app.clientId);
     loginURL.searchParams.append("redirect_uri", REDIRECT_URI);
     loginURL.searchParams.append("response_type", "code");
-    loginURL.searchParams.append("scopes", SCOPES);
+    loginURL.searchParams.append("scope", SCOPES.join(" "));
 
     setTimeout(() => {
       document.location.href = loginURL;

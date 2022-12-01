@@ -9,11 +9,11 @@ const { Provider } = FetchContext;
 function FetchProvider(props) {
   const { auth, app } = useMastodonApp();
 
-  const authAxios = axios.create({
+  const client = axios.create({
     baseURL: `https://${app?.instance}/api/v1`,
   });
 
-  authAxios.interceptors.request.use(
+  client.interceptors.request.use(
     (config) => {
       return {
         ...config,
@@ -28,7 +28,7 @@ function FetchProvider(props) {
   return (
     <Provider
       value={{
-        client: authAxios,
+        client: client,
       }}
       {...props}
     />
