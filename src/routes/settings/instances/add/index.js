@@ -9,6 +9,8 @@ import Spinner from "components/spinner";
 
 import "./styles.css";
 
+const { REACT_APP_VERSION } = process.env;
+
 function Add() {
   const [isLoading, setIsLoading] = React.useState(false);
   const ref = React.useRef(false);
@@ -56,6 +58,9 @@ function Add() {
           {isLoading || code != null ? <Spinner /> : "Login"}
         </button>
       </form>
+      <footer>
+        <span>V.{REACT_APP_VERSION}</span>
+      </footer>
     </div>
   );
 }

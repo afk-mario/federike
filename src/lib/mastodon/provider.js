@@ -4,10 +4,10 @@ import axios from "axios";
 const MastodonAppContext = React.createContext();
 
 const LOCAL_STORAGE_KEY = "FEDERIKE_MASTODON_APP";
-const WEBSITE = "http://localhost:3000";
+const WEBSITE = process.env.REACT_APP_WEBSITE_URL;
 const SCOPES = ["read", "write", "follow", "push"];
 const CLIENT_NAME = "Federike";
-const REDIRECT_URI = `http://localhost:3000/settings/instances/add`;
+const REDIRECT_URI = `${WEBSITE}/settings/instances/add`;
 
 async function getAccessTokenFromAuthCode(props = {}) {
   const {
@@ -114,22 +114,18 @@ function MastodonAppProvider(props) {
   async function redirectToOauth(props = {}) {
     const { instance } = props;
 
-    let { app } = state;
+    const { data } = await registerApp(props);
+    const {
+      client_id: clientId,
+      client_secret: clientSecret,
+      vapid_key: vapidKey,
+    } = data;
 
-    if (!app) {
-      const { data } = await registerApp(props);
-      const {
-        client_id: clientId,
-        client_secret: clientSecret,
-        vapid_key: vapidKey,
-      } = data;
-
-      app = {
-        clientId,
-        clientSecret,
-        vapidKey,
-      };
-    }
+    const app = {
+      clientId,
+      clientSecret,
+      vapidKey,
+    };
 
     const loginURL = new URL(`https://${instance}/oauth/authorize`);
     loginURL.searchParams.append("client_id", app.clientId);

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "logo.svg";
 
+const { REACT_APP_VERSION } = process.env;
+
 function Public() {
   return (
     <section className="r-public | wrapper">
@@ -19,6 +21,9 @@ function Public() {
             to start.
           </p>
         </div>
+        <footer>
+          <span>V.{REACT_APP_VERSION}</span>
+        </footer>
       </div>
     </section>
   );

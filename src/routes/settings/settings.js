@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useMastodonApp } from "lib/mastodon/provider";
 
 import ThemeRadioGroup from "containers/theme/theme-radio-group";
+const { REACT_APP_VERSION } = process.env;
 
 function Settings() {
   const { auth, app, clear } = useMastodonApp();
@@ -30,6 +31,9 @@ function Settings() {
           <Link to={"instances/add"}>Login</Link>
         )}
       </section>
+      <footer>
+        <span>V.{REACT_APP_VERSION}</span>
+      </footer>
     </div>
   );
 }

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from "@reach/disclosure";
+import * as Collapsible from "@radix-ui/react-collapsible";
 import { useDrop } from "react-dnd";
 
 import ListDeleteButton from "../list-delete-button";
@@ -37,7 +33,7 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
 
   return (
     <li className="c-list-row | stack" data-open={open}>
-      <Disclosure open={open} onChange={() => setOpen(!open)}>
+      <Collapsible.Root open={open} onOpenChange={setOpen}>
         <header
           className="c-list-row-header | cluster"
           ref={drop}
@@ -59,15 +55,17 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
             </>
           ) : (
             <>
-              <DisclosureButton className="c-list-row-disclosure-button">
-                <span className="icon">{open ? "↓" : "₸"}</span>
-              </DisclosureButton>
+              <Collapsible.Trigger asChild>
+                <button className="c-list-row-disclosure-button">
+                  <span className="icon">{open ? "↓" : "₸"}</span>
+                </button>
+              </Collapsible.Trigger>
               <span className="c-list-row-label">{title}</span>
               <ListDeleteButton listId={listId} />
             </>
           )}
         </header>
-        <DisclosurePanel>
+        <Collapsible.Content>
           <ListEditForm
             listId={listId}
             title={title}
@@ -75,8 +73,8 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
               setOpen(false);
             }}
           />
-        </DisclosurePanel>
-      </Disclosure>
+        </Collapsible.Content>
+      </Collapsible.Root>
     </li>
   );
 }

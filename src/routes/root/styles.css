@@ -1,14 +1,20 @@
+.r-public {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .r-public-inner {
+  width: clamp(100px, 50vw, 300px);
   align-items: center;
   justify-content: center;
   padding: var(--spacing-02);
   background-color: var(--color-bg-alt);
-  /* margin-right: auto; */
-  /* width: min-content; */
 }
 
 .r-public .logo {
+  width: 100%;
   display: block;
-  width: clamp(100px, 50vw, 300px);
   height: auto;
 }

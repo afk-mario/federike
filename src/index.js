@@ -16,6 +16,9 @@ import reportWebVitals from "./reportWebVitals";
 
 import "styles/styles.css";
 import ThemeUpdateRoot from "containers/theme/theme-update-root";
+const { REACT_APP_VERSION, REACT_APP_WEBSITE_URL } = process.env;
+
+console.info("Federike", REACT_APP_WEBSITE_URL, REACT_APP_VERSION);
 
 const queryClient = new QueryClient({
   defaultOptions: {

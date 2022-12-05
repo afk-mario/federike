@@ -5,8 +5,8 @@ div.r-instances-add {
   gap: 0;
 }
 
-.r-instances-add-header {
-  border-bottom: var(--border);
+.r-instances-add > *:not(:first-child) {
+  border-top: var(--border);
 }
 
 .r-instances-add-title {
@@ -19,4 +19,13 @@ div.r-instances-add {
 
 .r-instances-add form {
   padding: var(--spacing-02);
+}
+
+.r-instances-add footer {
+  padding: var(--spacing-01) var(--spacing-02);
+  font-size: var(--size-400);
+  text-align: center;
+  font-style: italic;
+  font-variation-settings: "slnt" -10;
+  font-variant-numeric: tabular-nums;
 }

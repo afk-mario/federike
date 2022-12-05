@@ -5,7 +5,6 @@ import Root from "routes/root/root";
 
 import Followers from "routes/followers";
 import Following from "routes/following";
-import Lists from "routes/lists";
 
 import SettingsRoot from "routes/settings";
 import Settings from "routes/settings/settings";

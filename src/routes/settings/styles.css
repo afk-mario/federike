@@ -24,3 +24,12 @@ div.r-settings-root {
 .r-settings-account-wrapper {
   align-items: center;
 }
+
+.r-settings-root footer {
+  padding: var(--spacing-01) var(--spacing-02);
+  font-size: var(--size-400);
+  text-align: center;
+  font-style: italic;
+  font-variation-settings: "slnt" -10;
+  font-variant-numeric: tabular-nums;
+}
