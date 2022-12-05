@@ -1,25 +1,57 @@
-.lists-page {
+main .r-lists {
   flex-flow: row nowrap;
+  gap: var(--spacing-04);
 }
 
-.lists-page > header {
+.r-lists-loading {
+  padding: var(--spacing-01);
+  width: max-content;
+  background-color: var(--color-bg-alt);
+  margin: auto;
+}
+
+.r-lists > header {
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.lists-page .content-wrapper {
+.r-lists .content-wrapper {
   flex-flow: row nowrap;
 }
 
-.lists-page .list-wrapper {
-  display: flex;
-  flex-flow: column;
-  height: min-content;
-}
-
-.lists-page .c-list-list {
+.r-lists .list-wrapper {
+  gap: 0;
+  overflow: hidden;
+  background: var(--color-bg-alt);
   position: sticky;
   top: var(--spacing-02);
   height: min-content;
 }
-/* margin-bottom: auto; */
+
+.r-lists .list-following-wrapper {
+  max-width: 600px;
+  flex: 1;
+  gap: 0;
+}
+
+.r-lists .c-list-list {
+  border-top: var(--border);
+}
+
+.c-following-actions {
+  --space: var(--spacing-01);
+  background: var(--color-bg-alt);
+  padding: var(--spacing-01);
+  border: var(--border);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-following-actions .c-following-filter {
+  flex: 1;
+}
+
+.c-following-actions .c-tag {
+  font-weight: bold;
+}

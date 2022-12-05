@@ -1,11 +1,11 @@
 import React from "react";
 
 import { useGetFollowing } from "api/following";
+import { getAllItemsFromPaginatedRes } from "api/helpers";
 
 import Table from "components/table";
 
 import columns from "./columns";
-import { getData } from "./helpers";
 
 function FollowingTable({ accountId }) {
   const { data, isLoading } = useGetFollowing({
@@ -15,7 +15,10 @@ function FollowingTable({ accountId }) {
     },
   });
 
-  const followers = React.useMemo(() => getData(data), [data]);
+  const followers = React.useMemo(
+    () => getAllItemsFromPaginatedRes(data),
+    [data]
+  );
 
   if (isLoading) return "Loading ...";
 

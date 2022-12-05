@@ -1,0 +1,26 @@
+div.r-settings-root {
+  min-width: 250px;
+  background: var(--color-bg-alt);
+  margin-right: auto;
+  gap: 0;
+}
+
+.r-settings-root-title {
+  padding: var(--spacing-01) var(--spacing-02);
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.r-settings-root section {
+  padding: var(--spacing-02);
+}
+
+.r-settings-root > *:not(:first-child) {
+  border-top: var(--border);
+}
+
+.r-settings-account-wrapper {
+  align-items: center;
+}

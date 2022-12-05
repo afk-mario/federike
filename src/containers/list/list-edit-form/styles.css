@@ -1,0 +1,9 @@
+.c-list-edit-form {
+  --space: var(--spacing-02);
+
+  width: 100%;
+}
+
+.c-list-edit-form input {
+  flex: 1 1 auto;
+}

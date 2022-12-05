@@ -1,0 +1,19 @@
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+    color: var(--color-hl);
+  }
+}
+
+.c-spinner {
+  display: block;
+  width: var(--size-500);
+  height: var(--size-500);
+  animation: spin 1s linear infinite;
+  transform-origin: center;
+}
+
+.c-spinner .icon {
+  font-weight: 800;
+  font-size: 1.2em;
+}

@@ -22,3 +22,12 @@ export function getNextPageParam(lastPage) {
   };
   return params;
 }
+
+export function getAllItemsFromPaginatedRes(data) {
+  if (!data) return [];
+
+  const { pages } = data;
+  const list = pages.map((page) => page.data).flat();
+
+  return list;
+}

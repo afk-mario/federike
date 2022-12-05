@@ -1,15 +1,15 @@
 import React from "react";
-import { useInView } from "react-intersection-observer";
 import { useDrag } from "react-dnd";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
-import { useGetFollowingLists } from "api/lists";
-
-import Tag from "components/tag";
+import ListTags from "./lists-tags";
 
 import "./styles.css";
 
+// TODO: optimize furder
 function FollowingRow({
   id,
+  url,
   index,
   cursor,
   bot,
@@ -20,30 +20,38 @@ function FollowingRow({
   note,
   isSelected,
   onItemSelection,
+  isDragging,
+  onDragStart,
+  onDragEnd,
   ...rest
 }) {
   const ref = React.useRef();
-  const { ref: inViewRef, inView } = useInView();
-  const { data } = useGetFollowingLists({
-    accountId: id,
-    config: { enabled: inView },
-  });
-  const lists = data?.data || [];
 
-  const [{ isDragging }, dragRef] = useDrag(
+  const [, dragRef, preview] = useDrag(
     () => ({
       type: "following",
-      item: { id, lists },
+      item: () => {
+        onDragStart({ id, index });
+        return {
+          id,
+        };
+      },
+      end: () => {
+        onDragEnd();
+      },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
     }),
-    [lists]
+    [onItemSelection]
   );
 
-  const onClick = (e) => {
-    onItemSelection({ metaKey: e.metaKey, shiftKey: e.shiftKey, index, id });
-  };
+  const onClick = React.useCallback(
+    (event) => {
+      onItemSelection({ event, index, id });
+    },
+    [onItemSelection, id, index]
+  );
 
   React.useEffect(() => {
     if (cursor === index) {
@@ -51,39 +59,49 @@ function FollowingRow({
     }
   }, [cursor, index, ref]);
 
+  React.useEffect(() => {
+    preview(getEmptyImage(), {
+      captureDraggingState: true,
+    });
+  }, [preview]);
+
   return (
     <button
       ref={ref}
       className="c-following-row | cluster"
       onClick={onClick}
-      data-dragging={isDragging}
+      data-dragging={isDragging && isSelected}
       data-selected={isSelected}
       data-is-current-cursor={cursor === index}
     >
-      <div className="c-following-row-avatar-wrapper" ref={inViewRef}>
-        <img
-          className="c-following-row-avatar"
-          src={avatar}
-          alt={`${username} avatar`}
-        />
-      </div>
-      <div className="c-following-row-content | stack">
-        <header className="c-following-row-header | stack">
-          <span className="c-following-row-title">{displayName}</span>
-          <span className="c-following-row-subtitle">{acct}</span>
-          {lists.length > 0 ? (
-            <ul className="c-following-row-tag-list | cluster">
-              {lists.map((item) => (
-                <li key={item.id}>
-                  <Tag>{item.title}</Tag>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </header>
+      <div className="c-following-row-content | cluster">
+        <div className="c-following-row-avatar-wrapper">
+          <img
+            className="c-following-row-avatar"
+            src={avatar}
+            alt={`${username} avatar`}
+          />
+        </div>
+        <div className="c-following-row-content | stack">
+          <header className="c-following-row-header | stack">
+            <span className="c-following-row-title | cluster">
+              <a
+                className="c-following-row-link"
+                href={url}
+                rel="me noreferrer noopener"
+                target="_blank"
+              >
+                ↗
+              </a>
+              {displayName}
+            </span>
+            <span className="c-following-row-subtitle">{acct}</span>
+            <ListTags id={id} />
+          </header>
+        </div>
       </div>
       <span className="c-following-row-drag" ref={dragRef}>
-        ¤
+        <span className="icon">Ⅲ</span>
       </span>
     </button>
   );

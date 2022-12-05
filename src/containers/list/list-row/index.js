@@ -1,78 +1,82 @@
 import React from "react";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@reach/disclosure";
 import { useDrop } from "react-dnd";
 
-import {
-  useAddAccountToList,
-  useRemoveAccountToList,
-  useInvalidateAccountsLists,
-} from "api/lists";
+import ListDeleteButton from "../list-delete-button";
+import ListEditForm from "../list-edit-form";
+
+import Add from "./add";
+import Remove from "./remove";
 
 import "./styles.css";
+import { useGetListAccounts } from "api/lists";
 
-function getIsInList({ item, listId }) {
+export function getIsInList({ item, listId }) {
   return item.lists.find((item) => item.id === listId) != null;
 }
 
-function getState({ isOver, item, listId }) {
-  if (!isOver) return "idle";
-  const isInList = getIsInList({ item, listId });
+function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
+  const { data } = useGetListAccounts({ listId });
+  const [open, setOpen] = React.useState(false);
 
-  if (isInList) return "remove";
-  return "add";
-}
-
-function ListRow({ title, id: listId, is_exclusive }) {
-  const invalidate = useInvalidateAccountsLists();
-  const config = {
-    onSuccess: (data, variables) => {
-      console.log("onSuccess", variables);
-      invalidate(variables.accountIds);
-    },
-  };
-  const addMutation = useAddAccountToList({
-    config,
-  });
-  const removeMutation = useRemoveAccountToList({
-    config,
-  });
-
-  const [{ isOver, item }, drop] = useDrop(
+  let [{ isOver }, drop] = useDrop(
     () => ({
       accept: "following",
-      drop: (item) => {
-        const isInList = getIsInList({ item, listId });
-        const params = {
-          listId,
-          accountIds: [item.id],
-        };
-        if (isInList) {
-          removeMutation.mutate(params);
-        } else {
-          addMutation.mutate(params);
-        }
-      },
-      collect: (monitor) => {
-        return {
-          item: monitor.getItem(),
-          isOver: !!monitor.isOver(),
-        };
-      },
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+      }),
     }),
     []
   );
 
-  const state = getState({ item, isOver, listId });
+  const accounts = data?.data || [];
 
   return (
-    <li
-      className="c-list-row"
-      ref={drop}
-      data-is-over={isOver}
-      data-state={state}
-    >
-      <span className="c-list-row-label">{title}</span>
-      {state === "add" ? <span>Add</span> : null}
-      {state === "remove" ? <span>Remove</span> : null}
+    <li className="c-list-row | stack" data-open={open}>
+      <Disclosure open={open} onChange={() => setOpen(!open)}>
+        <header
+          className="c-list-row-header | cluster"
+          ref={drop}
+          data-is-over={isOver}
+        >
+          {isOver ? (
+            <>
+              <Add
+                listId={listId}
+                selectedItems={selectedItems}
+                accounts={accounts}
+              />
+              <span className="c-list-row-label">{title}</span>
+              <Remove
+                listId={listId}
+                selectedItems={selectedItems}
+                accounts={accounts}
+              />
+            </>
+          ) : (
+            <>
+              <DisclosureButton className="c-list-row-disclosure-button">
+                <span className="icon">{open ? "↓" : "₸"}</span>
+              </DisclosureButton>
+              <span className="c-list-row-label">{title}</span>
+              <ListDeleteButton listId={listId} />
+            </>
+          )}
+        </header>
+        <DisclosurePanel>
+          <ListEditForm
+            listId={listId}
+            title={title}
+            onSuccess={() => {
+              setOpen(false);
+            }}
+          />
+        </DisclosurePanel>
+      </Disclosure>
     </li>
   );
 }

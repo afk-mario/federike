@@ -1,20 +1,110 @@
 .c-list-row {
+}
+
+.c-list-row[data-state="add"] {
+  background-color: var(--color-bg);
+}
+
+.c-list-row[data-state="remove"] {
+  background-color: var(--color-danger);
+}
+
+.c-list-row[data-open="true"] {
+  /* background-color: var(--color-bg); */
+}
+
+/* .c-list-row[data-is-over="true"] { */
+/* } */
+
+header.c-list-row-header {
   --space: var(--spacing-02);
 
-  border: 1px solid var(--color-bg-alt);
-  padding: var(--spacing-02) var(--spacing-06);
+  position: relative;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
-.c-list-row[data-is-over="true"] {
-  color: var(--color-hl);
-  background-color: var(--color-bg);
-  border-color: var(--color-hl);
+.c-list-row-header[data-is-over="true"] {
+  font-weight: bold;
+  gap: 0;
 }
 
-.c-list-row-label {
-  min-height: 40px;
+.c-list-row-action {
+  text-transform: uppercase;
+  padding: var(--spacing-02);
+  flex: 1 1 50%;
   display: flex;
   flex-flow: row;
   align-items: center;
-  justify-content: center;
+  transition: background-color 0.1s ease;
+}
+
+.c-list-row-action[data-action="add"] {
+  justify-content: flex-start;
+}
+
+.c-list-row-action[data-action="remove"] {
+  justify-content: flex-end;
+}
+
+.c-list-row-action[data-action="add"][data-is-over="true"] {
+  background-color: var(--color-hl);
+}
+
+.c-list-row-action[data-action="remove"][data-is-over="true"] {
+  background-color: var(--color-danger);
+}
+
+.c-list-row-label {
+  display: block;
+  padding: var(--spacing-02) var(--spacing-01);
+  overflow: hidden;
+  text-overflow: ellipsis ellipsis;
+  white-space: nowrap;
+}
+
+.c-list-row-header[data-is-over="true"] .c-list-row-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.c-list-row-header button {
+  padding: var(--spacing-02);
+  border-radius: 0;
+  border: none;
+  flex: 0 0 auto;
+  background: transparent;
+}
+
+.c-list-row button:first-of-type {
+  border-right: var(--border);
+}
+
+.c-list-row button:last-of-type {
+  border-left: var(--border);
+}
+
+.c-list-row button:hover {
+  background: var(--color-bg);
+}
+
+.c-list-row-indicator {
+  text-transform: uppercase;
+  padding: var(--spacing-02);
+  border-radius: 0;
+  border: none;
+  flex: 0 0 auto;
+}
+
+.c-list-row form {
+  border-top: var(--border);
+  background-color: var(--color-bg);
+}
+
+.c-list-row[data-open="true"] .c-list-row-disclosure-button {
+  background-color: var(--color-bg);
 }

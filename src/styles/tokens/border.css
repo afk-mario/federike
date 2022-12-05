@@ -1,8 +1,7 @@
 :root {
-  --border-width: 1px;
-  --border-radius: 0;
-  --border-color: var(--color-fg-alt);
-  --border: var(--border-width) solid var(--border-color);
+  --border-width: 2px;
+  --border-radius: var(--spacing-h);
+  --border: var(--border-width) solid var(--color-border);
 }
 
 .border {

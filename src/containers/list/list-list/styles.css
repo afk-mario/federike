@@ -1,13 +1,19 @@
 ul.c-list-list {
   --space: 0px;
 
-  background: var(--color-bg-alt);
-  border-radius: var(--spacing-q);
-  border: 1px solid var(--color-bg);
+  overflow: hidden;
   list-style: none;
   padding: 0;
 }
 
 ul.c-list-list .c-list-row:not(:last-child) {
-  border-bottom: 1px solid var(--color-bg);
+  border-bottom: var(--border);
+}
+
+.c-list-lists-loading {
+  width: 100%;
+  padding: var(--spacing-02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,0 +1,14 @@
+.r-public-inner {
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-02);
+  background-color: var(--color-bg-alt);
+  /* margin-right: auto; */
+  /* width: min-content; */
+}
+
+.r-public .logo {
+  display: block;
+  width: clamp(100px, 50vw, 300px);
+  height: auto;
+}

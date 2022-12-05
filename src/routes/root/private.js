@@ -3,7 +3,7 @@ import { useGetVerifyCredentials } from "api/account";
 function PrivateRoot() {
   const { data, isLoading } = useGetVerifyCredentials();
 
-  if (isLoading) return "Loading ...";
+  if (isLoading) return null;
 
   const {
     data: { followers_count: followersCount, following_count: followingCount },

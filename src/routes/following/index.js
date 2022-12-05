@@ -8,7 +8,7 @@ import "./styles.css";
 function FollowingRoute() {
   const { data, isLoading } = useGetVerifyCredentials();
 
-  if (isLoading) return "Loading ...";
+  if (isLoading) return null;
 
   const {
     data: { id: accountId },

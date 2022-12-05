@@ -1,26 +1,26 @@
 import { NavLink } from "react-router-dom";
 
+import { ReactComponent as Logo } from "logo.svg";
+
 import "./styles.css";
 
 function Header() {
   return (
     <header className="header-site">
       <nav className="wrapper">
-        <ul className="cluster">
+        <ul className="border cluster">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink className="logo-wrapper" to="/">
+              <Logo className="logo" />
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/lists">Lists</NavLink>
+            <h1 className="title">Federike</h1>
           </li>
           <li>
-            <NavLink to="/following">Following</NavLink>
-          </li>
-          <li>
-            <NavLink to="/followers">Followers</NavLink>
-          </li>
-          <li>
-            <NavLink to="settings">Settings</NavLink>
+            <NavLink className="icon" to="settings">
+              <span className="icon">※</span>
+            </NavLink>
           </li>
         </ul>
       </nav>

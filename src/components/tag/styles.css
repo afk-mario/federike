@@ -1,6 +1,13 @@
 .c-tag {
+  border-radius: var(--border-radius);
+  font-size: 0.75em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min-content;
   padding: 0 var(--spacing-01);
-  border-radius: var(--spacing-h);
-  background-color: var(--color-hl);
   color: var(--color-bg);
+  background-color: var(--color-fg-alt);
+  font-variant-numeric: tabular-nums;
 }

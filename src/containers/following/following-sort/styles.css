@@ -1,0 +1,54 @@
+.c-sort-trigger {
+  min-width: 160px;
+}
+
+.c-sort-content {
+  overflow: hidden;
+  background-color: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  z-index: 10;
+}
+
+.c-sort-viewport {
+  /* padding: var(--spacing-01); */
+}
+
+.cluster.c-sort-item {
+  /* border-radius: 3px; */
+  gap: var(--spacing-q);
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  align-items: center;
+  padding: var(--spacing-q) var(--spacing-01);
+  position: relative;
+  user-select: none;
+}
+
+.cluster.c-sort-item[data-state="checked"] {
+  font-weight: 600;
+  font-style: italic;
+  font-variation-settings: "slnt" -10, "wght" 600;
+}
+
+.c-sort-trigger > span,
+.c-sort-item > span {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  gap: var(--spacing-01);
+  justify-content: space-between;
+}
+
+.c-sort-item[data-highlighted] {
+  background: var(--color-bg-alt);
+}
+
+.c-sort-scroll-button {
+  padding: var(--spacing-q);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}

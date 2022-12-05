@@ -1,38 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { useGetFollowing } from "api/following";
+import { getAllItemsFromPaginatedRes } from "api/helpers";
+
+import Spinner from "components/spinner";
+
+import { getSortedItems } from "./helpers";
 
 import FollowingRow from "../following-row";
 
-import { getData } from "../following-table/helpers";
-
 import "./styles.css";
 
-function FollowingList({ accountId }) {
-  const [selectedItems, setSelectedItems] = React.useState([]);
-  const [cursor, setCursor] = useState(0);
+function FollowingList({ selectedItems, setSelectedItems, accountId, sort }) {
+  const [isDragging, setIsDragging] = React.useState();
+  const [cursor, setCursor] = React.useState(-1);
+  const [lastSelectedIndex, setLastSelectedIndex] = React.useState(-1);
   const { data, isLoading } = useGetFollowing({
     accountId,
     config: {
       enabled: accountId != null,
     },
   });
-  const followers = React.useMemo(() => getData(data), [data]);
+
+  const unsortedItems = React.useMemo(() => {
+    return getAllItemsFromPaginatedRes(data);
+  }, [data]);
+
+  const items = getSortedItems([...unsortedItems], sort);
+
+  const handleDragStart = ({ id, index }) => {
+    const newItems = new Set(selectedItems);
+    if (!newItems.has(id)) {
+      newItems.add(id);
+    }
+    setSelectedItems(newItems);
+    setIsDragging(true);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
+
+  const handleItemSelection = ({ id, index, event }) => {
+    setCursor(index);
+
+    const { metaKey, shiftKey, ctrlKey } = event;
+    const newItems = new Set(selectedItems);
+
+    if (ctrlKey || metaKey) {
+      if (newItems.has(id)) {
+        newItems.delete(id);
+      } else {
+        newItems.add(id);
+      }
+      setSelectedItems(newItems);
+    } else if (shiftKey) {
+      const [start, end] =
+        index > lastSelectedIndex
+          ? [lastSelectedIndex, index]
+          : [index, lastSelectedIndex];
+      const subList = items.slice(start, end + 1).map(({ id }) => id);
+      const a = new Set([...newItems, ...subList]);
+      setSelectedItems(a);
+    } else {
+      if (newItems.has(id) && newItems.size === 1) {
+        setSelectedItems(new Set());
+      } else {
+        setSelectedItems(new Set([id]));
+      }
+    }
+
+    setLastSelectedIndex(index);
+  };
 
   useHotkeys(
     ["down", "j"],
     () => {
-      setCursor((prevState) => Math.min(prevState + 1, followers.length));
+      setCursor((prevState) => Math.min(prevState + 1, items.length));
     },
-    [followers.length]
+    [items.length]
   );
   useHotkeys(
     ["shift+down", "shift+j"],
     () => {
-      setCursor((prevState) => Math.min(prevState + 5, followers.length));
+      setCursor((prevState) => Math.min(prevState + 5, items.length));
     },
-    [followers.length]
+    [items.length]
   );
   useHotkeys(["up", "k"], () => {
     setCursor((prevState) => Math.max(prevState - 1, 0));
@@ -40,14 +94,19 @@ function FollowingList({ accountId }) {
   useHotkeys(
     ["shift+up", "shift+k"],
     () => {
-      setCursor((prevState) => Math.min(prevState - 5, followers.length));
+      setCursor((prevState) => Math.min(prevState - 5, items.length));
     },
-    [followers.length]
+    [items.length]
   );
 
-  if (isLoading) return "Loading ...";
+  if (isLoading)
+    return (
+      <div className="c-following-lists-loading">
+        <Spinner />
+      </div>
+    );
 
-  if (followers.length === 0) {
+  if (items.length === 0) {
     return (
       <div>
         <h3>No follower yet :(</h3>
@@ -55,28 +114,20 @@ function FollowingList({ accountId }) {
     );
   }
 
-  const handleItemSelection = ({ id, index, metaKey, hiftKey }) => {
-    const s = new Set(selectedItems);
-    setCursor(index);
-    if (s.has(id)) {
-      s.delete(id);
-    } else {
-      s.add(id);
-    }
-    setSelectedItems([...s]);
-  };
-
   return (
     <ul className="c-following-lists | stack">
-      {followers.map((item, index) => {
-        const isSelected = new Set(selectedItems).has(item.id);
+      {items.map((item, index) => {
+        const isSelected = selectedItems.has(item.id);
         return (
           <li key={item.id}>
             <FollowingRow
+              isDragging={isDragging}
               index={index}
               cursor={cursor}
               isSelected={isSelected}
               onItemSelection={handleItemSelection}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
               {...item}
             />
           </li>

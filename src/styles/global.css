@@ -22,23 +22,30 @@ main {
 }
 
 h1 {
+  color: var(--color-fg-alt);
   font: var(--text-page-title);
 }
 
 h2 {
+  color: var(--color-fg-alt);
   font: var(--text-heading-2);
 }
 
 h3 {
+  color: var(--color-fg-alt);
   font: var(--text-heading-3);
 }
 
 h4 {
+  color: var(--color-fg-alt);
   font-size: var(--size-400);
 }
 
 p {
   font: var(--text-paragraph);
+}
+
+a {
 }
 
 strong {
@@ -47,6 +54,57 @@ strong {
 
 time {
   font-variant-numeric: tabular-nums;
+}
+
+form {
+  background: var(--color-bg-alt);
+  padding: var(--spacing-01);
+  align-items: flex-end;
+}
+
+button {
+  color: inherit;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background: var(--color-bg);
+  padding: var(--spacing-q) var(--spacing-01);
+  width: max-content;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: var(--color-bg-alt);
+}
+
+button:disabled {
+  background-color: var(--color-input);
+  color: var(--color-fg-alt);
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+input {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background: var(--color-input);
+  padding: var(--spacing-q) var(--spacing-01);
+}
+
+input:disabled {
+  background-color: var(--color-input);
+  color: var(--color-fg-alt);
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+.icon {
+  font-size: var(--size-500);
+  min-width: 30px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .redacted {

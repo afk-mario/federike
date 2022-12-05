@@ -1,0 +1,22 @@
+div.r-instances-add {
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  margin-right: auto;
+  gap: 0;
+}
+
+.r-instances-add-header {
+  border-bottom: var(--border);
+}
+
+.r-instances-add-title {
+  padding: var(--spacing-01) var(--spacing-02);
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.r-instances-add form {
+  padding: var(--spacing-02);
+}

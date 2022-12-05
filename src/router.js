@@ -23,10 +23,6 @@ const router = createBrowserRouter([
         element: <Root />,
       },
       {
-        path: "lists",
-        element: <Lists />,
-      },
-      {
         path: "followers",
         element: <Followers />,
       },
