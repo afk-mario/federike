@@ -1,0 +1,22 @@
+.c-following-select-counter {
+  background: var(--color-hl);
+  border: var(--border);
+  position: absolute;
+  padding: 0 var(--spacing-02);
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  top: 0;
+  left: 100%;
+  transform: translate(-100%, calc(-100% + var(--spacing-q)));
+  font-variant-numeric: tabular-nums;
+  z-index: -1;
+  transition: 0.1s ease transform;
+}
+
+.c-following-select-counter[data-size="0"] {
+  transform: translate(-100%, 0);
+  color: transparent;
+}

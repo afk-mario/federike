@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 
 import { useCreateList, useInvalidateLists } from "api/lists";
 
+import "./styles.css";
+
 function ListFormCreate() {
   const { register, handleSubmit, reset } = useForm();
   const invalidate = useInvalidateLists();
@@ -18,7 +20,10 @@ function ListFormCreate() {
     mutation.mutate({ title });
   };
   return (
-    <form className="cluster" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="c-list-form-create | cluster"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <input
         name="title"
         type="text"

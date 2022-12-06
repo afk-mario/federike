@@ -2,13 +2,16 @@ import React from "react";
 
 import { useGetLists } from "api/lists";
 
+import { useListRouteState } from "routes/lists/context";
+
 import Spinner from "components/spinner";
 
 import ListRow from "../list-row";
 
 import "./styles.css";
 
-function ListList({ selectedItems }) {
+function ListList() {
+  const selectedItems = useListRouteState();
   const { data, isLoading } = useGetLists();
 
   if (isLoading)

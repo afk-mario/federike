@@ -11,7 +11,7 @@ function getLists(cacheData, followingId) {
 
       return {
         listId: parseInt(listId, 10),
-        accounts: new Set(data?.data.map((account) => account.id)),
+        accounts: new Set(data?.map((account) => account.id)),
       };
     })
     .filter((item) => item.accounts.has(followingId))

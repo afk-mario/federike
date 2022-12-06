@@ -1,0 +1,20 @@
+.c-following-actions.cluster {
+  --space: var(--spacing-01);
+
+  flex-wrap: nowrap;
+  background: var(--color-bg-alt);
+  padding: var(--spacing-01);
+  border: var(--border);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.c-following-actions .c-following-filter {
+  flex: 1;
+}
+
+.c-following-actions .c-tag {
+  font-weight: bold;
+}

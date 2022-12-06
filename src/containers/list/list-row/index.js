@@ -29,7 +29,7 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
     []
   );
 
-  const accounts = data?.data || [];
+  const accounts = data || [];
 
   return (
     <li className="c-list-row | stack" data-open={open}>

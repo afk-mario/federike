@@ -1,12 +1,27 @@
 import { useDrop } from "react-dnd";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { useRemoveAccountToList, useInvalidateListModify } from "api/lists";
 
 function ListRemove({ listId, selectedItems, accounts }) {
+  const queryClient = useQueryClient();
   const invalidate = useInvalidateListModify();
   const mutation = useRemoveAccountToList({
     config: {
-      onSuccess: (data, variables) => {
+      onMutate: async ({ accountIds }) => {
+        await queryClient.cancelQueries({
+          queryKey: ["list-accounts", listId],
+        });
+        const prev = queryClient.getQueryData(["list-accounts", listId]);
+
+        const set = new Set(accountIds);
+        queryClient.setQueryData(["list-accounts", listId], (old) => {
+          return old.filter(({ id }) => !set.has(id));
+        });
+
+        return prev;
+      },
+      onSettled: (data, error, variables, context) => {
         invalidate(variables);
       },
     },

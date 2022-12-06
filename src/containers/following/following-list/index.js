@@ -11,8 +11,13 @@ import { getSortedItems } from "./helpers";
 import FollowingRow from "../following-row";
 
 import "./styles.css";
+import { useListRouteState, useListRouteUpdater } from "routes/lists/context";
+import { useFollowingState } from "./context";
 
-function FollowingList({ selectedItems, setSelectedItems, accountId, sort }) {
+function FollowingList({ accountId }) {
+  const selectedItems = useListRouteState();
+  const setSelectedItems = useListRouteUpdater();
+  const { sort } = useFollowingState();
   const [isDragging, setIsDragging] = React.useState();
   const [cursor, setCursor] = React.useState(-1);
   const [lastSelectedIndex, setLastSelectedIndex] = React.useState(-1);

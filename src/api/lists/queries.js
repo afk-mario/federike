@@ -11,7 +11,9 @@ export async function getFollowingLists({ client, accountId }) {
 }
 
 export async function getListAccounts({ client, listId, limit = 0, maxId }) {
-  return client.get(`lists/${listId}/accounts`, {
+  const res = await client.get(`lists/${listId}/accounts`, {
     params: { limit, max_id: maxId },
   });
+
+  return res.data;
 }

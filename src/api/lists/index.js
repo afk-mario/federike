@@ -1,4 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useQuery,
+  useQueries,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 import { useFetch } from "lib/fetch";
 
@@ -36,6 +41,22 @@ export function useGetLists(props = {}) {
     queryKey: [queryKey],
     queryFn: () => getLists({ client }),
     ...config,
+  });
+}
+
+export function useGetAllLists(props = {}) {
+  const { client } = useFetch();
+  const { queryKey = "list", config = {} } = props;
+  const listsQuery = useGetLists(props);
+  const lists = listsQuery.data?.data || [];
+
+  return useQueries({
+    queries: lists.map((item) => ({
+      queryKey: [queryKey, item.id],
+      queryFn: () => getListAccounts({ client, listId: item.id }),
+      meta: item.id,
+      ...config,
+    })),
   });
 }
 
@@ -119,6 +140,21 @@ export function useInvalidateLists(props = {}) {
   const queryClient = useQueryClient();
   return () => {
     queryClient.invalidateQueries(["lists"]);
+  };
+}
+
+export function useOptimisticUpdateListRemove(props = {}) {
+  const { listId } = props;
+  const queryClient = useQueryClient();
+
+  return async (item) => {
+    await queryClient.cancelQueries({ queryKey: ["list-accounts", listId] });
+    const prev = queryClient.getQueryData(["list-accounts", listId]);
+    queryClient.setQueryData(["list-accounts", listId], (old) => {
+      return old.filter((oldItem) => oldItem.id !== item.id);
+    });
+
+    return prev;
   };
 }
 

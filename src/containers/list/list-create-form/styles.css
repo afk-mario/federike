@@ -1,0 +1,8 @@
+.c-list-form-create.cluster {
+  flex-flow: row nowrap;
+}
+
+.c-list-form-create input {
+  flex: 1 1 auto;
+  min-width: 0px;
+}

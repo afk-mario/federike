@@ -37,21 +37,3 @@ main .r-lists {
 .r-lists .c-list-list {
   border-top: var(--border);
 }
-
-.c-following-actions {
-  --space: var(--spacing-01);
-  background: var(--color-bg-alt);
-  padding: var(--spacing-01);
-  border: var(--border);
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.c-following-actions .c-following-filter {
-  flex: 1;
-}
-
-.c-following-actions .c-tag {
-  font-weight: bold;
-}

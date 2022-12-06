@@ -1,5 +1,5 @@
 import React from "react";
-import { useDrag } from "react-dnd";
+import { useDrag, useDragLayer } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
 
 import ListTags from "./lists-tags";
@@ -20,12 +20,16 @@ function FollowingRow({
   note,
   isSelected,
   onItemSelection,
-  isDragging,
   onDragStart,
-  onDragEnd,
   ...rest
 }) {
   const ref = React.useRef();
+  const { isDragging } = useDragLayer(
+    (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+    []
+  );
 
   const [, dragRef, preview] = useDrag(
     () => ({
@@ -36,12 +40,6 @@ function FollowingRow({
           id,
         };
       },
-      end: () => {
-        onDragEnd();
-      },
-      collect: (monitor) => ({
-        isDragging: !!monitor.isDragging(),
-      }),
     }),
     [onItemSelection]
   );

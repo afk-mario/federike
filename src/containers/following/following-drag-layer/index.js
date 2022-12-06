@@ -1,14 +1,16 @@
 import { useDragLayer } from "react-dnd";
+import { useListRouteState } from "routes/lists/context";
 
 import "./styles.css";
 
-function FollowingDragLayer({ selectedItems }) {
+function FollowingDragLayer() {
+  const selectedItems = useListRouteState();
   const { isDragging, currentOffset } = useDragLayer(
     (monitor) => ({
       currentOffset: monitor.getSourceClientOffset(),
       isDragging: monitor.isDragging(),
     }),
-    [selectedItems]
+    []
   );
 
   if (!isDragging) return null;
