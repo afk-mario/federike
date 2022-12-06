@@ -1,0 +1,16 @@
+.c-list-delete-button {
+  --space: var(--spacing-01);
+
+  padding: var(--spacing-01) var(--spacing-02);
+  background: var(--color-danger);
+  width: 100%;
+}
+
+.c-list-delete-button p {
+  max-width: 30ch;
+}
+
+.c-list-delete-button footer {
+  align-items: center;
+  justify-content: flex-end;
+}

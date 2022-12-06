@@ -1,17 +1,53 @@
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "@tanstack/react-query";
 
-import { useUpdateList, useInvalidateLists } from "api/lists";
+import { useUpdateList, useInvalidateListUpdate } from "api/lists";
 
 import "./styles.css";
 
 function ListEditForm({ listId, title, onSuccess }) {
   const { register, handleSubmit } = useForm();
-  const invalidate = useInvalidateLists();
+  const queryClient = useQueryClient();
+  const invalidate = useInvalidateListUpdate();
   const mutation = useUpdateList({
     config: {
-      onSuccess: () => {
-        invalidate();
+      onMutate: async ({ listId, title }) => {
+        await queryClient.cancelQueries({
+          queryKey: ["lists"],
+        });
+
+        await queryClient.cancelQueries({
+          queryKey: ["list", listId],
+        });
+
+        const prevList = queryClient.getQueryData(["list", listId]);
+
+        const prevLists = queryClient.getQueryData(["lists"]);
+
+        queryClient.setQueryData(["list", listId], (old) => ({
+          ...old,
+          title,
+        }));
+
+        queryClient.setQueryData(["lists"], (old) =>
+          old.map((item) => {
+            if (item.id === listId) {
+              return {
+                ...item,
+                title,
+              };
+            }
+            return {
+              ...item,
+            };
+          })
+        );
+        return { prevLists, prevList };
+      },
+      onSettled: (res, context, variables) => {
+        const { listId } = variables;
+        invalidate({ listId });
         onSuccess();
       },
     },

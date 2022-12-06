@@ -7,6 +7,7 @@ import { getAllItemsFromPaginatedRes } from "api/helpers";
 import Spinner from "components/spinner";
 
 import { getSortedItems } from "./helpers";
+import { filterFollowing } from "../helpers";
 
 import FollowingRow from "../following-row";
 
@@ -17,7 +18,7 @@ import { useFollowingState } from "./context";
 function FollowingList({ accountId }) {
   const selectedItems = useListRouteState();
   const setSelectedItems = useListRouteUpdater();
-  const { sort } = useFollowingState();
+  const { sort, filter } = useFollowingState();
   const [isDragging, setIsDragging] = React.useState();
   const [cursor, setCursor] = React.useState(-1);
   const [lastSelectedIndex, setLastSelectedIndex] = React.useState(-1);
@@ -32,7 +33,10 @@ function FollowingList({ accountId }) {
     return getAllItemsFromPaginatedRes(data);
   }, [data]);
 
-  const items = getSortedItems([...unsortedItems], sort);
+  const items = getSortedItems(
+    unsortedItems.filter((item) => filterFollowing(item, filter)),
+    sort
+  );
 
   const handleDragStart = ({ id, index }) => {
     const newItems = new Set(selectedItems);
@@ -43,13 +47,7 @@ function FollowingList({ accountId }) {
     setIsDragging(true);
   };
 
-  const handleDragEnd = () => {
-    setIsDragging(false);
-  };
-
   const handleItemSelection = ({ id, index, event }) => {
-    setCursor(index);
-
     const { metaKey, shiftKey, ctrlKey } = event;
     const newItems = new Set(selectedItems);
 
@@ -77,6 +75,10 @@ function FollowingList({ accountId }) {
     }
 
     setLastSelectedIndex(index);
+  };
+
+  const handleItemFocus = ({ index }) => {
+    setCursor(index);
   };
 
   useHotkeys(
@@ -131,8 +133,8 @@ function FollowingList({ accountId }) {
               cursor={cursor}
               isSelected={isSelected}
               onItemSelection={handleItemSelection}
+              onItemFocus={handleItemFocus}
               onDragStart={handleDragStart}
-              onDragEnd={handleDragEnd}
               {...item}
             />
           </li>

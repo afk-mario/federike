@@ -1,4 +1,5 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+
 import { getNextPageParam } from "api/helpers";
 
 import { useFetch } from "lib/fetch";
@@ -16,4 +17,11 @@ export function useGetFollowing(props = {}) {
     getNextPageParam,
     ...config,
   });
+}
+
+export function useInvalidateFollowing(props = {}) {
+  const queryClient = useQueryClient();
+  return () => {
+    queryClient.invalidateQueries(["following"]);
+  };
 }

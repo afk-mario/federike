@@ -27,7 +27,7 @@ export function useGetList(props = {}) {
   const { queryKey = "list", listId, config = {} } = props;
 
   return useQuery({
-    queryKey: [queryKey, listId],
+    queryKey: [queryKey, listId.toString()],
     queryFn: () => getList({ client, listId }),
     ...config,
   });
@@ -44,7 +44,7 @@ export function useGetLists(props = {}) {
   });
 }
 
-export function useGetAllLists(props = {}) {
+export function useGetAllListsAccounts(props = {}) {
   const { client } = useFetch();
   const { queryKey = "list", config = {} } = props;
   const listsQuery = useGetLists(props);
@@ -143,24 +143,18 @@ export function useInvalidateLists(props = {}) {
   };
 }
 
-export function useOptimisticUpdateListRemove(props = {}) {
-  const { listId } = props;
+export function useInvalidateListUpdate(props = {}) {
   const queryClient = useQueryClient();
-
-  return async (item) => {
-    await queryClient.cancelQueries({ queryKey: ["list-accounts", listId] });
-    const prev = queryClient.getQueryData(["list-accounts", listId]);
-    queryClient.setQueryData(["list-accounts", listId], (old) => {
-      return old.filter((oldItem) => oldItem.id !== item.id);
-    });
-
-    return prev;
+  return ({ listId }) => {
+    queryClient.invalidateQueries(["list", listId]);
+    queryClient.invalidateQueries(["lists"]);
   };
 }
 
 export function useInvalidateListModify(props = {}) {
   const queryClient = useQueryClient();
-  return ({ listId, accountIds }) => {
+
+  return ({ listId, accountIds = [] }) => {
     queryClient.invalidateQueries(["list-accounts", listId]);
     accountIds.forEach((element) => {
       queryClient.invalidateQueries(["following-lists", element]);

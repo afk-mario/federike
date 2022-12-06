@@ -24,7 +24,7 @@ function FollowingFilter({ disabled }) {
       onChange={handleChange}
       type="text"
       className="c-following-filter"
-      placeholder="username:afk"
+      placeholder="filter"
       disabled={disabled}
     />
   );

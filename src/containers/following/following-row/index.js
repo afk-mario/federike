@@ -3,6 +3,7 @@ import { useDrag, useDragLayer } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
 
 import ListTags from "./lists-tags";
+import FollowingRowAvatar from "./avatar";
 
 import "./styles.css";
 
@@ -21,6 +22,7 @@ function FollowingRow({
   isSelected,
   onItemSelection,
   onDragStart,
+  onItemFocus,
   ...rest
 }) {
   const ref = React.useRef();
@@ -38,10 +40,11 @@ function FollowingRow({
         onDragStart({ id, index });
         return {
           id,
+          acct,
         };
       },
     }),
-    [onItemSelection]
+    [onDragStart]
   );
 
   const onClick = React.useCallback(
@@ -68,18 +71,15 @@ function FollowingRow({
       ref={ref}
       className="c-following-row | cluster"
       onClick={onClick}
+      onFocus={() => {
+        onItemFocus({ index, id });
+      }}
       data-dragging={isDragging && isSelected}
       data-selected={isSelected}
       data-is-current-cursor={cursor === index}
     >
       <div className="c-following-row-content | cluster">
-        <div className="c-following-row-avatar-wrapper">
-          <img
-            className="c-following-row-avatar"
-            src={avatar}
-            alt={`${username} avatar`}
-          />
-        </div>
+        <FollowingRowAvatar username={username} avatar={avatar} note={note} />
         <div className="c-following-row-content | stack">
           <header className="c-following-row-header | stack">
             <span className="c-following-row-title | cluster">

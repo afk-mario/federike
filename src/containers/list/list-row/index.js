@@ -18,6 +18,7 @@ export function getIsInList({ item, listId }) {
 function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
   const { data } = useGetListAccounts({ listId });
   const [open, setOpen] = React.useState(false);
+  const [action, setAction] = React.useState(null);
 
   let [{ isOver }, drop] = useDrop(
     () => ({
@@ -32,8 +33,14 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
   const accounts = data || [];
 
   return (
-    <li className="c-list-row | stack" data-open={open}>
-      <Collapsible.Root open={open} onOpenChange={setOpen}>
+    <li className="c-list-row | stack" data-open={open} data-action={action}>
+      <Collapsible.Root
+        open={open}
+        onOpenChange={(value) => {
+          setOpen(value);
+          if (!value) setAction(null);
+        }}
+      >
         <header
           className="c-list-row-header | cluster"
           ref={drop}
@@ -56,23 +63,55 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
           ) : (
             <>
               <Collapsible.Trigger asChild>
-                <button className="c-list-row-disclosure-button">
-                  <span className="icon">{open ? "↓" : "₸"}</span>
+                <button
+                  className="c-list-row-disclosure-button"
+                  data-action="edit"
+                  onClick={() => {
+                    setAction("edit");
+                  }}
+                >
+                  <span className="icon">
+                    {open && action === "edit" ? "↓" : "₸"}
+                  </span>
                 </button>
               </Collapsible.Trigger>
               <span className="c-list-row-label">{title}</span>
-              <ListDeleteButton listId={listId} />
+              <Collapsible.Trigger asChild>
+                <button
+                  className="c-list-row-disclosure-button"
+                  data-action="delete"
+                  onClick={() => {
+                    setAction("delete");
+                  }}
+                >
+                  <span className="icon">
+                    {open && action === "delete" ? "↓" : "⌫"}
+                  </span>
+                </button>
+              </Collapsible.Trigger>
             </>
           )}
         </header>
         <Collapsible.Content>
-          <ListEditForm
-            listId={listId}
-            title={title}
-            onSuccess={() => {
-              setOpen(false);
-            }}
-          />
+          {action === "edit" ? (
+            <ListEditForm
+              listId={listId}
+              title={title}
+              onSuccess={() => {
+                setOpen(false);
+              }}
+            />
+          ) : null}
+          {action === "delete" ? (
+            <ListDeleteButton
+              listId={listId}
+              listName={title}
+              onCancel={() => {
+                setOpen(false);
+                setAction(false);
+              }}
+            />
+          ) : null}
         </Collapsible.Content>
       </Collapsible.Root>
     </li>

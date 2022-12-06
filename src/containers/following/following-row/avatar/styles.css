@@ -1,0 +1,13 @@
+.c-following-row-avatar-note {
+  padding: var(--spacing-01) var(--spacing-02);
+  background: var(--color-input);
+  z-index: 100;
+}
+
+.c-following-row-avatar-note-content {
+  max-width: 30ch;
+}
+
+.c-following-row-avatar-arrow {
+  fill: var(--color-border);
+}

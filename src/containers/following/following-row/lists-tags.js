@@ -3,14 +3,14 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import ListTag from "./list-tag";
 
-function getLists(cacheData, followingId) {
-  const a = cacheData
+function getLists(listsData, followingId) {
+  const a = listsData
     .map((item) => {
       const [key, data] = item;
       const [, listId] = key;
 
       return {
-        listId: parseInt(listId, 10),
+        listId,
         accounts: new Set(data?.map((account) => account.id)),
       };
     })
@@ -21,14 +21,14 @@ function getLists(cacheData, followingId) {
 
 function ListTags({ id }) {
   const queryClient = useQueryClient();
-  const queryCacacheData = queryClient.getQueriesData(["list-accounts"]);
-  const lists = getLists(queryCacacheData, id);
+  const listsData = queryClient.getQueriesData(["list-accounts"]);
+  const lists = getLists(listsData, id);
 
   return (
     <ul className="c-following-row-tag-list | cluster">
       {lists.map((item) => (
         <li key={item}>
-          <ListTag listId={item} />
+          <ListTag listId={parseInt(item, 10)} />
         </li>
       ))}
     </ul>

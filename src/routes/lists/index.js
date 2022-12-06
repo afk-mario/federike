@@ -14,6 +14,7 @@ import Spinner from "components/spinner";
 
 import "./styles.css";
 import { ListRouteProvider } from "./context";
+import AccountUnfollowRow from "containers/account/account-unfollow-row";
 
 function ListsRoute() {
   const { data, isLoading } = useGetVerifyCredentials();
@@ -41,7 +42,11 @@ function ListsRoute() {
           </FollowingProvider>
         </div>
         <div className="list-wrapper | border stack">
+          <header className="r-lists-list-header">
+            <h2>Lists</h2>
+          </header>
           <ListCreateForm />
+          <AccountUnfollowRow />
           <ListList />
         </div>
       </div>

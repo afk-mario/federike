@@ -1,9 +1,13 @@
 export async function getList({ client, listId }) {
-  return client.get(`lists/${listId}`);
+  const res = await client.get(`lists/${listId}`);
+  const { data } = res;
+  return data;
 }
 
 export async function getLists({ client, accountId }) {
-  return client.get(`lists`);
+  const res = await client.get(`lists`);
+  const { data } = res;
+  return data;
 }
 
 export async function getFollowingLists({ client, accountId }) {

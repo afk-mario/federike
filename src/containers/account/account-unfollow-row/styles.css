@@ -1,0 +1,26 @@
+li.c-account-unfollow-row {
+  align-items: center;
+  justify-content: center;
+  border-top: var(--border);
+  background-color: var(--color-bg);
+  gap: 0;
+}
+
+.c-account-unfollow-row > header {
+  width: 100%;
+  padding: var(--spacing-02) var(--spacing-01);
+  font-weight: bold;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.c-account-unfollow-row[data-is-over="true"],
+.c-account-unfollow-row[data-open="true"] {
+  background-color: var(--color-danger);
+}
+
+.c-account-unfollow-row-content {
+  width: 100%;
+}

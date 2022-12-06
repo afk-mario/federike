@@ -70,7 +70,7 @@ button {
   padding: var(--spacing-q) var(--spacing-01);
   width: max-content;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.1s ease;
 }
 
 button:hover {

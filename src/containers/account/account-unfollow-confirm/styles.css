@@ -1,0 +1,16 @@
+.c-account-unfollow-confirm {
+  --space: var(--spacing-01);
+  padding: 0 var(--spacing-02) var(--spacing-02) var(--spacing-02);
+
+  background: var(--color-danger);
+  width: 100%;
+}
+
+.c-account-unfollow-confirm p {
+  max-width: 30ch;
+}
+
+.c-account-unfollow-confirm footer {
+  align-items: center;
+  justify-content: flex-end;
+}

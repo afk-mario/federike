@@ -1,4 +1,4 @@
-.c-following-actions.cluster {
+div.c-following-actions-wrapper {
   --space: var(--spacing-01);
 
   flex-wrap: nowrap;
@@ -11,10 +11,20 @@
   position: relative;
 }
 
+.c-following-actions {
+  width: 100%;
+}
 .c-following-actions .c-following-filter {
   flex: 1;
 }
 
-.c-following-actions .c-tag {
-  font-weight: bold;
+header.c-following-actions-header {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-following-actions-title {
+  margin-right: auto;
+  text-align: left;
 }

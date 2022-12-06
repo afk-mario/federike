@@ -5,7 +5,10 @@ function ListTag({ listId }) {
   const query = useGetList({ listId });
   if (query.isLoading) return null;
 
-  const { title } = query.data?.data;
+  const { title } = query.data || {};
+
+  if (!title) return null;
+
   return <Tag>{title}</Tag>;
 }
 

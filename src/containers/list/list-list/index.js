@@ -20,19 +20,18 @@ function ListList() {
         <Spinner />
       </div>
     );
-  const lists = data.data;
 
-  if (lists.length === 0) {
+  if (data.length === 0) {
     return (
       <div>
-        <h3>No follower yet :(</h3>
+        <h3>No Lists yet</h3>
       </div>
     );
   }
 
   return (
     <ul className="c-list-list | stack">
-      {lists
+      {data
         .sort((a, b) => a.title > b.title)
         .map((item) => {
           return (

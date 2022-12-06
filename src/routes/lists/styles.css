@@ -28,6 +28,10 @@ main .r-lists {
   height: min-content;
 }
 
+.r-lists-list-header {
+  padding: var(--spacing-01) var(--spacing-02) 0 var(--spacing-02);
+}
+
 .r-lists .list-following-wrapper {
   max-width: 600px;
   flex: 1;

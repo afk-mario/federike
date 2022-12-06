@@ -17,11 +17,16 @@ function FollowingActions({ accountId, setSelectedItems, selectedItems }) {
     },
   });
   return (
-    <div className="c-following-actions | cluster">
+    <div className="c-following-actions-wrapper | stack">
+      <header className="c-following-actions-header | cluster">
+        <h2 className="c-following-actions-title">Following</h2>
+        <FollowingSort disabled={isLoading} />
+        <FollowingSelectAll />
+      </header>
       <FollowingSelectCounter />
-      <FollowingFilter disabled={isLoading} />
-      <FollowingSort disabled={isLoading} />
-      <FollowingSelectAll />
+      <div className="c-following-actions | cluster">
+        <FollowingFilter disabled={isLoading} />
+      </div>
     </div>
   );
 }
