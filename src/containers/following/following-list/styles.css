@@ -18,6 +18,7 @@ div.c-following-lists {
   border-radius: 0px 0px var(--border-radius) var(--border-radius);
 }
 
-.c-following-lists li:last-child .c-following-row {
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+/* TODO: round border on the last child */
+.c-following-lists *:last-child > button {
+  /* border-radius: 0 0 var(--border-radius) var(--border-radius); */
 }
