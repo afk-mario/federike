@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { useDrag, useDragLayer } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
@@ -13,7 +14,6 @@ function FollowingRow({
   url,
   index,
   cursor,
-  bot,
   username,
   display_name: displayName,
   acct,
@@ -23,7 +23,6 @@ function FollowingRow({
   onItemSelection,
   onDragStart,
   onItemFocus,
-  ...rest
 }) {
   const ref = React.useRef();
   const { isDragging } = useDragLayer(
@@ -68,6 +67,7 @@ function FollowingRow({
 
   return (
     <button
+      type="button"
       ref={ref}
       className="c-following-row | cluster"
       onClick={onClick}
@@ -86,7 +86,7 @@ function FollowingRow({
               <a
                 className="c-following-row-link"
                 href={url}
-                rel="me noreferrer noopener"
+                rel="noreferrer noopener"
                 target="_blank"
               >
                 ↗
@@ -104,5 +104,30 @@ function FollowingRow({
     </button>
   );
 }
+
+FollowingRow.propTypes = {
+  id: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  cursor: PropTypes.number.isRequired,
+  username: PropTypes.string.isRequired,
+  display_name: PropTypes.string,
+  acct: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  note: PropTypes.string,
+  isSelected: PropTypes.bool,
+  onItemSelection: PropTypes.func,
+  onDragStart: PropTypes.func,
+  onItemFocus: PropTypes.func,
+};
+
+FollowingRow.defaultProps = {
+  display_name: null,
+  note: null,
+  isSelected: false,
+  onItemSelection: () => {},
+  onDragStart: () => {},
+  onItemFocus: () => {},
+};
 
 export default FollowingRow;

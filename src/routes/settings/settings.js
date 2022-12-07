@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { useMastodonApp } from "lib/mastodon/provider";
 
 import ThemeRadioGroup from "containers/theme/theme-radio-group";
+
 const { REACT_APP_VERSION } = process.env;
 
 function Settings() {
-  const { auth, app, clear } = useMastodonApp();
+  const { auth, app, logout } = useMastodonApp();
   return (
     <div className="r-settings-root | stack | border">
       <header className="r-settings-root-header">
@@ -25,10 +26,12 @@ function Settings() {
         {auth ? (
           <div className="r-settings-account-wrapper |  cluster">
             <strong>{app.instance}</strong>
-            <button onClick={clear}>Log out</button>
+            <button type="button" onClick={logout}>
+              Log out
+            </button>
           </div>
         ) : (
-          <Link to={"instances/add"}>Login</Link>
+          <Link to="instances/add">Login</Link>
         )}
       </section>
       <footer>

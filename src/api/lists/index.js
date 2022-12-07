@@ -46,15 +46,15 @@ export function useGetLists(props = {}) {
 
 export function useGetAllListsAccounts(props = {}) {
   const { client } = useFetch();
-  const { queryKey = "list", config = {} } = props;
-  const listsQuery = useGetLists(props);
-  const lists = listsQuery.data?.data || [];
+  const { config = {} } = props;
+  const listsQuery = useGetLists();
+  const lists = listsQuery.data || [];
 
   return useQueries({
     queries: lists.map((item) => ({
-      queryKey: [queryKey, item.id],
+      queryKey: ["list-accounts", item.id],
       queryFn: () => getListAccounts({ client, listId: item.id }),
-      meta: item.id,
+      refetchOnMount: false,
       ...config,
     })),
   });
@@ -109,8 +109,8 @@ export function useCreateList(props = {}) {
   const { client } = useFetch();
 
   return useMutation({
-    mutationFn: ({ title, replies_policy }) =>
-      createList({ client, title, replies_policy }),
+    mutationFn: ({ title, repliesPolicy }) =>
+      createList({ client, title, repliesPolicy }),
     ...config,
   });
 }
@@ -120,8 +120,8 @@ export function useUpdateList(props = {}) {
   const { client } = useFetch();
 
   return useMutation({
-    mutationFn: ({ listId, title, replies_policy }) =>
-      updateList({ client, listId, title, replies_policy }),
+    mutationFn: ({ listId, title, repliesPolicy }) =>
+      updateList({ client, listId, title, repliesPolicy }),
     ...config,
   });
 }
@@ -136,14 +136,14 @@ export function useDeleteList(props = {}) {
   });
 }
 
-export function useInvalidateLists(props = {}) {
+export function useInvalidateLists() {
   const queryClient = useQueryClient();
   return () => {
     queryClient.invalidateQueries(["lists"]);
   };
 }
 
-export function useInvalidateListUpdate(props = {}) {
+export function useInvalidateListUpdate() {
   const queryClient = useQueryClient();
   return ({ listId }) => {
     queryClient.invalidateQueries(["list", listId]);
@@ -151,7 +151,7 @@ export function useInvalidateListUpdate(props = {}) {
   };
 }
 
-export function useInvalidateListModify(props = {}) {
+export function useInvalidateListModify() {
   const queryClient = useQueryClient();
 
   return ({ listId, accountIds = [] }) => {

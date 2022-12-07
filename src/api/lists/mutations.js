@@ -12,17 +12,17 @@ export async function removeAccountToList({ client, listId, accountIds }) {
   });
 }
 
-export async function createList({ client, title, replies_policy }) {
+export async function createList({ client, title, repliesPolicy }) {
   return client.post(`lists`, {
     title,
-    replies_policy,
+    replies_policy: repliesPolicy,
   });
 }
 
-export async function updateList({ client, listId, title, replies_policy }) {
+export async function updateList({ client, listId, title, repliesPolicy }) {
   return client.put(`lists/${listId}`, {
     title,
-    replies_policy,
+    replies_policy: repliesPolicy,
   });
 }
 

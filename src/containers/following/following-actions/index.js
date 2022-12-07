@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import { useGetFollowing } from "api/following";
@@ -9,7 +10,7 @@ import FollowingSelectCounter from "../following-select-counter";
 
 import "./styles.css";
 
-function FollowingActions({ accountId, setSelectedItems, selectedItems }) {
+function FollowingActions({ accountId }) {
   const { isLoading } = useGetFollowing({
     accountId,
     config: {
@@ -30,5 +31,13 @@ function FollowingActions({ accountId, setSelectedItems, selectedItems }) {
     </div>
   );
 }
+
+FollowingActions.propTypes = {
+  accountId: PropTypes.string,
+};
+
+FollowingActions.defaultProps = {
+  accountId: null,
+};
 
 export default FollowingActions;

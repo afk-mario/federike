@@ -10,12 +10,13 @@ import { MastodonAppProvider } from "lib/mastodon/provider";
 import { FetchProvider } from "lib/fetch";
 
 import { ThemeProvider } from "containers/theme/context";
+import ThemeUpdateRoot from "containers/theme/theme-update-root";
 
 import router from "./router";
 import reportWebVitals from "./reportWebVitals";
 
 import "styles/styles.css";
-import ThemeUpdateRoot from "containers/theme/theme-update-root";
+
 const { REACT_APP_VERSION, REACT_APP_WEBSITE_URL } = process.env;
 
 console.info("Federike", REACT_APP_WEBSITE_URL, REACT_APP_VERSION);

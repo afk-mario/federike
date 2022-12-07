@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useCallback } from "react";
 
 import { themeOptions } from "./constants";
@@ -11,16 +12,24 @@ function getInitialTheme() {
   return savedTheme || themeOptions[0].value;
 }
 
-function ThemeProvider(props) {
+function ThemeProvider({ children }) {
   const [theme, setTheme] = React.useState(getInitialTheme);
   return (
     <ThemeStateContext.Provider value={theme}>
       <ThemeUpdaterContext.Provider value={setTheme}>
-        {props.children}
+        {children}
       </ThemeUpdaterContext.Provider>
     </ThemeStateContext.Provider>
   );
 }
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+ThemeProvider.defaultProps = {
+  children: null,
+};
 
 function useThemeState() {
   const themeState = React.useContext(ThemeStateContext);

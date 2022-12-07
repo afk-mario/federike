@@ -17,3 +17,7 @@ ul.c-following-lists {
   border-top: 0;
   border-radius: 0px 0px var(--border-radius) var(--border-radius);
 }
+
+ul.c-following-lists li:last-child .c-following-row {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}

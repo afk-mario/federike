@@ -11,7 +11,7 @@ const columns = [
     cell: (props) => {
       const { url } = props.row.original;
       return (
-        <a href={url} rel="me noreferrer noopener" target="_blank">
+        <a href={url} rel="noreferrer noopener" target="_blank">
           {props.getValue()}
         </a>
       );
@@ -25,7 +25,7 @@ const columns = [
     header: "Instance",
     accessorFn: (row) => {
       const instance = row.acct.split("@")[1];
-      return instance ? instance : "--";
+      return instance || "--";
     },
   },
   {

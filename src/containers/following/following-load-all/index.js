@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 
 import { useGetFollowing } from "api/following";
@@ -9,7 +10,7 @@ function getText({ isLoading, isFetchingNextPage, hasNextPage }) {
   return "idle";
 }
 
-function FollowingLoadAll({ accountId, showText = true }) {
+function FollowingLoadAll({ accountId, showText }) {
   const { data, hasNextPage, isFetchingNextPage, isLoading, fetchNextPage } =
     useGetFollowing({
       accountId,
@@ -35,5 +36,14 @@ function FollowingLoadAll({ accountId, showText = true }) {
     </div>
   );
 }
+
+FollowingLoadAll.propTypes = {
+  accountId: PropTypes.string.isRequired,
+  showText: PropTypes.bool,
+};
+
+FollowingLoadAll.defaultProps = {
+  showText: true,
+};
 
 export default FollowingLoadAll;

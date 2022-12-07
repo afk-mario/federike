@@ -57,10 +57,12 @@ function FollowingSort({ onChange, disabled }) {
 
 FollowingSort.propTypes = {
   onChange: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 FollowingSort.defaultProps = {
   onChange: () => {},
+  disabled: false,
 };
 
 export default FollowingSort;

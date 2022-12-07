@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useGetFollowers } from "api/followers";
 import { useEffect } from "react";
 
@@ -32,5 +33,13 @@ function FollowerLoadAll({ accountId }) {
     </div>
   );
 }
+
+FollowerLoadAll.propTypes = {
+  accountId: PropTypes.string,
+};
+
+FollowerLoadAll.defaultProps = {
+  accountId: null,
+};
 
 export default FollowerLoadAll;

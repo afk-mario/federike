@@ -1,11 +1,12 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import { useGetFollowers } from "api/followers";
 
 import Table from "components/table";
 
-import columns from "./columns";
 import { getAllItemsFromPaginatedRes } from "api/helpers";
+import columns from "./columns";
 
 function FollowerTable({ accountId }) {
   const { data, isLoading } = useGetFollowers({
@@ -32,5 +33,13 @@ function FollowerTable({ accountId }) {
 
   return <Table data={followers} columns={columns} />;
 }
+
+FollowerTable.propTypes = {
+  accountId: PropTypes.string,
+};
+
+FollowerTable.defaultProps = {
+  accountId: null,
+};
 
 export default FollowerTable;

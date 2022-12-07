@@ -2,15 +2,18 @@ import React from "react";
 import { useDrop } from "react-dnd";
 import * as Collapsible from "@radix-ui/react-collapsible";
 
+import { useGetLists } from "api/lists";
+
 import { useListRouteState } from "routes/lists/context";
 
 import AccountUnfollowConfirm from "../account-unfollow-confirm";
 
 import "./styles.css";
 
-function AccountUnfollowRow({ listId }) {
+function AccountUnfollowRow() {
   const [account, setAccount] = React.useState(null);
   const selectedItems = useListRouteState();
+  const { isLoading } = useGetLists();
 
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
@@ -18,8 +21,8 @@ function AccountUnfollowRow({ listId }) {
       canDrop: () => {
         return selectedItems.size === 1;
       },
-      drop: (account) => {
-        setAccount(account);
+      drop: (item) => {
+        setAccount(item);
       },
       collect: (monitor) => {
         return {
@@ -32,6 +35,8 @@ function AccountUnfollowRow({ listId }) {
   );
 
   const isOpen = account != null;
+
+  if (isLoading) return null;
 
   return (
     <Collapsible.Root open={isOpen}>

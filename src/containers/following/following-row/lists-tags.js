@@ -1,28 +1,13 @@
+import PropTypes from "prop-types";
 import React from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
+import { getListsFromQueries } from "containers/following/helpers";
+import { useGetAllListsAccounts } from "api/lists";
 import ListTag from "./list-tag";
 
-function getLists(listsData, followingId) {
-  const a = listsData
-    .map((item) => {
-      const [key, data] = item;
-      const [, listId] = key;
-
-      return {
-        listId,
-        accounts: new Set(data?.map((account) => account.id)),
-      };
-    })
-    .filter((item) => item.accounts.has(followingId))
-    .map((item) => item.listId);
-  return a;
-}
-
 function ListTags({ id }) {
-  const queryClient = useQueryClient();
-  const listsData = queryClient.getQueriesData(["list-accounts"]);
-  const lists = getLists(listsData, id);
+  const queries = useGetAllListsAccounts();
+  const lists = getListsFromQueries(queries, id);
 
   return (
     <ul className="c-following-row-tag-list | cluster">
@@ -34,5 +19,9 @@ function ListTags({ id }) {
     </ul>
   );
 }
+
+ListTags.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
 export default ListTags;

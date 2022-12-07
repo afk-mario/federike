@@ -12,27 +12,27 @@ function ListEditForm({ listId, title, onSuccess }) {
   const invalidate = useInvalidateListUpdate();
   const mutation = useUpdateList({
     config: {
-      onMutate: async ({ listId, title }) => {
+      onMutate: async (variables) => {
         await queryClient.cancelQueries({
           queryKey: ["lists"],
         });
 
         await queryClient.cancelQueries({
-          queryKey: ["list", listId],
+          queryKey: ["list", variables.listId],
         });
 
-        const prevList = queryClient.getQueryData(["list", listId]);
+        const prevList = queryClient.getQueryData(["list", variables.listId]);
 
         const prevLists = queryClient.getQueryData(["lists"]);
 
-        queryClient.setQueryData(["list", listId], (old) => ({
+        queryClient.setQueryData(["list", variables.listId], (old) => ({
           ...old,
           title,
         }));
 
         queryClient.setQueryData(["lists"], (old) =>
           old.map((item) => {
-            if (item.id === listId) {
+            if (item.id === variables.listId) {
               return {
                 ...item,
                 title,
@@ -46,16 +46,16 @@ function ListEditForm({ listId, title, onSuccess }) {
         return { prevLists, prevList };
       },
       onSettled: (res, context, variables) => {
-        const { listId } = variables;
-        invalidate({ listId });
+        invalidate({ listId: variables.listId });
         onSuccess();
       },
     },
   });
 
-  const onSubmit = ({ title }) => {
-    mutation.mutate({ listId, title });
+  const onSubmit = (variables) => {
+    mutation.mutate({ listId, title: variables.title });
   };
+
   return (
     <form
       className="c-list-edit-form | cluster"
@@ -76,6 +76,8 @@ function ListEditForm({ listId, title, onSuccess }) {
 }
 
 ListEditForm.propTypes = {
+  listId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   onSuccess: PropTypes.func,
 };
 

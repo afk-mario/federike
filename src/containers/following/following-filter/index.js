@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
 import useDebounce from "lib/hooks/use-debounce";
@@ -10,8 +11,7 @@ function FollowingFilter({ disabled }) {
   const debouncedValue = useDebounce(value, 500);
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    setValue(value);
+    setValue(e.target.value);
   };
 
   useEffect(() => {
@@ -29,5 +29,12 @@ function FollowingFilter({ disabled }) {
     />
   );
 }
+FollowingFilter.propTypes = {
+  disabled: PropTypes.bool,
+};
+
+FollowingFilter.defaultProps = {
+  disabled: false,
+};
 
 export default FollowingFilter;

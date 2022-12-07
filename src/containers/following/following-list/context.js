@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useCallback } from "react";
 
 import { sortingOptions } from "containers/following/constants";
@@ -10,16 +11,24 @@ const initialState = {
   filter: "",
 };
 
-function FollowingProvider(props) {
+function FollowingProvider({ children }) {
   const [state, setState] = React.useState(initialState);
   return (
     <FollowingStateContext.Provider value={state}>
       <FollowingUpdaterContext.Provider value={setState}>
-        {props.children}
+        {children}
       </FollowingUpdaterContext.Provider>
     </FollowingStateContext.Provider>
   );
 }
+
+FollowingProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+FollowingProvider.defaultProps = {
+  children: null,
+};
 
 function useFollowingState() {
   const state = React.useContext(FollowingStateContext);

@@ -28,7 +28,7 @@ function FetchProvider(props) {
   return (
     <Provider
       value={{
-        client: client,
+        client,
       }}
       {...props}
     />

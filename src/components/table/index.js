@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import {
@@ -33,7 +34,8 @@ function Table({ data, columns }) {
                 return (
                   <th key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
-                      <div
+                      <button
+                        type="button"
                         {...{
                           className: header.column.getCanSort()
                             ? "cursor-pointer select-none"
@@ -46,10 +48,10 @@ function Table({ data, columns }) {
                           header.getContext()
                         )}
                         {{
-                          asc: " ▲",
-                          desc: " ▼",
+                          asc: " ↑",
+                          desc: " ↓",
                         }[header.column.getIsSorted()] ?? null}
-                      </div>
+                      </button>
                     )}
                   </th>
                 );
@@ -72,5 +74,15 @@ function Table({ data, columns }) {
     </div>
   );
 }
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+  columns: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+Table.defaultProps = {
+  data: [],
+  columns: [],
+};
 
 export default Table;

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.8.1",
     "@radix-ui/react-collapsible": "^1.0.1",
     "@radix-ui/react-hover-card": "^1.0.2",
     "@radix-ui/react-popover": "^1.0.2",
@@ -69,7 +70,14 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx": "^0.1.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "2.8.0",
     "stylelint": "^14.15.0"
   }

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import classnames from "classnames";
 
 import "./styles.css";
@@ -15,5 +16,13 @@ function Spinner({ className }) {
     </svg>
   );
 }
+
+Spinner.propTypes = {
+  className: PropTypes.string,
+};
+
+Spinner.defaultProps = {
+  className: null,
+};
 
 export default Spinner;

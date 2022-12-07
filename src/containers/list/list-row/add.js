@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useDrop } from "react-dnd";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -15,12 +16,15 @@ function ListAdd({ listId, selectedItems, accounts }) {
         const prev = queryClient.getQueryData(["list-accounts", listId]);
 
         queryClient.setQueryData(["list-accounts", listId], (old) => {
-          return [...old, ...accountIds.map((id) => ({ id }))];
+          return {
+            listId,
+            accounts: [...old.accounts, ...accountIds.map((id) => ({ id }))],
+          };
         });
 
         return prev;
       },
-      onSettled: (data, error, variables, context) => {
+      onSettled: (data, error, variables) => {
         invalidate(variables);
       },
     },
@@ -60,5 +64,15 @@ function ListAdd({ listId, selectedItems, accounts }) {
     </span>
   );
 }
+
+ListAdd.propTypes = {
+  listId: PropTypes.string.isRequired,
+  selectedItems: PropTypes.instanceOf(Set).isRequired,
+  accounts: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+ListAdd.defaultProps = {
+  accounts: [],
+};
 
 export default ListAdd;

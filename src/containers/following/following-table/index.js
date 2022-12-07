@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import { useGetFollowing } from "api/following";
@@ -25,12 +26,20 @@ function FollowingTable({ accountId }) {
   if (followers.length === 0) {
     return (
       <div>
-        <h3>No follower yet :(</h3>
+        <span>You don&apos;t follow anyone yet.</span>
       </div>
     );
   }
 
   return <Table data={followers} columns={columns} />;
 }
+
+FollowingTable.propTypes = {
+  accountId: PropTypes.string,
+};
+
+FollowingTable.defaultProps = {
+  accountId: null,
+};
 
 export default FollowingTable;

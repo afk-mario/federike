@@ -2,9 +2,9 @@ export function parseLinkHeader(link) {
   return link
     .split(", ")
     .map((item) => item.split("; "))
-    .map(([link, rel]) => {
+    .map(([headerLink, rel]) => {
       return {
-        link: new URL(link.replace("<", "").replace(">", "")),
+        link: new URL(headerLink.replace("<", "").replace(">", "")),
         rel,
       };
     });

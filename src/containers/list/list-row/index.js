@@ -1,6 +1,9 @@
+import PropTypes from "prop-types";
 import React from "react";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { useDrop } from "react-dnd";
+
+import { useGetListAccounts } from "api/lists";
 
 import ListDeleteButton from "../list-delete-button";
 import ListEditForm from "../list-edit-form";
@@ -9,18 +12,13 @@ import Add from "./add";
 import Remove from "./remove";
 
 import "./styles.css";
-import { useGetListAccounts } from "api/lists";
 
-export function getIsInList({ item, listId }) {
-  return item.lists.find((item) => item.id === listId) != null;
-}
-
-function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
+function ListRow({ title, id: listId, selectedItems }) {
   const { data } = useGetListAccounts({ listId });
   const [open, setOpen] = React.useState(false);
   const [action, setAction] = React.useState(null);
 
-  let [{ isOver }, drop] = useDrop(
+  const [{ isOver }, drop] = useDrop(
     () => ({
       accept: "following",
       collect: (monitor) => ({
@@ -30,7 +28,7 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
     []
   );
 
-  const accounts = data || [];
+  const accounts = data?.accounts || [];
 
   return (
     <li className="c-list-row | stack" data-open={open} data-action={action}>
@@ -64,6 +62,7 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
             <>
               <Collapsible.Trigger asChild>
                 <button
+                  type="button"
                   className="c-list-row-disclosure-button"
                   data-action="edit"
                   onClick={() => {
@@ -78,6 +77,7 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
               <span className="c-list-row-label">{title}</span>
               <Collapsible.Trigger asChild>
                 <button
+                  type="button"
                   className="c-list-row-disclosure-button"
                   data-action="delete"
                   onClick={() => {
@@ -117,5 +117,11 @@ function ListRow({ title, id: listId, is_exclusive, selectedItems }) {
     </li>
   );
 }
+
+ListRow.propTypes = {
+  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  selectedItems: PropTypes.instanceOf(Set).isRequired,
+};
 
 export default ListRow;

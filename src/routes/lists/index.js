@@ -13,8 +13,8 @@ import FollowingDragLayer from "containers/following/following-drag-layer";
 import Spinner from "components/spinner";
 
 import "./styles.css";
-import { ListRouteProvider } from "./context";
 import AccountUnfollowRow from "containers/account/account-unfollow-row";
+import { ListRouteProvider } from "./context";
 
 function ListsRoute() {
   const { data, isLoading } = useGetVerifyCredentials();

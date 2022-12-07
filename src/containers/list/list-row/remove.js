@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useDrop } from "react-dnd";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -16,12 +17,15 @@ function ListRemove({ listId, selectedItems, accounts }) {
 
         const set = new Set(accountIds);
         queryClient.setQueryData(["list-accounts", listId], (old) => {
-          return old.filter(({ id }) => !set.has(id));
+          return {
+            listId,
+            accounts: old.accounts.filter(({ id }) => !set.has(id)),
+          };
         });
 
         return prev;
       },
-      onSettled: (data, error, variables, context) => {
+      onSettled: (data, error, variables) => {
         invalidate(variables);
       },
     },
@@ -30,7 +34,7 @@ function ListRemove({ listId, selectedItems, accounts }) {
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: "following",
-      drop: (item) => {
+      drop: () => {
         const accountsSet = new Set(accounts.map(({ id }) => id));
         const accountIds = [...selectedItems].filter((item) =>
           accountsSet.has(item)
@@ -61,5 +65,15 @@ function ListRemove({ listId, selectedItems, accounts }) {
     </span>
   );
 }
+
+ListRemove.propTypes = {
+  listId: PropTypes.string.isRequired,
+  selectedItems: PropTypes.instanceOf(Set).isRequired,
+  accounts: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+ListRemove.defaultProps = {
+  accounts: [],
+};
 
 export default ListRemove;

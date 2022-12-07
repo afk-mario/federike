@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useDeleteList, useInvalidateLists } from "api/lists";
@@ -9,13 +10,13 @@ function ListDeleteButton({ listId, listName, onCancel }) {
   const invalidate = useInvalidateLists();
   const mutation = useDeleteList({
     config: {
-      onMutate: async ({ listId }) => {
+      onMutate: async (variables) => {
         await queryClient.cancelQueries({
           queryKey: ["lists"],
         });
         const prevLists = queryClient.getQueryData(["lists"]);
         queryClient.setQueryData(["lists"], (old) =>
-          old.filter(({ id }) => id !== listId)
+          old.filter(({ id }) => id !== variables.listId)
         );
         return prevLists;
       },
@@ -36,8 +37,11 @@ function ListDeleteButton({ listId, listName, onCancel }) {
         </p>
       </div>
       <footer className="cluster">
-        <button onClick={onCancel}> Cancel</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
         <button
+          type="button"
           onClick={() => mutation.mutate({ listId })}
           disabled={mutation.isLoading}
         >
@@ -47,5 +51,15 @@ function ListDeleteButton({ listId, listName, onCancel }) {
     </div>
   );
 }
+
+ListDeleteButton.propTypes = {
+  listId: PropTypes.string.isRequired,
+  listName: PropTypes.string.isRequired,
+  onCancel: PropTypes.func,
+};
+
+ListDeleteButton.defaultProps = {
+  onCancel: () => {},
+};
 
 export default ListDeleteButton;

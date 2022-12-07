@@ -16,7 +16,7 @@ function Public() {
             </strong>{" "}
             please{" "}
             <strong>
-              <Link to={"/settings/instances/add"}>Login</Link>
+              <Link to="/settings/instances/add">Login</Link>
             </strong>{" "}
             to start.
           </p>

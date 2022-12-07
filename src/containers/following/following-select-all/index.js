@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { useGetFollowing } from "api/following";
 import { getAllItemsFromPaginatedRes } from "api/helpers";
@@ -39,10 +40,20 @@ function FollowingSelectAll({ accountId }) {
   }, [items, filter, setSelectedItems]);
 
   return (
-    <button onClick={selectAll} disabled={isLoading}>
-      <span className="icon"></span>
+    <button onClick={selectAll} disabled={isLoading} type="button">
+      <span className="icon" aria-label="select all">
+        
+      </span>
     </button>
   );
 }
+
+FollowingSelectAll.propTypes = {
+  accountId: PropTypes.string,
+};
+
+FollowingSelectAll.defaultProps = {
+  accountId: null,
+};
 
 export default FollowingSelectAll;

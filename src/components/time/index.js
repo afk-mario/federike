@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import { parseISO } from "date-fns";
+import { parseISO, format } from "date-fns";
 
-import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 
 export const serverDateFormat = "yyyy-MM-dd";

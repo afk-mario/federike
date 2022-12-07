@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useUnfollowAccount } from "api/account";
@@ -33,7 +34,7 @@ function AccountUnfollowConfirm({ account, onCancel, onSuccess }) {
 
         return prev;
       },
-      onSettled: (data, error, variables, context) => {
+      onSettled: () => {
         invalidate();
         onSuccess();
       },
@@ -50,8 +51,11 @@ function AccountUnfollowConfirm({ account, onCancel, onSuccess }) {
         </p>
       </div>
       <footer className="cluster">
-        <button onClick={onCancel}> Cancel</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
         <button
+          type="button"
           onClick={() => mutation.mutate({ accountId: account.id })}
           disabled={mutation.isLoading}
         >
@@ -61,5 +65,19 @@ function AccountUnfollowConfirm({ account, onCancel, onSuccess }) {
     </div>
   );
 }
+
+AccountUnfollowConfirm.propTypes = {
+  account: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    acct: PropTypes.string.isRequired,
+  }).isRequired,
+  onCancel: PropTypes.func,
+  onSuccess: PropTypes.func,
+};
+
+AccountUnfollowConfirm.defaultProps = {
+  onCancel: () => {},
+  onSuccess: () => {},
+};
 
 export default AccountUnfollowConfirm;

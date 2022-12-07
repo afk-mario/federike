@@ -1,6 +1,6 @@
-export async function getFollowing({ client, accountId, maxId, limit = 80 }) {
+export async function getFollowing({ client, accountId, maxId, limit }) {
   const res = await client.get(`accounts/${accountId}/following`, {
-    params: { limit: 80, max_id: maxId },
+    params: { limit, max_id: maxId },
   });
 
   const { data, headers } = res;

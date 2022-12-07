@@ -1,18 +1,20 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { useGetFollowing } from "api/following";
 import { getAllItemsFromPaginatedRes } from "api/helpers";
 
-import Spinner from "components/spinner";
+import { useListRouteState, useListRouteUpdater } from "routes/lists/context";
 
-import { getSortedItems } from "./helpers";
-import { filterFollowing } from "../helpers";
+import Spinner from "components/spinner";
+import Message from "components/message";
+
+import { getSortedItems, filterFollowing } from "../helpers";
 
 import FollowingRow from "../following-row";
 
 import "./styles.css";
-import { useListRouteState, useListRouteUpdater } from "routes/lists/context";
 import { useFollowingState } from "./context";
 
 function FollowingList({ accountId }) {
@@ -33,12 +35,14 @@ function FollowingList({ accountId }) {
     return getAllItemsFromPaginatedRes(data);
   }, [data]);
 
-  const items = getSortedItems(
-    unsortedItems.filter((item) => filterFollowing(item, filter)),
-    sort
-  );
+  const items = React.useMemo(() => {
+    return getSortedItems(
+      unsortedItems.filter((item) => filterFollowing(item, filter)),
+      sort
+    );
+  }, [unsortedItems, sort, filter]);
 
-  const handleDragStart = ({ id, index }) => {
+  const handleDragStart = ({ id }) => {
     const newItems = new Set(selectedItems);
     if (!newItems.has(id)) {
       newItems.add(id);
@@ -47,35 +51,36 @@ function FollowingList({ accountId }) {
     setIsDragging(true);
   };
 
-  const handleItemSelection = ({ id, index, event }) => {
-    const { metaKey, shiftKey, ctrlKey } = event;
-    const newItems = new Set(selectedItems);
+  const handleItemSelection = React.useCallback(
+    ({ id, index, event }) => {
+      const { metaKey, shiftKey, ctrlKey } = event;
+      const newItems = new Set(selectedItems);
 
-    if (ctrlKey || metaKey) {
-      if (newItems.has(id)) {
-        newItems.delete(id);
-      } else {
-        newItems.add(id);
-      }
-      setSelectedItems(newItems);
-    } else if (shiftKey) {
-      const [start, end] =
-        index > lastSelectedIndex
-          ? [lastSelectedIndex, index]
-          : [index, lastSelectedIndex];
-      const subList = items.slice(start, end + 1).map(({ id }) => id);
-      const a = new Set([...newItems, ...subList]);
-      setSelectedItems(a);
-    } else {
-      if (newItems.has(id) && newItems.size === 1) {
+      if (ctrlKey || metaKey) {
+        if (newItems.has(id)) {
+          newItems.delete(id);
+        } else {
+          newItems.add(id);
+        }
+        setSelectedItems(newItems);
+      } else if (shiftKey) {
+        const [start, end] =
+          index > lastSelectedIndex
+            ? [lastSelectedIndex, index]
+            : [index, lastSelectedIndex];
+        const subList = items.slice(start, end + 1).map((item) => item.id);
+        const a = new Set([...newItems, ...subList]);
+        setSelectedItems(a);
+      } else if (newItems.has(id) && newItems.size === 1) {
         setSelectedItems(new Set());
       } else {
         setSelectedItems(new Set([id]));
       }
-    }
 
-    setLastSelectedIndex(index);
-  };
+      setLastSelectedIndex(index);
+    },
+    [lastSelectedIndex, items, selectedItems, setSelectedItems]
+  );
 
   const handleItemFocus = ({ index }) => {
     setCursor(index);
@@ -113,11 +118,23 @@ function FollowingList({ accountId }) {
       </div>
     );
 
+  if (unsortedItems.length === 0) {
+    return (
+      <Message>
+        <p>
+          You don&apos;t seem to <strong>follow</strong> anyone <i>yet</i>.
+        </p>
+      </Message>
+    );
+  }
+
   if (items.length === 0) {
     return (
-      <div>
-        <h3>No follower yet :(</h3>
-      </div>
+      <Message>
+        <p>
+          There are no accounts witht he current <strong>filter</strong>
+        </p>
+      </Message>
     );
   }
 
@@ -143,5 +160,13 @@ function FollowingList({ accountId }) {
     </ul>
   );
 }
+
+FollowingList.propTypes = {
+  accountId: PropTypes.string,
+};
+
+FollowingList.defaultProps = {
+  accountId: null,
+};
 
 export default FollowingList;

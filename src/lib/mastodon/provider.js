@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useCallback } from "react";
 import axios from "axios";
+import { useQueryClient } from "@tanstack/react-query";
 
 const MastodonAppContext = React.createContext();
 
 const LOCAL_STORAGE_KEY = "FEDERIKE_MASTODON_APP";
 const WEBSITE = process.env.REACT_APP_WEBSITE_URL;
-const SCOPES = ["read", "write", "follow", "push"];
+const SCOPES = [
+  "read:accounts",
+  "read:follows",
+  "write:follows",
+  "read:lists",
+  "write:lists",
+];
 const CLIENT_NAME = "Federike";
 const REDIRECT_URI = `${WEBSITE}/settings/instances/add`;
+
+function getInitialState() {
+  const appData = localStorage.getItem(LOCAL_STORAGE_KEY);
+  const { app, auth } = appData ? JSON.parse(appData) : {};
+
+  return {
+    app,
+    auth,
+    isLoading: false,
+  };
+}
 
 async function getAccessTokenFromAuthCode(props = {}) {
   const {
@@ -46,17 +64,16 @@ function reducer(state, action) {
     case "FETCH_AUTH_TOKEN":
       return { ...state, auth: null, isLoading: true };
     case "SET_AUTH_TOKEN":
-      const { auth } = action.payload;
       localStorage.setItem(
         LOCAL_STORAGE_KEY,
         JSON.stringify({
           app: state.app,
-          auth,
+          auth: action.payload.auth,
         })
       );
       return {
         ...state,
-        auth,
+        auth: action.payload.auth,
         isLoading: false,
       };
     default:
@@ -64,23 +81,11 @@ function reducer(state, action) {
   }
 }
 
-function getInitialState() {
-  const appData = localStorage.getItem(LOCAL_STORAGE_KEY);
-  const { app, auth } = appData ? JSON.parse(appData) : {};
-
-  return {
-    app,
-    auth,
-    isLoading: false,
-  };
-}
-
 function MastodonAppProvider(props) {
+  const queryClient = useQueryClient();
   const [state, dispatch] = React.useReducer(reducer, getInitialState());
 
-  async function registerApp(props = {}) {
-    const { instance } = props;
-
+  const registerApp = useCallback(async ({ instance }) => {
     dispatch({ type: "FETCH_APP_CREDENTIALS" });
 
     const res = await axios.post(`https://${instance}/api/v1/apps`, {
@@ -109,55 +114,62 @@ function MastodonAppProvider(props) {
     });
 
     return res;
-  }
+  }, []);
 
-  async function redirectToOauth(props = {}) {
-    const { instance } = props;
+  const redirectToOauth = useCallback(
+    async (params = {}) => {
+      const { instance } = params;
 
-    const { data } = await registerApp(props);
-    const {
-      client_id: clientId,
-      client_secret: clientSecret,
-      vapid_key: vapidKey,
-    } = data;
+      const { data } = await registerApp(params);
+      const {
+        client_id: clientId,
+        client_secret: clientSecret,
+        vapid_key: vapidKey,
+      } = data;
 
-    const app = {
-      clientId,
-      clientSecret,
-      vapidKey,
-    };
+      const app = {
+        clientId,
+        clientSecret,
+        vapidKey,
+      };
 
-    const loginURL = new URL(`https://${instance}/oauth/authorize`);
-    loginURL.searchParams.append("client_id", app.clientId);
-    loginURL.searchParams.append("redirect_uri", REDIRECT_URI);
-    loginURL.searchParams.append("response_type", "code");
-    loginURL.searchParams.append("scope", SCOPES.join(" "));
+      const loginURL = new URL(`https://${instance}/oauth/authorize`);
+      loginURL.searchParams.append("client_id", app.clientId);
+      loginURL.searchParams.append("redirect_uri", REDIRECT_URI);
+      loginURL.searchParams.append("response_type", "code");
+      loginURL.searchParams.append("scope", SCOPES.join(" "));
 
-    setTimeout(() => {
-      document.location.href = loginURL;
-    }, 200);
-  }
+      setTimeout(() => {
+        document.location.href = loginURL;
+      }, 200);
+    },
+    [registerApp]
+  );
 
-  async function handleAuthCode(props = {}) {
+  const handleAuthCode = useCallback(async (params = {}) => {
     dispatch({ type: "FETCH_AUTH_TOKEN" });
-    const res = await getAccessTokenFromAuthCode(props);
+    const res = await getAccessTokenFromAuthCode(params);
     dispatch({ type: "SET_AUTH_TOKEN", payload: { auth: res.data } });
-  }
+  }, []);
 
-  function clear() {
+  const logout = useCallback(() => {
+    queryClient.clear();
     dispatch({ type: "CLEAR_ALL" });
-  }
+  }, [queryClient]);
 
   const { app, auth, isLoading } = state;
-  const value = {
-    app,
-    auth,
-    isLoading,
-    registerApp,
-    redirectToOauth,
-    handleAuthCode,
-    clear,
-  };
+  const value = React.useMemo(
+    () => ({
+      app,
+      auth,
+      isLoading,
+      registerApp,
+      redirectToOauth,
+      handleAuthCode,
+      logout,
+    }),
+    [app, auth, isLoading, registerApp, redirectToOauth, handleAuthCode, logout]
+  );
 
   return <MastodonAppContext.Provider value={value} {...props} />;
 }

@@ -1,18 +1,27 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 const ListRouteStateContext = React.createContext();
 const ListRouteUpdaterContext = React.createContext();
 
-function ListRouteProvider(props) {
+function ListRouteProvider({ children }) {
   const [selectedItems, setSelectedItems] = React.useState(new Set());
   return (
     <ListRouteStateContext.Provider value={selectedItems}>
       <ListRouteUpdaterContext.Provider value={setSelectedItems}>
-        {props.children}
+        {children}
       </ListRouteUpdaterContext.Provider>
     </ListRouteStateContext.Provider>
   );
 }
+
+ListRouteProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+ListRouteProvider.defaultProps = {
+  children: null,
+};
 
 function useListRouteState() {
   const state = React.useContext(ListRouteStateContext);

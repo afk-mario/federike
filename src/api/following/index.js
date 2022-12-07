@@ -19,7 +19,7 @@ export function useGetFollowing(props = {}) {
   });
 }
 
-export function useInvalidateFollowing(props = {}) {
+export function useInvalidateFollowing() {
   const queryClient = useQueryClient();
   return () => {
     queryClient.invalidateQueries(["following"]);
