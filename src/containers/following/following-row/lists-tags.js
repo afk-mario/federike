@@ -10,13 +10,11 @@ function ListTags({ id }) {
   const lists = getListsFromQueries(queries, id);
 
   return (
-    <ul className="c-following-row-tag-list | cluster">
+    <div className="c-following-row-tag-list | cluster">
       {lists.map((item) => (
-        <li key={item}>
-          <ListTag listId={parseInt(item, 10)} />
-        </li>
+        <ListTag key={item} listId={parseInt(item, 10)} />
       ))}
-    </ul>
+    </div>
   );
 }
 

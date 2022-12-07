@@ -80,22 +80,20 @@ function FollowingRow({
     >
       <div className="c-following-row-content | cluster">
         <FollowingRowAvatar username={username} avatar={avatar} note={note} />
-        <div className="c-following-row-content | stack">
-          <header className="c-following-row-header | stack">
-            <span className="c-following-row-title | cluster">
-              <a
-                className="c-following-row-link"
-                href={url}
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                ↗
-              </a>
-              {displayName}
-            </span>
-            <span className="c-following-row-subtitle">{acct}</span>
-            <ListTags id={id} />
-          </header>
+        <div className="c-following-row-info | stack">
+          <span className="c-following-row-title | cluster">
+            <a
+              className="c-following-row-link"
+              href={url}
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              ↗
+            </a>
+            {displayName}
+          </span>
+          <span className="c-following-row-subtitle">{acct}</span>
+          <ListTags id={id} />
         </div>
       </div>
       <span className="c-following-row-drag" ref={dragRef}>

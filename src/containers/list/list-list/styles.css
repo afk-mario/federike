@@ -1,7 +1,6 @@
 ul.c-list-list {
   --space: 0px;
 
-  overflow: hidden;
   list-style: none;
   padding: 0;
 }

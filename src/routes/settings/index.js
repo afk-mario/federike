@@ -4,9 +4,11 @@ import "./styles.css";
 
 function SettingsRoot() {
   return (
-    <div className="wrapper | stack">
-      <Outlet />
-    </div>
+    <main className="">
+      <div className="wrapper | stack">
+        <Outlet />
+      </div>
+    </main>
   );
 }
 

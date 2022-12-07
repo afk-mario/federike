@@ -32,10 +32,10 @@ function ListsRoute() {
 
   return (
     <ListRouteProvider>
-      <div className="r-lists | wrapper | cluster">
-        <FollowingDragLayer />
+      <FollowingLoadAll accountId={accountId} showText={false} />
+      <FollowingDragLayer />
+      <main className="r-lists | wrapper">
         <div className="list-following-wrapper | stack">
-          <FollowingLoadAll accountId={accountId} showText={false} />
           <FollowingProvider>
             <FollowingActions accountId={accountId} />
             <FollowingList accountId={accountId} />
@@ -49,7 +49,7 @@ function ListsRoute() {
           <AccountUnfollowRow />
           <ListList />
         </div>
-      </div>
+      </main>
     </ListRouteProvider>
   );
 }

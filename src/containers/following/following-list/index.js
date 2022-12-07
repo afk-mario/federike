@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useHotkeys } from "react-hotkeys-hook";
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
 
 import { useGetFollowing } from "api/following";
 import { getAllItemsFromPaginatedRes } from "api/helpers";
@@ -13,11 +14,15 @@ import Message from "components/message";
 import { getSortedItems, filterFollowing } from "../helpers";
 
 import FollowingRow from "../following-row";
+import FollowingLoadMoreButton from "../following-load-more-button";
 
 import "./styles.css";
 import { useFollowingState } from "./context";
 
 function FollowingList({ accountId }) {
+  const parentRef = React.useRef(null);
+  const parentOffsetRef = React.useRef(0);
+
   const selectedItems = useListRouteState();
   const setSelectedItems = useListRouteUpdater();
   const { sort, filter } = useFollowingState();
@@ -41,6 +46,16 @@ function FollowingList({ accountId }) {
       sort
     );
   }, [unsortedItems, sort, filter]);
+
+  React.useLayoutEffect(() => {
+    parentOffsetRef.current = parentRef.current?.offsetTop ?? 0;
+  }, []);
+
+  const virtualizer = useWindowVirtualizer({
+    count: items.length,
+    estimateSize: () => 80,
+    scrollMargin: parentOffsetRef.current,
+  });
 
   const handleDragStart = ({ id }) => {
     const newItems = new Set(selectedItems);
@@ -118,6 +133,8 @@ function FollowingList({ accountId }) {
       </div>
     );
 
+  const isDSC = sort.includes("dsc");
+
   if (unsortedItems.length === 0) {
     return (
       <Message>
@@ -130,34 +147,60 @@ function FollowingList({ accountId }) {
 
   if (items.length === 0) {
     return (
-      <Message>
-        <p>
-          There are no accounts witht he current <strong>filter</strong>
-        </p>
-      </Message>
+      <>
+        <FollowingLoadMoreButton accountId={accountId} />
+        <Message>
+          <p>
+            There are no accounts witht he current <strong>filter</strong>
+          </p>
+        </Message>
+      </>
     );
   }
 
   return (
-    <ul className="c-following-lists | stack">
-      {items.map((item, index) => {
-        const isSelected = selectedItems.has(item.id);
-        return (
-          <li key={item.id}>
-            <FollowingRow
-              isDragging={isDragging}
-              index={index}
-              cursor={cursor}
-              isSelected={isSelected}
-              onItemSelection={handleItemSelection}
-              onItemFocus={handleItemFocus}
-              onDragStart={handleDragStart}
-              {...item}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <div className="c-following-lists | stack" ref={parentRef}>
+      {!isDSC ? <FollowingLoadMoreButton accountId={accountId} /> : null}
+      <div
+        style={{
+          height: virtualizer.getTotalSize(),
+          width: "100%",
+          position: "relative",
+        }}
+      >
+        {virtualizer.getVirtualItems().map((virtualRow) => {
+          const { index } = virtualRow;
+          const item = items[virtualRow.index];
+          const isSelected = selectedItems.has(item.id);
+          return (
+            <div
+              key={virtualRow.key}
+              data-index={virtualRow.index}
+              ref={virtualizer.measureElement}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                transform: `translateY(${virtualRow.start}px)`,
+              }}
+            >
+              <FollowingRow
+                isDragging={isDragging}
+                index={index}
+                cursor={cursor}
+                isSelected={isSelected}
+                onItemSelection={handleItemSelection}
+                onItemFocus={handleItemFocus}
+                onDragStart={handleDragStart}
+                {...item}
+              />
+            </div>
+          );
+        })}
+      </div>
+      {isDSC ? <FollowingLoadMoreButton accountId={accountId} /> : null}
+    </div>
   );
 }
 

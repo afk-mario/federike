@@ -1,12 +1,10 @@
 .c-tag {
+  line-height: 1em;
   border-radius: var(--border-radius);
-  font-size: 0.75em;
+  font-size: var(--size-300);
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: min-content;
-  padding: 0 var(--spacing-01);
+  display: inline;
+  padding: var(--spacing-q) var(--spacing-01);
   color: var(--color-bg);
   background-color: var(--color-fg-alt);
   font-variant-numeric: tabular-nums;

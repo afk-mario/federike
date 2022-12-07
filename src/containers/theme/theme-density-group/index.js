@@ -1,24 +1,24 @@
 import React from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
-import { themeOptions } from "../constants";
+import { densityOptions } from "../constants";
 
 import { useThemeState, useThemeUpdater } from "../context";
 
 import "./styles.css";
 
-function ThemeRadioGroup() {
-  const { theme } = useThemeState();
-  const { setTheme } = useThemeUpdater();
+function ThemeDensityRadioGroup() {
+  const { density } = useThemeState();
+  const { setDensity } = useThemeUpdater();
 
   return (
     <RadioGroup.Root
       className="c-radio-group | stack"
-      value={theme}
-      onValueChange={setTheme}
-      aria-label="select theme"
+      value={density}
+      onValueChange={setDensity}
+      aria-label="select density"
     >
-      {themeOptions.map((item) => {
+      {densityOptions.map((item) => {
         return (
           <div
             key={item.value}
@@ -27,13 +27,13 @@ function ThemeRadioGroup() {
             <RadioGroup.Item
               className="c-radio-group-item"
               value={item.value}
-              id={`theme-radio-${item.value}`}
+              id={`density-radio-${item.value}`}
             >
               <RadioGroup.Indicator className="c-radio-group-item-indicator" />
             </RadioGroup.Item>
             <label
               className="c-radio-group-item-label"
-              htmlFor={`theme-radio-${item.value}`}
+              htmlFor={`density-radio-${item.value}`}
             >
               {item.label}
             </label>
@@ -44,4 +44,4 @@ function ThemeRadioGroup() {
   );
 }
 
-export default ThemeRadioGroup;
+export default ThemeDensityRadioGroup;

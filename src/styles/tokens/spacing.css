@@ -12,3 +12,15 @@
   --spacing-09: calc(var(--spacing-01) * 9);
   --spacing-10: calc(var(--spacing-01) * 10);
 }
+
+[data-density="8px"] {
+  --spacing-01: 8px;
+}
+
+[data-density="4px"] {
+  --spacing-01: 4px;
+}
+
+[data-density="2px"] {
+  --spacing-01: 2px;
+}

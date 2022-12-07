@@ -1,6 +1,8 @@
-main .r-lists {
-  flex-flow: row nowrap;
-  gap: var(--spacing-04);
+.r-lists {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(auto, 600px) minmax(auto, 400px);
+  gap: var(--spacing-02);
 }
 
 .r-lists-loading {
@@ -21,11 +23,10 @@ main .r-lists {
 
 .r-lists .list-wrapper {
   gap: 0;
-  overflow: hidden;
   background: var(--color-bg-alt);
+  height: min-content;
   position: sticky;
   top: var(--spacing-02);
-  height: min-content;
 }
 
 .r-lists-list-header {
@@ -33,9 +34,10 @@ main .r-lists {
 }
 
 .r-lists .list-following-wrapper {
-  max-width: 600px;
-  flex: 1;
   gap: 0;
+}
+
+.r-lists .c-following-lists {
 }
 
 .r-lists .c-list-list {

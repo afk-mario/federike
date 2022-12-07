@@ -9,7 +9,8 @@
   --color-fg: #212121;
   --color-fg-alt: var(--color-03);
   --color-border: var(--color-03);
-  --color-input: #fff;
+  --color-input-fg: var(--color-fg-alt);
+  --color-input-bg: #fff;
 
   /* #b888ff; */
   --color-hl: #b888ff;
@@ -29,4 +30,6 @@
   --color-hl-alt: #9ffce3;
 
   --color-danger: #ff8000;
+  --color-input-fg: #000;
+  --color-input-bg: #fff;
 }

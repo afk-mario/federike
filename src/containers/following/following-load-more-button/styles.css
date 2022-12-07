@@ -1,0 +1,25 @@
+button.c-following-load-more-button {
+  width: 100%;
+  display: block;
+  font-weight: bold;
+  padding: var(--spacing-02);
+  text-align: center;
+  color: inherit;
+  margin-top: calc(-1 * var(--border-width));
+  border: var(--border);
+  border-radius: 0;
+}
+
+button.c-following-load-more-button:disabled {
+  border: var(--border);
+}
+
+.c-following-load-more-button:last-child {
+  /* border-top: 0; */
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  /* border-bottom: 0; */
+}
+
+.c-following-load-more-button:hover:not(:disabled) {
+  background-color: var(--color-hl);
+}

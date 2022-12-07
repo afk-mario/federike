@@ -1,22 +1,39 @@
 import PropTypes from "prop-types";
 import React, { useCallback } from "react";
 
-import { themeOptions } from "./constants";
+import { themeOptions, densityOptions, borderRadiusOptions } from "./constants";
 
 const LOCAL_STORAGE_KEY = "FEDERIKE_THEME";
 const ThemeStateContext = React.createContext();
 const ThemeUpdaterContext = React.createContext();
 
-function getInitialTheme() {
+function getSavedState() {
   const savedTheme = localStorage.getItem(LOCAL_STORAGE_KEY);
-  return savedTheme || themeOptions[0].value;
+  if (!savedTheme) return {};
+
+  try {
+    const parsed = JSON.parse(savedTheme);
+    return parsed;
+  } catch (e) {
+    return {};
+  }
+}
+
+function getInitialState() {
+  const savedState = getSavedState();
+  return {
+    theme: themeOptions[0].value,
+    density: densityOptions[0].value,
+    borderRadius: borderRadiusOptions[0].value,
+    ...savedState,
+  };
 }
 
 function ThemeProvider({ children }) {
-  const [theme, setTheme] = React.useState(getInitialTheme);
+  const [state, dispatch] = React.useState(getInitialState);
   return (
-    <ThemeStateContext.Provider value={theme}>
-      <ThemeUpdaterContext.Provider value={setTheme}>
+    <ThemeStateContext.Provider value={state}>
+      <ThemeUpdaterContext.Provider value={dispatch}>
         {children}
       </ThemeUpdaterContext.Provider>
     </ThemeStateContext.Provider>
@@ -46,12 +63,38 @@ function useThemeUpdater() {
   }
   const setTheme = useCallback(
     (value) => {
-      dispatch(value);
-      localStorage.setItem(LOCAL_STORAGE_KEY, value);
+      dispatch((prev) => {
+        const newState = { ...prev, theme: value };
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newState));
+        return newState;
+      });
     },
     [dispatch]
   );
-  return setTheme;
+
+  const setDensity = useCallback(
+    (value) => {
+      dispatch((prev) => {
+        const newState = { ...prev, density: value };
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newState));
+        return newState;
+      });
+    },
+    [dispatch]
+  );
+
+  const setBorderRadius = useCallback(
+    (value) => {
+      dispatch((prev) => {
+        const newState = { ...prev, borderRadius: value };
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newState));
+        return newState;
+      });
+    },
+    [dispatch]
+  );
+
+  return { setTheme, setDensity, setBorderRadius };
 }
 
 export { ThemeProvider, useThemeState, useThemeUpdater };

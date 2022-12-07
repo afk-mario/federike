@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
+import { Root as Portal } from "@radix-ui/react-portal";
 
 import { MastodonAppProvider } from "lib/mastodon/provider";
 import { FetchProvider } from "lib/fetch";
@@ -42,7 +43,9 @@ root.render(
             </DndProvider>
           </FetchProvider>
         </MastodonAppProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <Portal>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Portal>
       </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>

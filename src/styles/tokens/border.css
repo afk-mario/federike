@@ -1,6 +1,6 @@
 :root {
   --border-width: 2px;
-  --border-radius: var(--spacing-h);
+  --border-radius: 4px;
   --border: var(--border-width) solid var(--color-border);
 }
 
@@ -11,4 +11,20 @@
 
 .border-bottom {
   border-bottom: var(--border);
+}
+
+[data-border-radius="4px"] {
+  --border-radius: 4px;
+}
+
+[data-border-radius="2px"] {
+  --border-radius: 2px;
+}
+
+[data-border-radius="8px"] {
+  --border-radius: 8px;
+}
+
+[data-border-radius="0px"] {
+  --border-radius: 0px;
 }

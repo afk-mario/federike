@@ -1,21 +1,18 @@
 button.c-following-row {
+  width: 100%;
   padding: 0;
   gap: 0;
   text-align: left;
   color: inherit;
   background: var(--color-bg-alt);
-  width: 100%;
-  border: none;
-  border-radius: 0;
   cursor: pointer;
-  box-shadow: none;
-  appearance: none;
-  border: var(--border);
-  outline: none;
   margin-top: calc(-1 * var(--border-width));
-  transition: transform 0.1s ease;
   position: relative;
   flex-flow: row nowrap;
+  outline: none;
+  border: var(--border);
+  border-radius: 0;
+  transition: transform 0.1s ease;
 }
 
 .c-following-row:active {
@@ -63,10 +60,12 @@ button.c-following-row {
 }
 
 .c-following-row-content {
-  --space: var(--spacing-02);
+  --space: var(--spacing-h);
 
-  padding: var(--spacing-h);
+  padding: var(--spacing-h) var(--spacing-h);
+  flex: 1;
   z-index: 1;
+  flex-flow: row nowrap;
 }
 
 .c-following-row-avatar-wrapper {
@@ -90,20 +89,13 @@ button.c-following-row {
   padding: 0;
 }
 
-.c-following-row-content {
-  --space: var(--spacing-h);
-
-  flex: 1;
-}
-
-.c-following-row-header {
+.c-following-row-info {
   --space: var(--spacing-q);
-
-  flex-flow: row nowrap;
 }
 
 .c-following-row-title {
   --space: var(--spacing-01);
+  flex-flow: row nowrap;
 }
 
 .c-following-row-link {

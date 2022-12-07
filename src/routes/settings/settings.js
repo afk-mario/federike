@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useMastodonApp } from "lib/mastodon/provider";
 
 import ThemeRadioGroup from "containers/theme/theme-radio-group";
+import ThemeDensityRadioGroup from "containers/theme/theme-density-group";
+import ThemeBorderRadiusGroup from "containers/theme/theme-border-radius-group";
 
 const { REACT_APP_VERSION } = process.env;
 
@@ -18,6 +20,18 @@ function Settings() {
           <h3>Theme</h3>
         </header>
         <ThemeRadioGroup />
+      </section>
+      <section className="stack">
+        <header>
+          <h3>Density</h3>
+        </header>
+        <ThemeDensityRadioGroup />
+      </section>
+      <section className="stack">
+        <header>
+          <h3>Border Radius</h3>
+        </header>
+        <ThemeBorderRadiusGroup />
       </section>
       <section className="stack">
         <header>

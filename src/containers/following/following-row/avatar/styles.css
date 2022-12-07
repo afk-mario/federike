@@ -1,6 +1,7 @@
 .c-following-row-avatar-note {
   padding: var(--spacing-01) var(--spacing-02);
-  background: var(--color-input);
+  background: var(--color-input-bg);
+  color: var(--color-input-fg);
   z-index: 100;
 }
 

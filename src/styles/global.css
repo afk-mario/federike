@@ -19,6 +19,7 @@ body {
 
 main {
   flex: 1;
+  padding-bottom: var(--spacing-10);
 }
 
 h1 {
@@ -78,8 +79,8 @@ button:hover {
 }
 
 button:disabled {
-  background-color: var(--color-input);
-  color: var(--color-fg-alt);
+  background-color: var(--color-input-bg);
+  color: var(--color-input-fg);
   border-color: transparent;
   cursor: not-allowed;
 }
@@ -87,12 +88,13 @@ button:disabled {
 input {
   border: var(--border);
   border-radius: var(--border-radius);
-  background: var(--color-input);
+  color: var(--color-input-fg);
+  background: var(--color-input-bg);
   padding: var(--spacing-q) var(--spacing-01);
 }
 
 input:disabled {
-  background-color: var(--color-input);
+  background-color: var(--color-input-bg);
   color: var(--color-fg-alt);
   border-color: transparent;
   cursor: not-allowed;
