@@ -27,11 +27,11 @@ export const densityOptions = [
 export const borderRadiusOptions = [
   {
     label: "Default",
-    value: "4px",
+    value: "8px",
   },
   {
-    label: "Really rounded",
-    value: "8px",
+    label: "Less rounded",
+    value: "4px",
   },
   {
     label: "Not so rounded",

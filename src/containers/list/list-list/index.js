@@ -1,4 +1,5 @@
 import React from "react";
+import Message from "components/message";
 
 import { useGetLists } from "api/lists";
 
@@ -23,9 +24,14 @@ function ListList() {
 
   if (data.length === 0) {
     return (
-      <div>
-        <h3>No Lists yet</h3>
-      </div>
+      <Message>
+        <p>
+          You don&apos;t have any lists <i>yet</i>.
+        </p>
+        <p>
+          Try creating one using the <strong>input</strong> above.
+        </p>
+      </Message>
     );
   }
 

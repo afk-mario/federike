@@ -27,6 +27,7 @@
   height: min-content;
   position: sticky;
   top: var(--spacing-02);
+  overflow: hidden;
 }
 
 .r-lists-list-header {
@@ -41,5 +42,15 @@
 }
 
 .r-lists .c-list-list {
+  border-top: var(--border);
+}
+
+.list-following-wrapper .c-message {
+  border: var(--border);
+  border-top: 0;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.r-lists .list-wrapper .c-message {
   border-top: var(--border);
 }
