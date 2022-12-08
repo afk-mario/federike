@@ -71,7 +71,7 @@ function ListRow({ title, id: listId, selectedItems }) {
                   }}
                 >
                   <span className="icon" aria-label="edit list">
-                    {open && action === "edit" ? "↓" : "₸"}
+                    {open && action === "edit" ? "↓" : "⁝"}
                   </span>
                 </button>
               </Collapsible.Trigger>
