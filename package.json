@@ -41,7 +41,8 @@
     "lint": "eslint \"src/**/*.js\"",
     "lint:fix": "eslint --fix \"src/**/*.js\"",
     "lint:format": "prettier --write \"./**/*.js\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "commit-and-tag-version"
   },
   "browserslist": {
     "production": [
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
+    "commit-and-tag-version": "^10.1.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
