@@ -7,6 +7,10 @@ export const themeOptions = [
     label: "Merveilles",
     value: "merveilles",
   },
+  {
+    label: "Light",
+    value: "light",
+  },
 ];
 
 export const densityOptions = [

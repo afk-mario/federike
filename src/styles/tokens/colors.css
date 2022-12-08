@@ -8,12 +8,12 @@
   --color-fg: #212121;
   --color-fg-alt: var(--color-03);
   --color-border: var(--color-03);
-  --color-input-fg: var(--color-fg-alt);
-  --color-input-bg: #fff;
 
   /* #b888ff; */
   --color-hl: #b888ff;
   --color-danger: #ffab00;
+  --color-input-fg: var(--color-fg-alt);
+  --color-input-bg: #fff;
 }
 
 [data-theme="merveilles"] {
@@ -25,6 +25,18 @@
   --color-hl: #72dec2;
   --color-hl-alt: #9ffce3;
   --color-danger: #ff8000;
+  --color-input-fg: #000;
+  --color-input-bg: #fff;
+}
+
+[data-theme="light"] {
+  --color-bg: #eee;
+  --color-bg-alt: #fff;
+  --color-fg: #000;
+  --color-fg-alt: #000;
+  --color-border: #222;
+  --color-hl: #b888ff;
+  --color-danger: #ffab00;
   --color-input-fg: #000;
   --color-input-bg: #fff;
 }
