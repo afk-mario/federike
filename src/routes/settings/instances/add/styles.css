@@ -29,3 +29,25 @@ div.r-instances-add {
   font-variation-settings: "slnt" -10;
   font-variant-numeric: tabular-nums;
 }
+
+.r-instances-add .input-wrapper {
+  --space: var(--spacing-h);
+}
+
+.r-instances-add .c-message div {
+  max-width: 30ch;
+  margin: auto;
+}
+
+.r-instances-add .c-message p {
+  text-align: left;
+}
+
+.r-instances-add button > span {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 4ch;
+  margin: auto;
+}

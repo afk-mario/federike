@@ -3,9 +3,13 @@ import classnames from "classnames";
 
 import "./styles.css";
 
-function Message({ children, className }) {
+function Message({ children, className, ...rest }) {
   const customClassName = classnames("c-message", className, {});
-  return <div className={customClassName}>{children}</div>;
+  return (
+    <div className={customClassName} {...rest}>
+      {children}
+    </div>
+  );
 }
 
 Message.propTypes = {

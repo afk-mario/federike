@@ -94,7 +94,6 @@ function MastodonAppProvider(props) {
       scopes: SCOPES.join(" "),
       website: WEBSITE,
     });
-
     const {
       client_id: clientId,
       client_secret: clientSecret,

@@ -3,3 +3,8 @@
   padding: var(--spacing-02) var(--spacing-01);
   text-align: center;
 }
+
+.c-message[data-type="danger"] {
+  background-color: var(--color-danger);
+  font-weight: bold;
+}

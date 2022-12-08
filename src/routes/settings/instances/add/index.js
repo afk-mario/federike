@@ -4,42 +4,64 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { useMastodonApp } from "lib/mastodon/provider";
+
 import Spinner from "components/spinner";
+import Message from "components/message";
 
 import "./styles.css";
 
 const { REACT_APP_VERSION } = process.env;
 
+function getIsLoading({ code, authMutation, codeMutation }) {
+  if (code != null) return true;
+  if (authMutation.isLoading) return true;
+  if (codeMutation.isLoading) return true;
+  return false;
+}
+
 function Add() {
-  const [isLoading, setIsLoading] = React.useState(false);
   const ref = React.useRef(false);
   const [searchParams] = useSearchParams();
-  const { redirectToOauth, handleAuthCode, app } = useMastodonApp();
-  const { register, handleSubmit } = useForm();
+  const { redirectToOauth, handleAuthCode, app = {} } = useMastodonApp();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const code = searchParams.get("code");
-  const { clientId, clientSecret, instance } = app || {};
   const navigate = useNavigate();
 
-  const mutation = useMutation({
+  const authMutation = useMutation({
+    mutationFn: redirectToOauth,
+  });
+
+  const codeMutation = useMutation({
     mutationFn: handleAuthCode,
     onSuccess: () => navigate("/"),
   });
 
   const onSubmit = (data) => {
-    setIsLoading(true);
     const instanceName = data.instance
       .replace(/^https?:\/\//, "")
       .replace(/\/+$/, "")
       .toLowerCase();
-    redirectToOauth({ instance: instanceName });
+    return authMutation.mutate({ instance: instanceName });
   };
 
   React.useEffect(() => {
     if (!code) return;
     if (ref.current) return;
     ref.current = true;
-    mutation.mutate({ code, clientId, clientSecret, instance });
-  }, [code, clientId, clientSecret, instance, mutation]);
+    codeMutation.mutate({
+      code,
+      clientId: app.clientId,
+      clientSecret: app.clientSecret,
+      instance: app.instance,
+    });
+  }, [code, app, codeMutation]);
+
+  const isLoading = getIsLoading({ code, authMutation, codeMutation });
 
   return (
     <div className="r-instances-add | stack border">
@@ -47,17 +69,65 @@ function Add() {
         <h2 className="r-instances-add-title">Login</h2>
       </header>
       <form className="cluster" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="instance"
-          type="text"
-          defaultValue=""
-          placeholder="mastodon.social"
-          {...register("instance")}
-        />
-        <button type="submit" disabled={isLoading || code != null}>
-          {isLoading || code != null ? <Spinner /> : "Login"}
+        <div className="input-wrapper stack">
+          <label htmlFor="instance-input">Instance name</label>
+          <input
+            type="text"
+            id="instance-input"
+            name="instance"
+            inputMode="url"
+            defaultValue=""
+            placeholder="mastodon.social"
+            autoCapitalize="none"
+            spellCheck="true"
+            {...register("instance", { required: true })}
+          />
+        </div>
+        <button type="submit" disabled={isLoading}>
+          <span>{isLoading ? <Spinner /> : "Login"}</span>
         </button>
       </form>
+      {errors.instance?.type === "required" ? (
+        <Message data-type="danger" role="alert">
+          <span>The instance is required</span>
+        </Message>
+      ) : null}
+      {authMutation.isError ? (
+        <Message data-type="danger" role="alert" className="stack">
+          <div className="stack">
+            <pre>Error: {authMutation.error.message}</pre>
+            <p>Failed while triying to register the app.</p>
+            <p>
+              Is this a <strong>valid</strong> Mastodon instance?
+            </p>
+            <p>
+              Is a browser extension <strong>blocking</strong> the request?
+            </p>
+            <p>
+              Are you in <strong>private</strong> browsing mode?
+            </p>
+            <p>
+              If you believe this is a problem with your instance, please send
+              this link to the administrator of your instance.
+            </p>
+            <button type="button" onClick={authMutation.reset}>
+              Dismiss
+            </button>
+          </div>
+        </Message>
+      ) : null}
+      {codeMutation.isError ? (
+        <Message data-type="danger" role="alert" className="stack">
+          <div className="stack">
+            <pre>Error: {codeMutation.error.message}</pre>
+            <p>Failed while triying get the login code.</p>
+            <p>Try refreshing the page</p>
+            <button type="button" onClick={codeMutation.reset}>
+              Dismiss
+            </button>
+          </div>
+        </Message>
+      ) : null}
       <footer>
         <span>V.{REACT_APP_VERSION}</span>
       </footer>
