@@ -50,7 +50,8 @@ function Add() {
         <input
           name="instance"
           type="text"
-          defaultValue="merveilles.town"
+          defaultValue=""
+          placeholder="mastodon.social"
           {...register("instance")}
         />
         <button type="submit" disabled={isLoading || code != null}>
