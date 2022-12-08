@@ -11,7 +11,7 @@ function Header() {
         <ul className="border cluster">
           <li>
             <NavLink className="logo-wrapper" to="/">
-              <Logo className="logo" />
+              <Logo className="logo" aria-label="federike logo" />
             </NavLink>
           </li>
           <li>
@@ -19,7 +19,9 @@ function Header() {
           </li>
           <li>
             <NavLink className="icon" to="settings">
-              <span className="icon">※</span>
+              <span className="icon" aria-label="settings">
+                ※
+              </span>
             </NavLink>
           </li>
         </ul>

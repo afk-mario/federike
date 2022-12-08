@@ -70,7 +70,7 @@ function ListRow({ title, id: listId, selectedItems }) {
                     setAction("edit");
                   }}
                 >
-                  <span className="icon">
+                  <span className="icon" aria-label="edit list">
                     {open && action === "edit" ? "↓" : "₸"}
                   </span>
                 </button>
@@ -85,7 +85,7 @@ function ListRow({ title, id: listId, selectedItems }) {
                     setAction("delete");
                   }}
                 >
-                  <span className="icon">
+                  <span className="icon" aria-label="delete list">
                     {open && action === "delete" ? "↓" : "⌫"}
                   </span>
                 </button>

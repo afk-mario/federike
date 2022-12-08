@@ -97,7 +97,9 @@ function FollowingRow({
         </div>
       </div>
       <span className="c-following-row-drag" ref={dragRef}>
-        <span className="icon">Ⅲ</span>
+        <span className="icon" aria-label="drag handle">
+          Ⅲ
+        </span>
       </span>
     </button>
   );
