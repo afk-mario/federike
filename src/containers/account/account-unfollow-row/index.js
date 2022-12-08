@@ -13,7 +13,7 @@ import "./styles.css";
 function AccountUnfollowRow() {
   const [account, setAccount] = React.useState(null);
   const selectedItems = useListRouteState();
-  const { isLoading } = useGetLists();
+  const { data, isLoading } = useGetLists();
 
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
@@ -37,6 +37,8 @@ function AccountUnfollowRow() {
   const isOpen = account != null;
 
   if (isLoading) return null;
+  const lists = data || [];
+  if (lists.length === 0) return null;
 
   return (
     <Collapsible.Root open={isOpen}>

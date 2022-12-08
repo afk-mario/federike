@@ -8,12 +8,13 @@ import ListCreateForm from "containers/list/list-create-form";
 import FollowingList from "containers/following/following-list";
 import FollowingActions from "containers/following/following-actions";
 import FollowingDragLayer from "containers/following/following-drag-layer";
+import AccountUnfollowRow from "containers/account/account-unfollow-row";
 
 import Spinner from "components/spinner";
 
-import "./styles.css";
-import AccountUnfollowRow from "containers/account/account-unfollow-row";
 import { ListRouteProvider } from "./context";
+
+import "./styles.css";
 
 function ListsRoute() {
   const { data, isLoading } = useGetVerifyCredentials();
