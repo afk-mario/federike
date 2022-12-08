@@ -34,10 +34,6 @@ export const borderRadiusOptions = [
     value: "4px",
   },
   {
-    label: "Not so rounded",
-    value: "2px",
-  },
-  {
     label: "Square",
     value: "0px",
   },
