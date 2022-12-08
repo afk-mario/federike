@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@1,8..30,800&display=swap");
-
 :root {
   /* fonts */
   --font-sans: "Inter", sans-serif;
@@ -11,11 +9,11 @@
   /* text */
   --text-paragraph: normal var(--font-weight-normal) var(--size-400) / 1.65
     var(--font-sans);
-  --text-page-title: normal var(--font-weight-normal) var(--size-800) / 1.25
+  --text-page-title: italic var(--font-weight-normal) var(--size-800) / 1.25
     var(--font-serif);
-  --text-heading-2: normal var(--font-weight-bold) var(--size-600) / 1.25
+  --text-heading-2: italic var(--font-weight-bold) var(--size-600) / 1.25
     var(--font-serif);
-  --text-heading-3: normal var(--font-weight-normal) var(--size-500) / 1.25
+  --text-heading-3: normal var(--font-weight-bold) var(--size-500) / 1.25
     var(--font-sans);
 }
 

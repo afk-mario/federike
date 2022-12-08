@@ -4,7 +4,8 @@
 
 /* Utilities */
 
-@import url("fonts/inter.css");
+@import url("fonts/Inter/styles.css");
+@import url("fonts/Piazzolla/styles.css");
 @import url("tokens/styles.css");
 @import url("utilities/styles.css");
 @import url("layouts/styles.css");
