@@ -40,3 +40,15 @@
   --color-input-fg: #000;
   --color-input-bg: #fff;
 }
+
+[data-theme="forum"] {
+  --color-bg: #fdd588;
+  --color-bg-alt: wheat;
+  --color-fg: #000;
+  --color-fg-alt: darkred;
+  --color-border: #222;
+  --color-hl: #f77676;
+  --color-danger: #ffab00;
+  --color-input-fg: #000;
+  --color-input-bg: #fff;
+}

@@ -11,6 +11,10 @@ export const themeOptions = [
     label: "Light",
     value: "light",
   },
+  {
+    label: "Forum",
+    value: "forum",
+  },
 ];
 
 export const densityOptions = [
