@@ -1,7 +1,6 @@
-@import "./colors.css";
-@import "./fonts.css";
-@import "./spacing.css";
-@import "./sizes.css";
-@import "./border.css";
-@import "./gradients.css";
-@import "./media-queries.css";
+@import url("./colors.css");
+@import url("./fonts.css");
+@import url("./spacing.css");
+@import url("./sizes.css");
+@import url("./border.css");
+@import url("./media-queries.css");

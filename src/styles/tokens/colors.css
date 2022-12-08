@@ -3,7 +3,6 @@
   --color-02: #70eba7;
   --color-03: #1f5226;
   --color-04: #5fc88f;
-
   --color-bg: var(--color-01);
   --color-bg-alt: var(--color-02);
   --color-fg: #212121;
@@ -14,21 +13,17 @@
 
   /* #b888ff; */
   --color-hl: #b888ff;
-
   --color-danger: #ffab00;
 }
 
 [data-theme="merveilles"] {
   --color-bg: #000;
   --color-bg-alt: #222;
-
   --color-fg: #fff;
   --color-fg-alt: #fff;
   --color-border: #333;
-
   --color-hl: #72dec2;
   --color-hl-alt: #9ffce3;
-
   --color-danger: #ff8000;
   --color-input-fg: #000;
   --color-input-bg: #fff;

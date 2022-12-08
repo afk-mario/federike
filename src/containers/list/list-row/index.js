@@ -12,6 +12,7 @@ import Add from "./add";
 import Remove from "./remove";
 
 import "./styles.css";
+import ListAccountsList from "../list-accounts-list";
 
 function ListRow({ title, id: listId, selectedItems }) {
   const { data } = useGetListAccounts({ listId });
@@ -94,13 +95,16 @@ function ListRow({ title, id: listId, selectedItems }) {
         </header>
         <Collapsible.Content>
           {action === "edit" ? (
-            <ListEditForm
-              listId={listId}
-              title={title}
-              onSuccess={() => {
-                setOpen(false);
-              }}
-            />
+            <>
+              <ListEditForm
+                listId={listId}
+                title={title}
+                onSuccess={() => {
+                  setOpen(false);
+                }}
+              />
+              <ListAccountsList listId={listId} />
+            </>
           ) : null}
           {action === "delete" ? (
             <ListDeleteButton

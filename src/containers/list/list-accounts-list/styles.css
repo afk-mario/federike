@@ -1,0 +1,30 @@
+.c-list-accounts-list {
+  --space: var(--spacing-01);
+
+  list-style: none;
+  padding: var(--spacing-01) var(--spacing-01);
+  padding-left: var(--spacing-02);
+  padding-bottom: var(--spacing-02);
+  background-color: var(--color-bg);
+}
+
+.c-list-accounts-list .c-list-accounts-list-row {
+  --space: var(--spacing-h);
+
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.c-list-accounts-list .c-list-accounts-list-row::before {
+  content: "○";
+  display: inline-block;
+}
+
+.c-list-accounts-list-row-label {
+  overflow: hidden;
+  text-overflow: ellipsis ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}

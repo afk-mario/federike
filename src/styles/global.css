@@ -46,9 +46,6 @@ p {
   font: var(--text-paragraph);
 }
 
-a {
-}
-
 strong {
   font-weight: var(--font-weight-bold);
 }
@@ -113,10 +110,10 @@ input:disabled {
   position: relative;
 }
 
-.redacted:after {
+.redacted::after {
   background: var(--color-hl);
   border-radius: 0.1em;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 1px rgb(0 0 0 / 35%);
   content: " ";
   width: 100%;
   height: 1.2em;

@@ -1,12 +1,12 @@
-@import "normalize.css";
+@import url("normalize.css");
 
-@import "reset.css";
+@import url("reset.css");
 
 /* Utilities */
 
-@import "fonts/inter.css";
-@import "tokens/styles.css";
-@import "utilities/styles.css";
-@import "layouts/styles.css";
+@import url("fonts/inter.css");
+@import url("tokens/styles.css");
+@import url("utilities/styles.css");
+@import url("layouts/styles.css");
 
-@import "global.css";
+@import url("global.css");

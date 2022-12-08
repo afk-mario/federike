@@ -17,6 +17,7 @@ button.c-following-load-more-button:disabled {
 .c-following-load-more-button:last-child {
   /* border-top: 0; */
   border-radius: 0 0 var(--border-radius) var(--border-radius);
+
   /* border-bottom: 0; */
 }
 

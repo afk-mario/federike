@@ -1,6 +1,6 @@
-@import "./splitter.css";
-@import "./cluster.css";
-@import "./stack.css";
-@import "./frame.css";
-@import "./grid.css";
-@import "./page.css";
+@import url("./splitter.css");
+@import url("./cluster.css");
+@import url("./stack.css");
+@import url("./frame.css");
+@import url("./grid.css");
+@import url("./page.css");

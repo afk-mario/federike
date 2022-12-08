@@ -1,9 +1,9 @@
 div.c-following-lists {
-  --space: 0px;
+  --space: 0;
 
   list-style: none;
   padding: 0;
-  gap: 0px;
+  gap: 0;
 }
 
 .c-following-lists-loading {
@@ -15,7 +15,7 @@ div.c-following-lists {
   background: var(--color-bg-alt);
   border: var(--border);
   border-top: 0;
-  border-radius: 0px 0px var(--border-radius) var(--border-radius);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 /* TODO: round border on the last child */

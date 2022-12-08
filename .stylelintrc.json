@@ -4,6 +4,12 @@
   "rules": {
     "prettier/prettier": true,
     "no-empty-source": null,
-    "color-hex-length": null
+    "color-hex-length": null,
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["font-named-instance"]
+      }
+    ]
   }
 }

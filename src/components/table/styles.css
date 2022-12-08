@@ -9,10 +9,15 @@ table {
 }
 
 /* tbody::before { */
+
 /*   content: "@"; */
+
 /*   display: block; */
+
 /*   line-height: var(--margin-02); */
+
 /*   text-indent: -99999px; */
+
 /* } */
 
 tr {
@@ -27,22 +32,6 @@ td {
   text-align: left;
   white-space: nowrap;
   vertical-align: top;
-}
-
-th:last-child,
-td:last-child {
-}
-
-:not(.-loading) tr:hover {
-}
-
-th.-collapse,
-td.-collapse {
-  width: 0.0000000001%;
-}
-
-tr {
-  transition: background-color 0.2s ease;
 }
 
 td {

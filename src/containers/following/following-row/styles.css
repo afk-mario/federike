@@ -15,9 +15,6 @@ button.c-following-row {
   transition: transform 0.1s ease;
 }
 
-.c-following-row:active {
-}
-
 .c-following-row::before {
   content: "";
   position: absolute;
@@ -26,7 +23,6 @@ button.c-following-row {
   right: 0;
   bottom: 0;
   z-index: 0;
-  background-size: auto;
   background-size: auto;
   image-rendering: pixelated;
   mix-blend-mode: color-dodge;
@@ -95,6 +91,7 @@ button.c-following-row {
 
 .c-following-row-title {
   --space: var(--spacing-01);
+
   flex-flow: row nowrap;
 }
 
@@ -120,7 +117,6 @@ button.c-following-row {
   justify-content: center;
   cursor: move;
   position: relative;
-
   align-self: stretch;
 }
 

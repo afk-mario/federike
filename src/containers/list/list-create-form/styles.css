@@ -4,5 +4,5 @@
 
 .c-list-form-create input {
   flex: 1 1 auto;
-  min-width: 0px;
+  min-width: 0;
 }
