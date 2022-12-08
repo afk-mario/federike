@@ -9,7 +9,6 @@
   width: clamp(100px, 50vw, 300px);
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-02);
   background-color: var(--color-bg-alt);
 }
 
@@ -17,4 +16,15 @@
   width: 100%;
   display: block;
   height: auto;
+}
+
+.r-public-inner > div {
+  padding: var(--spacing-02);
+}
+
+.r-public-inner > footer {
+  width: 100%;
+  border-top: var(--border);
+  padding: var(--spacing-02);
+  text-align: center;
 }

@@ -3,6 +3,9 @@ import { createBrowserRouter } from "react-router-dom";
 import RootRoot from "routes/root";
 import Root from "routes/root/root";
 
+import About from "routes/about";
+import Help from "routes/help";
+
 import Followers from "routes/followers";
 import Following from "routes/following";
 
@@ -20,6 +23,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Root />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "help",
+        element: <Help />,
       },
       {
         path: "followers",

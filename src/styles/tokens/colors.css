@@ -12,7 +12,7 @@
   /* #b888ff; */
   --color-hl: #b888ff;
   --color-danger: #ffab00;
-  --color-input-fg: var(--color-fg-alt);
+  --color-input-fg: #000;
   --color-input-bg: #fff;
 }
 

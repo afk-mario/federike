@@ -1,0 +1,28 @@
+.r-help {
+  width: 100%;
+}
+
+div.r-help-inner {
+  margin: auto;
+  max-width: 60ch;
+  background: var(--color-bg-alt);
+  width: 100%;
+  gap: 0;
+}
+
+.r-help-header,
+.r-help-footer {
+  padding: var(--spacing-01);
+  text-align: center;
+}
+
+.r-help-inner > *:not(:first-child) {
+  border-top: var(--border);
+}
+
+.r-help-inner > section {
+  --space: var(--spacing-01);
+
+  padding: var(--spacing-02) var(--spacing-02) var(--spacing-02)
+    var(--spacing-02);
+}

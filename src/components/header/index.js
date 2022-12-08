@@ -6,25 +6,31 @@ import "./styles.css";
 
 function Header() {
   return (
-    <header className="header-site">
-      <nav className="wrapper">
-        <ul className="border cluster">
-          <li>
-            <NavLink className="logo-wrapper" to="/">
-              <Logo className="logo" aria-label="federike logo" />
-            </NavLink>
-          </li>
-          <li>
-            <h1 className="title">Federike</h1>
-          </li>
-          <li>
-            <NavLink className="icon" to="settings">
-              <span className="icon" aria-label="settings">
-                ※
-              </span>
-            </NavLink>
-          </li>
-        </ul>
+    <header className="header-site | wrapper">
+      <nav className="border cluster">
+        <NavLink className="title-wrapper | cluster" to="/">
+          <span className="logo-wrapper">
+            <Logo className="logo" aria-label="federike logo" />
+          </span>
+          <h1 className="title">Federike</h1>
+        </NavLink>
+        <div className="routes-wrapper | cluster">
+          <NavLink className="icon" to="about">
+            <span className="icon" aria-label="about">
+              Ⓘ
+            </span>
+          </NavLink>
+          <NavLink className="icon" to="help">
+            <span className="icon" aria-label="help">
+              
+            </span>
+          </NavLink>
+          <NavLink className="icon" to="settings">
+            <span className="icon" aria-label="settings">
+              ◯
+            </span>
+          </NavLink>
+        </div>
       </nav>
     </header>
   );
