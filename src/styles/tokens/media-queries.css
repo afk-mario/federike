@@ -1,3 +1,43 @@
-@custom-media --s-viewport (max-width: 36em);
-@custom-media --m-viewport (max-width: 48em);
-@custom-media --l-viewport (max-width: 62em);
+@custom-media --media-s (max-width: 36em);
+@custom-media --media-m (max-width: 48em);
+@custom-media --media-l (max-width: 62em);
+
+@custom-media --media-not-s (min-width: 35em);
+@custom-media --media-not-m (min-width: 48em);
+@custom-media --media-not-l (min-width: 62em);
+
+@media (max-width: 36em) {
+  .hide-small {
+    display: none !important;
+  }
+}
+
+@media (min-width: 35em) {
+  .show-small {
+    display: none !important;
+  }
+}
+
+@media (max-width: 48em) {
+  .hide-medium {
+    display: none !important;
+  }
+}
+
+@media (min-width: 47em) {
+  .show-medium {
+    display: none !important;
+  }
+}
+
+@media (max-width: 62em) {
+  .hide-large {
+    display: none !important;
+  }
+}
+
+@media (min-width: 61em) {
+  .show-large {
+    display: none !important;
+  }
+}

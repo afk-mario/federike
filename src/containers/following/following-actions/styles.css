@@ -16,13 +16,14 @@ div.c-following-actions-wrapper {
 }
 
 .c-following-actions .c-following-filter {
+  width: 100%;
   flex: 1;
 }
 
 header.c-following-actions-header {
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .c-following-actions-title {

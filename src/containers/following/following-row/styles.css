@@ -55,13 +55,14 @@ button.c-following-row {
   transform: translateX(var(--spacing-01));
 }
 
-.c-following-row-content {
+div.c-following-row-content {
   --space: var(--spacing-h);
 
-  padding: var(--spacing-h) var(--spacing-h);
   flex: 1;
   z-index: 1;
+  overflow: hidden;
   flex-flow: row nowrap;
+  padding: var(--spacing-h) var(--spacing-h);
 }
 
 .c-following-row-avatar-wrapper {
@@ -87,12 +88,32 @@ button.c-following-row {
 
 .c-following-row-info {
   --space: var(--spacing-q);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.c-following-row-title {
+span.c-following-row-title {
   --space: var(--spacing-01);
 
   flex-flow: row nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-items: center;
+}
+
+span.c-following-row-title > span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c-following-row-subtitle {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .c-following-row-link {
@@ -118,6 +139,7 @@ button.c-following-row {
   cursor: move;
   position: relative;
   align-self: stretch;
+  flex: 0;
 }
 
 .c-following-row-drag .icon {

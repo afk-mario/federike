@@ -6,14 +6,15 @@
 }
 
 .r-public-inner {
-  width: clamp(100px, 50vw, 300px);
+  max-width: 60ch;
   align-items: center;
   justify-content: center;
   background-color: var(--color-bg-alt);
 }
 
 .r-public .logo {
-  width: 100%;
+  margin: auto;
+  width: clamp(100px, 50vw, 250px);
   display: block;
   height: auto;
 }

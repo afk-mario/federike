@@ -90,7 +90,7 @@ function FollowingRow({
             >
               ↗
             </a>
-            {displayName}
+            <span>{displayName}</span>
           </span>
           <span className="c-following-row-subtitle">{acct}</span>
           <ListTags id={id} />

@@ -1,4 +1,5 @@
 .c-tag {
+  white-space: nowrap;
   line-height: 1em;
   border-radius: var(--border-radius);
   font-size: var(--size-300);

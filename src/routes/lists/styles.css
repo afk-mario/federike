@@ -1,7 +1,7 @@
 .r-lists {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(auto, 600px) minmax(auto, 400px);
+  grid-template-columns: 3fr 2fr;
   gap: var(--spacing-02);
 }
 
@@ -50,4 +50,11 @@
 
 .r-lists .list-wrapper .c-message {
   border-top: var(--border);
+}
+
+@media (max-width: 48em) {
+  .r-lists {
+    display: flex;
+    flex-flow: column;
+  }
 }

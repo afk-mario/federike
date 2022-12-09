@@ -19,7 +19,7 @@ function FollowingActions({ accountId }) {
   return (
     <div className="c-following-actions-wrapper | stack">
       <header className="c-following-actions-header | cluster">
-        <h2 className="c-following-actions-title">Following</h2>
+        <h2 className="c-following-actions-title | hide-medium">Following</h2>
         <FollowingSort disabled={isLoading} />
         <FollowingSelectAll />
       </header>

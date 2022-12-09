@@ -7,6 +7,7 @@
 .header-site .title-wrapper {
   --space: var(--spacing-h);
 
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -28,6 +29,7 @@
 }
 
 .header-site nav {
+  gap: 0;
   justify-content: space-between;
   background-color: var(--color-bg-alt);
   overflow: hidden;
@@ -46,6 +48,8 @@
 
 .header-site .routes-wrapper {
   --space: 0;
+
+  flex-flow: row nowrap;
 }
 
 .header-site .routes-wrapper a {
@@ -55,4 +59,11 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-01) var(--spacing-02);
+}
+
+@media (max-width: 36em) {
+  .header-site .title-wrapper {
+    border-right-color: transparent;
+    padding: var(--spacing-01);
+  }
 }

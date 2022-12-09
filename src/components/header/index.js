@@ -12,7 +12,7 @@ function Header() {
           <span className="logo-wrapper">
             <Logo className="logo" aria-label="federike logo" />
           </span>
-          <h1 className="title">Federike</h1>
+          <h1 className="title | hide-small">Federike</h1>
         </NavLink>
         <div className="routes-wrapper | cluster">
           <NavLink className="icon" to="about">
