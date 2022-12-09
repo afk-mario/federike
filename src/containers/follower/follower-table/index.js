@@ -3,9 +3,11 @@ import React from "react";
 
 import { useGetFollowers } from "api/followers";
 
-import Table from "components/table";
-
 import { getAllItemsFromPaginatedRes } from "api/helpers";
+
+import Table from "components/table";
+import Spinner from "components/spinner";
+
 import columns from "./columns";
 
 function FollowerTable({ accountId }) {
@@ -21,7 +23,7 @@ function FollowerTable({ accountId }) {
     [data]
   );
 
-  if (isLoading) return "Loading ...";
+  if (isLoading) return <Spinner />;
 
   if (data.length === 0) {
     return (

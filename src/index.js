@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -39,7 +39,9 @@ root.render(
         <MastodonAppProvider>
           <FetchProvider>
             <DndProvider backend={HTML5Backend}>
-              <RouterProvider router={router} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <RouterProvider router={router} />
+              </Suspense>
             </DndProvider>
           </FetchProvider>
         </MastodonAppProvider>

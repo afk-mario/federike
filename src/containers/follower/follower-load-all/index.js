@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
-import { useGetFollowers } from "api/followers";
 import { useEffect } from "react";
 
+import { useGetFollowers } from "api/followers";
+
+import Spinner from "components/spinner";
+
 function getText({ isLoading, isFetchingNextPage, hasNextPage }) {
-  if (isLoading) return "Loading";
-  if (isFetchingNextPage || isLoading) return "Loading more...";
+  if (isLoading) return <Spinner />;
+  if (isFetchingNextPage || isLoading) return <Spinner />;
   if (!hasNextPage) return "Finished loading!";
   return "idle";
 }

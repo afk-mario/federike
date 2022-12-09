@@ -3,9 +3,11 @@ import { useEffect } from "react";
 
 import { useGetFollowing } from "api/following";
 
+import Spinner from "components/spinner";
+
 function getText({ isLoading, isFetchingNextPage, hasNextPage }) {
-  if (isLoading) return "Loading";
-  if (isFetchingNextPage || isLoading) return "Loading more...";
+  if (isLoading) return <Spinner />;
+  if (isFetchingNextPage || isLoading) return <Spinner />;
   if (!hasNextPage) return "Finished loading!";
   return "idle";
 }

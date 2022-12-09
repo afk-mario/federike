@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import RootRoot from "routes/root";
@@ -6,14 +7,14 @@ import Root from "routes/root/root";
 import About from "routes/about";
 import Help from "routes/help";
 
-import Followers from "routes/followers";
-import Following from "routes/following";
-
 import SettingsRoot from "routes/settings";
 import Settings from "routes/settings/settings";
 import SettingsInstancesRoot from "routes/settings/instances";
 import SettingsInstances from "routes/settings/instances/instances";
 import SettingsInstancesAdd from "routes/settings/instances/add";
+
+const Followers = React.lazy(() => import("routes/followers"));
+const Following = React.lazy(() => import("routes/following"));
 
 const router = createBrowserRouter([
   {

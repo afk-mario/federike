@@ -5,6 +5,7 @@ import { useGetFollowing } from "api/following";
 import { getAllItemsFromPaginatedRes } from "api/helpers";
 
 import Table from "components/table";
+import Spinner from "components/spinner";
 
 import columns from "./columns";
 
@@ -21,7 +22,7 @@ function FollowingTable({ accountId }) {
     [data]
   );
 
-  if (isLoading) return "Loading ...";
+  if (isLoading) return <Spinner />;
 
   if (followers.length === 0) {
     return (
