@@ -26,7 +26,6 @@ function FollowingList({ accountId }) {
   const selectedItems = useListRouteState();
   const setSelectedItems = useListRouteUpdater();
   const { sort, filter } = useFollowingState();
-  const [isDragging, setIsDragging] = React.useState();
   const [cursor, setCursor] = React.useState(-1);
   const [lastSelectedIndex, setLastSelectedIndex] = React.useState(-1);
   const { data, isLoading } = useGetFollowing({
@@ -57,13 +56,14 @@ function FollowingList({ accountId }) {
     scrollMargin: parentOffsetRef.current,
   });
 
-  const handleDragStart = ({ id }) => {
+  const handleDragStart = ({ id, index }) => {
     const newItems = new Set(selectedItems);
+    setLastSelectedIndex(index);
     if (!newItems.has(id)) {
+      newItems.clear();
       newItems.add(id);
     }
     setSelectedItems(newItems);
-    setIsDragging(true);
   };
 
   const handleItemSelection = React.useCallback(
@@ -186,7 +186,6 @@ function FollowingList({ accountId }) {
               }}
             >
               <FollowingRow
-                isDragging={isDragging}
                 index={index}
                 cursor={cursor}
                 isSelected={isSelected}
