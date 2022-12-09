@@ -8,6 +8,7 @@ import { useGetListAccounts } from "api/lists";
 import ListDeleteButton from "../list-delete-button";
 import ListEditForm from "../list-edit-form";
 
+import DisclosureButton from "./disclosure-button";
 import Add from "./add";
 import Remove from "./remove";
 
@@ -62,9 +63,7 @@ function ListRow({ title, id: listId, selectedItems }) {
           ) : (
             <>
               <Collapsible.Trigger asChild>
-                <button
-                  type="button"
-                  className="c-list-row-disclosure-button"
+                <DisclosureButton
                   data-action="edit"
                   onClick={() => {
                     setAction("edit");
@@ -73,13 +72,11 @@ function ListRow({ title, id: listId, selectedItems }) {
                   <span className="icon" aria-label="edit list">
                     {open && action === "edit" ? "↓" : "⁝"}
                   </span>
-                </button>
+                </DisclosureButton>
               </Collapsible.Trigger>
               <span className="c-list-row-label">{title}</span>
               <Collapsible.Trigger asChild>
-                <button
-                  type="button"
-                  className="c-list-row-disclosure-button"
+                <DisclosureButton
                   data-action="delete"
                   onClick={() => {
                     setAction("delete");
@@ -88,7 +85,7 @@ function ListRow({ title, id: listId, selectedItems }) {
                   <span className="icon" aria-label="delete list">
                     {open && action === "delete" ? "↓" : "⌫"}
                   </span>
-                </button>
+                </DisclosureButton>
               </Collapsible.Trigger>
             </>
           )}

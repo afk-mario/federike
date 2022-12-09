@@ -55,14 +55,14 @@ function ListRemove({ listId, selectedItems, accounts }) {
   );
 
   return (
-    <span
+    <div
       ref={drop}
       className="c-list-row-action"
       data-is-over={isOver}
       data-action="remove"
     >
       Remove
-    </span>
+    </div>
   );
 }
 

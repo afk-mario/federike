@@ -54,14 +54,14 @@ function ListAdd({ listId, selectedItems, accounts }) {
   );
 
   return (
-    <span
+    <div
       ref={drop}
       className="c-list-row-action"
       data-is-over={isOver}
       data-action="add"
     >
       Add
-    </span>
+    </div>
   );
 }
 

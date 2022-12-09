@@ -18,7 +18,6 @@ header.c-list-row-header {
 
 .c-list-row-header[data-is-over="true"] {
   font-weight: bold;
-  gap: 0;
 }
 
 .c-list-row-action {
@@ -29,6 +28,10 @@ header.c-list-row-header {
   flex-flow: row;
   align-items: center;
   transition: background-color 0.1s ease;
+}
+
+[data-open="true"] .c-list-row-action {
+  border-bottom: var(--border);
 }
 
 .c-list-row-action[data-action="add"] {
@@ -65,64 +68,11 @@ header.c-list-row-header {
   pointer-events: none;
 }
 
-/* .c-list-row[data-open="true"] { } */
-
 .c-list-row[data-open="true"] .c-list-row-label {
+  width: 100%;
   border-bottom: var(--border);
-}
-
-.c-list-row-header button {
-  padding: var(--spacing-02);
-  border-radius: 0;
-  border: none;
-  flex: 0 0 auto;
-  background: transparent;
-}
-
-.c-list-row-header > button:first-of-type {
-  border-right: var(--border);
-}
-
-.c-list-row-header > button:last-of-type {
-  border-left: var(--border);
-}
-
-.c-list-row .c-list-row-disclosure-button:hover {
-  background: var(--color-bg);
-}
-
-.c-list-row-indicator {
-  text-transform: uppercase;
-  padding: var(--spacing-02);
-  border-radius: 0;
-  border: none;
-  flex: 0 0 auto;
 }
 
 .c-list-row form {
   background-color: var(--color-bg);
-}
-
-.c-list-row-disclosure-button[data-action="delete"]:hover {
-  background-color: var(--color-danger);
-}
-
-.c-list-row[data-open="true"][data-action="edit"]
-  .c-list-row-disclosure-button[data-action="edit"] {
-  background-color: var(--color-bg);
-}
-
-.c-list-row[data-open="true"][data-action="edit"]
-  .c-list-row-disclosure-button[data-action="delete"] {
-  border-bottom: var(--border);
-}
-
-.c-list-row[data-open="true"][data-action="delete"]
-  .c-list-row-disclosure-button[data-action="delete"] {
-  background-color: var(--color-danger);
-}
-
-.c-list-row[data-open="true"][data-action="delete"]
-  .c-list-row-disclosure-button[data-action="edit"] {
-  border-bottom: var(--border);
 }
