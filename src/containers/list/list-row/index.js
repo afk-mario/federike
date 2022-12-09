@@ -53,7 +53,9 @@ function ListRow({ title, id: listId, selectedItems }) {
                 selectedItems={selectedItems}
                 accounts={accounts}
               />
-              <span className="c-list-row-label">{title}</span>
+              <span className="c-list-row-label">
+                <span className="redacted">{title}</span>
+              </span>
               <Remove
                 listId={listId}
                 selectedItems={selectedItems}
@@ -74,7 +76,9 @@ function ListRow({ title, id: listId, selectedItems }) {
                   </span>
                 </DisclosureButton>
               </Collapsible.Trigger>
-              <span className="c-list-row-label">{title}</span>
+              <span className="c-list-row-label">
+                <span className="redacted">{title}</span>
+              </span>
               <Collapsible.Trigger asChild>
                 <DisclosureButton
                   data-action="delete"

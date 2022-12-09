@@ -25,6 +25,7 @@ function getInitialState() {
     theme: themeOptions[0].value,
     density: densityOptions[0].value,
     borderRadius: borderRadiusOptions[0].value,
+    redacted: false,
     ...savedState,
   };
 }
@@ -94,7 +95,18 @@ function useThemeUpdater() {
     [dispatch]
   );
 
-  return { setTheme, setDensity, setBorderRadius };
+  const setRedacted = useCallback(
+    (value) => {
+      dispatch((prev) => {
+        const newState = { ...prev, redacted: value };
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newState));
+        return newState;
+      });
+    },
+    [dispatch]
+  );
+
+  return { setTheme, setDensity, setBorderRadius, setRedacted };
 }
 
 export { ThemeProvider, useThemeState, useThemeUpdater };

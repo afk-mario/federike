@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useThemeState } from "./context";
 
 function ThemeUpdateRoot() {
-  const { theme, density, borderRadius } = useThemeState();
+  const { theme, density, borderRadius, redacted } = useThemeState();
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
@@ -14,6 +14,10 @@ function ThemeUpdateRoot() {
   useEffect(() => {
     document.documentElement.setAttribute("data-border-radius", borderRadius);
   }, [borderRadius]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-redacted", redacted);
+  }, [redacted]);
 
   return null;
 }

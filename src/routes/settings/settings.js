@@ -5,6 +5,7 @@ import { useMastodonApp } from "lib/mastodon/provider";
 import ThemeRadioGroup from "containers/theme/theme-radio-group";
 import ThemeDensityRadioGroup from "containers/theme/theme-density-group";
 import ThemeBorderRadiusGroup from "containers/theme/theme-border-radius-group";
+import ThemeRedactedCheckbox from "containers/theme/theme-redacted-checkbox";
 
 const { REACT_APP_VERSION } = process.env;
 
@@ -32,6 +33,12 @@ function Settings() {
           <h3>Border Radius</h3>
         </header>
         <ThemeBorderRadiusGroup />
+      </section>
+      <section className="stack">
+        <header>
+          <h3>Redacted</h3>
+        </header>
+        <ThemeRedactedCheckbox />
       </section>
       <section className="stack">
         <header>

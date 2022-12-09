@@ -44,7 +44,8 @@ function AccountUnfollowConfirm({ account, onCancel, onSuccess }) {
     <div className="c-account-unfollow-confirm | stack">
       <div>
         <p>
-          Are you sure you want to unfollow <strong>{account.acct}</strong>?
+          Are you sure you want to unfollow{" "}
+          <strong className="redacted">{account.acct}</strong>?
         </p>
         <p>
           This <strong>can not</strong> be undone

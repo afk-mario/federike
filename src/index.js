@@ -13,6 +13,8 @@ import { FetchProvider } from "lib/fetch";
 import { ThemeProvider } from "containers/theme/context";
 import ThemeUpdateRoot from "containers/theme/theme-update-root";
 
+import SvgFilter from "components/svg-filter";
+
 import router from "./router";
 import reportWebVitals from "./reportWebVitals";
 
@@ -41,6 +43,7 @@ root.render(
             <DndProvider backend={HTML5Backend}>
               <Suspense fallback={<div>Loading...</div>}>
                 <RouterProvider router={router} />
+                <SvgFilter />
               </Suspense>
             </DndProvider>
           </FetchProvider>

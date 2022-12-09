@@ -30,7 +30,8 @@ function ListDeleteButton({ listId, listName, onCancel }) {
     <div className="c-list-delete-button | stack">
       <div>
         <p>
-          Are you sure you want to delete the <strong>{listName}</strong> list?
+          Are you sure you want to delete the{" "}
+          <strong className="redacted">{listName}</strong> list?
         </p>
         <p>
           This <strong>can not</strong> be undone

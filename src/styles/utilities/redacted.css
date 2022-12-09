@@ -1,0 +1,39 @@
+[data-redacted="true"] .redacted {
+  font-family: var(--font-redacted);
+}
+
+[data-redacted="true"] input {
+  font-family: var(--font-redacted);
+}
+
+[data-redacted="true"] .c-tag {
+  font-family: var(--font-redacted);
+  font-weight: normal;
+}
+
+[data-redacted="true"] .c-following-row-avatar-wrapper {
+  border: var(--border);
+  background-color: var(--color-border);
+}
+
+[data-redacted="true"] .c-following-row-avatar {
+  mix-blend-mode: lighten;
+  filter: blur(4px);
+}
+
+[data-theme="federike"][data-redacted="true"] .c-following-row-avatar {
+  filter: url("#teal-white") blur(4px);
+  filter: grayscale(1) blur(4px);
+}
+
+[data-theme="merveilles"][data-redacted="true"] .c-following-row-avatar {
+  filter: grayscale(1) blur(4px);
+}
+
+[data-theme="light"][data-redacted="true"] .c-following-row-avatar {
+  filter: grayscale(1) blur(4px);
+}
+
+[data-theme="forum"][data-redacted="true"] .c-following-row-avatar {
+  filter: url("#purple-warm") blur(4px);
+}

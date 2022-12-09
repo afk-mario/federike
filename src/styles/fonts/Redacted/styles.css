@@ -1,0 +1,23 @@
+@font-face {
+  font-family: Redacted;
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("./RedactedScript-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Redacted;
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("./RedactedScript-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Redacted;
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("./RedactedScript-Bold.woff2") format("woff2");
+}

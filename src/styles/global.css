@@ -105,19 +105,3 @@ input:disabled {
   align-items: center;
   justify-content: center;
 }
-
-.redacted {
-  position: relative;
-}
-
-.redacted::after {
-  background: var(--color-hl);
-  border-radius: 0.1em;
-  box-shadow: 0 0 1px rgb(0 0 0 / 35%);
-  content: " ";
-  width: 100%;
-  height: 1.2em;
-  left: 0;
-  position: absolute;
-  transform: skewY(-5deg) rotate(5deg);
-}

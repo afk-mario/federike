@@ -40,7 +40,7 @@ function ListAccountsListRow({ listId, id: accountId, acct, url }) {
         rel="noreferrer noopener"
         target="_blank"
       >
-        {acct}
+        <span className="redacted">{acct}</span>
       </a>
       <button
         type="button"
