@@ -1,0 +1,43 @@
+.c-page-error {
+  width: 100%;
+}
+
+div.c-page-error-inner {
+  margin: auto;
+  max-width: 60ch;
+  background: var(--color-bg-alt);
+  width: 100%;
+  gap: 0;
+  overflow: hidden;
+}
+
+.c-page-error-header,
+.c-page-error-footer {
+  color: var(--color-fg);
+  padding: var(--spacing-01);
+  text-align: center;
+}
+
+.c-page-error-inner > *:not(:first-child) {
+  border-top: var(--border);
+}
+
+.c-page-error-inner > section {
+  --space: var(--spacing-01);
+
+  padding: var(--spacing-02) var(--spacing-02) var(--spacing-02)
+    var(--spacing-02);
+}
+
+.c-page-error-inner pre {
+  margin: auto;
+  padding: var(--spacing-01);
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.c-page-error-content {
+  background-color: var(--color-danger);
+}

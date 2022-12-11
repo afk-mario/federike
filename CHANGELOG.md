@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [0.1.3](https://github.com/afk-mario/federike/compare/v0.1.1...v0.1.3) (2022-12-11)
+
+
+### Features
+
+* add redacted settings for easier screenshot share ([9e8ba20](https://github.com/afk-mario/federike/commit/9e8ba20516c6c40252f7af8ae6a786b56f8deb30))
+* add social open graph tags ([6bba8ce](https://github.com/afk-mario/federike/commit/6bba8ce9193537d713de52f2fccd648ad1584759))
+* handle full page erros ([7b078e3](https://github.com/afk-mario/federike/commit/7b078e3b33b0f5dbb86f9d1c5e8153e033cb0f6b))
+* handle general errors ([4f770f0](https://github.com/afk-mario/federike/commit/4f770f080dd3c59b00a15e3d41609372cbac486a))
+* tutorial and about sections closes [#19](https://github.com/afk-mario/federike/issues/19) [#1](https://github.com/afk-mario/federike/issues/1) ([70a2e73](https://github.com/afk-mario/federike/commit/70a2e739ad6396b25b327dbda58e0518523775ba))
+* use suspense on table views closes [#12](https://github.com/afk-mario/federike/issues/12) ([d37e717](https://github.com/afk-mario/federike/commit/d37e717e410a7ddb57463a9319bc62ea65d60dab))
+
+
+### Bug Fixes
+
+*  Improve mobile styles closes [#15](https://github.com/afk-mario/federike/issues/15) ([ff66af7](https://github.com/afk-mario/federike/commit/ff66af7fe6210d79c1136f8cbb4db4c6f100da54))
+* add tw social metatags ([0138bd0](https://github.com/afk-mario/federike/commit/0138bd04fa4a382768838001cfc81e56c02246e4))
+* closes [#13](https://github.com/afk-mario/federike/issues/13) handle start drag and selection better" ([e9e73f0](https://github.com/afk-mario/federike/commit/e9e73f01f7eff7c25a122532cc26d8a68d38b85b))
+* closes [#20](https://github.com/afk-mario/federike/issues/20) ([f00a6d6](https://github.com/afk-mario/federike/commit/f00a6d654c38e2d785eb915a6b3a923a7d0c6839))
+
 ### [0.1.2](https://github.com/afk-mario/federike/compare/v0.1.1...v0.1.2) (2022-12-08)
 
 

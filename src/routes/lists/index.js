@@ -17,7 +17,7 @@ import { ListRouteProvider } from "./context";
 import "./styles.css";
 
 function ListsRoute() {
-  const { data, isLoading } = useGetVerifyCredentials();
+  const { data, isLoading, isError, error } = useGetVerifyCredentials();
 
   if (isLoading)
     return (
@@ -25,6 +25,7 @@ function ListsRoute() {
         <Spinner />
       </div>
     );
+  if (isError) throw error;
 
   const {
     data: { id: accountId },

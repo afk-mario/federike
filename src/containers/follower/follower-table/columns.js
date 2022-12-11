@@ -1,9 +1,11 @@
+import CellBool from "components/table/cell-bool";
 import Time from "components/time";
 
 const columns = [
   {
     header: "Bot",
     accessorKey: "bot",
+    cell: CellBool,
   },
   {
     header: "Username",

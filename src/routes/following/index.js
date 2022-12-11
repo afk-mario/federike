@@ -6,9 +6,10 @@ import FollowingLoadAll from "containers/following/following-load-all";
 import "./styles.css";
 
 function FollowingRoute() {
-  const { data, isLoading } = useGetVerifyCredentials();
+  const { data, isLoading, isError, error } = useGetVerifyCredentials();
 
   if (isLoading) return null;
+  if (isError) throw error;
 
   const {
     data: { id: accountId },

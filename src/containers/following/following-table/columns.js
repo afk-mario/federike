@@ -1,9 +1,13 @@
+import CellBool from "components/table/cell-bool";
 import Time from "components/time";
+
+import FollowingLists from "../following-lists";
 
 const columns = [
   {
     header: "Bot",
     accessorKey: "bot",
+    cell: CellBool,
   },
   {
     header: "Username",
@@ -35,6 +39,14 @@ const columns = [
     cell: (props) => {
       const value = props.getValue().split("@")[1];
       return <span>{value || null}</span>;
+    },
+  },
+  {
+    header: "Lists",
+    id: "lists",
+    cell: (props) => {
+      const accountId = props.row.original.id;
+      return <FollowingLists accountId={accountId} />;
     },
   },
   {

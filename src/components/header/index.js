@@ -4,6 +4,8 @@ import { ReactComponent as Logo } from "logo.svg";
 
 import "./styles.css";
 
+const { NODE_ENV } = process.env;
+
 function Header() {
   return (
     <header className="header-site | wrapper">
@@ -15,6 +17,20 @@ function Header() {
           <h1 className="title | hide-small">Federike</h1>
         </NavLink>
         <div className="routes-wrapper | cluster">
+          {NODE_ENV === "development" ? (
+            <>
+              <NavLink className="icon" to="following">
+                <span className="icon" aria-label="following">
+                  ↪
+                </span>
+              </NavLink>
+              <NavLink className="icon" to="followers">
+                <span className="icon" aria-label="followers">
+                  ↩
+                </span>
+              </NavLink>
+            </>
+          ) : null}
           <NavLink className="icon" to="about">
             <span className="icon" aria-label="about">
               Ⓘ

@@ -1,4 +1,6 @@
 .c-message {
+  width: 100;
+  overflow-x: auto;
   background: var(--color-bg-alt);
   padding: var(--spacing-02) var(--spacing-01);
   text-align: center;
@@ -7,4 +9,9 @@
 .c-message[data-type="danger"] {
   background-color: var(--color-danger);
   font-weight: bold;
+}
+
+.c-message pre {
+  width: 100;
+  overflow-x: auto;
 }

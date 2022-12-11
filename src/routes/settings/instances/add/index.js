@@ -21,7 +21,7 @@ function getIsLoading({ code, authMutation, codeMutation }) {
 
 function Add() {
   const ref = React.useRef(false);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { redirectToOauth, handleAuthCode, app = {} } = useMastodonApp();
   const {
     register,
@@ -52,6 +52,10 @@ function Add() {
   React.useEffect(() => {
     if (!code) return;
     if (ref.current) return;
+
+    setSearchParams(new URLSearchParams(), {
+      replace: true,
+    });
     ref.current = true;
     codeMutation.mutate({
       code,
@@ -59,7 +63,7 @@ function Add() {
       clientSecret: app.clientSecret,
       instance: app.instance,
     });
-  }, [code, app, codeMutation]);
+  }, [setSearchParams, code, app, codeMutation]);
 
   const isLoading = getIsLoading({ code, authMutation, codeMutation });
 
@@ -107,8 +111,8 @@ function Add() {
               Are you in <strong>private</strong> browsing mode?
             </p>
             <p>
-              If you believe this is a problem with your instance, please send
-              this link to the administrator of your instance.
+              If you believe this is a problem with your instance, please
+              contact the administrator of your instance.
             </p>
             <button type="button" onClick={authMutation.reset}>
               Dismiss

@@ -6,9 +6,10 @@ import FollowerLoadAll from "containers/follower/follower-load-all";
 import "./styles.css";
 
 function Followers() {
-  const { data, isLoading } = useGetVerifyCredentials();
+  const { data, isLoading, isError, error } = useGetVerifyCredentials();
 
   if (isLoading) return null;
+  if (isError) throw error;
 
   const {
     data: { id: accountId },
