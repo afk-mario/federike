@@ -1,0 +1,38 @@
+.c-page-error {
+  width: 100%;
+}
+
+div.c-page-error-inner {
+  margin: auto;
+  max-width: 60ch;
+  background: var(--color-bg-alt);
+  width: 100%;
+  gap: 0;
+}
+
+.c-page-error-header,
+.c-page-error-footer {
+  color: var(--color-fg);
+  padding: var(--spacing-01);
+  text-align: center;
+}
+
+.c-page-error-inner > *:not(:first-child) {
+  border-top: var(--border);
+}
+
+.c-page-error-inner > section {
+  --space: var(--spacing-01);
+
+  padding: var(--spacing-02) var(--spacing-02) var(--spacing-02)
+    var(--spacing-02);
+}
+
+.c-page-error-inner pre {
+  margin: auto;
+  width: max-content;
+  padding: var(--spacing-01);
+  background-color: var(--color-danger);
+  border-radius: var(--border-radius);
+  font-weight: bold;
+}
