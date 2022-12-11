@@ -8,6 +8,7 @@ div.c-page-error-inner {
   background: var(--color-bg-alt);
   width: 100%;
   gap: 0;
+  overflow: hidden;
 }
 
 .c-page-error-header,
@@ -30,9 +31,13 @@ div.c-page-error-inner {
 
 .c-page-error-inner pre {
   margin: auto;
-  width: max-content;
   padding: var(--spacing-01);
-  background-color: var(--color-danger);
   border-radius: var(--border-radius);
   font-weight: bold;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.c-page-error-content {
+  background-color: var(--color-danger);
 }

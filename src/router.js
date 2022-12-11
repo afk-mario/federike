@@ -13,6 +13,9 @@ import SettingsInstancesRoot from "routes/settings/instances";
 import SettingsInstances from "routes/settings/instances/instances";
 import SettingsInstancesAdd from "routes/settings/instances/add";
 
+import ErrorRoute from "components/errors/error-route";
+import ErrorRouteQueryBoundry from "components/errors/error-route-query-boundry";
+
 const Followers = React.lazy(() => import("routes/followers"));
 const Following = React.lazy(() => import("routes/following"));
 
@@ -20,10 +23,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootRoot />,
+    errorElement: <ErrorRoute />,
     children: [
       {
         index: true,
-        element: <Root />,
+        element: (
+          <ErrorRouteQueryBoundry>
+            <Root />
+          </ErrorRouteQueryBoundry>
+        ),
       },
       {
         path: "about",
@@ -35,11 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "followers",
-        element: <Followers />,
+        element: (
+          <ErrorRouteQueryBoundry>
+            <Followers />
+          </ErrorRouteQueryBoundry>
+        ),
       },
       {
         path: "following",
-        element: <Following />,
+        element: (
+          <ErrorRouteQueryBoundry>
+            <Following />
+          </ErrorRouteQueryBoundry>
+        ),
       },
       {
         path: "settings",

@@ -33,8 +33,8 @@ function FollowingLoadAll({ accountId, showText }) {
 
   return (
     <div className="cluster">
-      {list ? <span>Loaded: {list.length} </span> : null}
       <span>{getText({ isFetchingNextPage, isLoading, hasNextPage })}</span>
+      {list ? <span>Loaded: {list.length} </span> : null}
     </div>
   );
 }
