@@ -14,7 +14,7 @@ See the [help guide](https://federike.social/help) for basic usage.
 
 For updates and support, follow [@mario_afk@merveilles.town](https://merveilles.town/@mario_afk).
 
-![Screenshot of the federike app](https://raw.githubusercontent.com/afk-mario/federike/main/screenshots/federike.jpg)
+![Screenshot of the federike app](https://raw.githubusercontent.com/afk-mario/federike/main/screenshots/federike.png)
 
 For more [screenshots](https://github.com/afk-mario/federike/blob/main/screenshots) with different themes check out the screenshots folder
 
