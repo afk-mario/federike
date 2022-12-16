@@ -19,6 +19,8 @@ import FollowingLoadMoreButton from "../following-load-more-button";
 import "./styles.css";
 import { useFollowingState } from "./context";
 
+const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+
 function FollowingList({ accountId }) {
   const parentRef = React.useRef(null);
   const parentOffsetRef = React.useRef(0);
@@ -71,7 +73,7 @@ function FollowingList({ accountId }) {
       const { metaKey, shiftKey, ctrlKey } = event;
       const newItems = new Set(selectedItems);
 
-      if (ctrlKey || metaKey) {
+      if (ctrlKey || metaKey || isTouch) {
         if (newItems.has(id)) {
           newItems.delete(id);
         } else {
