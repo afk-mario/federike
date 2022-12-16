@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useCallback } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 
@@ -20,6 +20,7 @@ import "./styles.css";
 import { useFollowingState } from "./context";
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
 function FollowingList({ accountId }) {
   const parentRef = React.useRef(null);
@@ -103,30 +104,21 @@ function FollowingList({ accountId }) {
     setCursor(index);
   };
 
-  useHotkeys(
-    ["down", "j"],
-    () => {
-      setCursor((prevState) => Math.min(prevState + 1, items.length));
+  const setCursorClamped = useCallback(
+    (delta) => {
+      setCursor((prevState) => {
+        const newIndex = clamp(prevState + delta, 0, items.length - 1);
+        virtualizer.scrollToIndex(newIndex);
+        return newIndex;
+      });
     },
-    [items.length]
+    [setCursor, items.length, virtualizer]
   );
-  useHotkeys(
-    ["shift+down", "shift+j"],
-    () => {
-      setCursor((prevState) => Math.min(prevState + 5, items.length));
-    },
-    [items.length]
-  );
-  useHotkeys(["up", "k"], () => {
-    setCursor((prevState) => Math.max(prevState - 1, 0));
-  });
-  useHotkeys(
-    ["shift+up", "shift+k"],
-    () => {
-      setCursor((prevState) => Math.min(prevState - 5, items.length));
-    },
-    [items.length]
-  );
+
+  useHotkeys(["down", "j"], () => setCursorClamped(1), []);
+  useHotkeys(["shift+down", "shift+j"], () => setCursorClamped(5), []);
+  useHotkeys(["up", "k"], () => setCursorClamped(-1));
+  useHotkeys(["shift+up", "shift+k"], () => setCursorClamped(-5), []);
 
   if (isLoading)
     return (
