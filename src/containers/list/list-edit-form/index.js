@@ -6,7 +6,7 @@ import { useUpdateList, useInvalidateListUpdate } from "api/lists";
 
 import "./styles.css";
 
-function ListEditForm({ listId, title, onSuccess }) {
+function ListEditForm({ listId, title, onSuccess, children }) {
   const { register, handleSubmit } = useForm();
   const queryClient = useQueryClient();
   const invalidate = useInvalidateListUpdate();
@@ -58,7 +58,7 @@ function ListEditForm({ listId, title, onSuccess }) {
 
   return (
     <form
-      className="c-list-edit-form | cluster"
+      className="c-list-edit-form | stack"
       onSubmit={handleSubmit(onSubmit)}
     >
       <input
@@ -68,9 +68,12 @@ function ListEditForm({ listId, title, onSuccess }) {
         placeholder="List title"
         {...register("title")}
       />
-      <button type="submit" disabled={mutation.isLoading}>
-        edit
-      </button>
+      <footer className="c-list-edit-form-footer | cluster">
+        {children}
+        <button type="submit" disabled={mutation.isLoading}>
+          edit
+        </button>
+      </footer>
     </form>
   );
 }
@@ -79,10 +82,12 @@ ListEditForm.propTypes = {
   listId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   onSuccess: PropTypes.func,
+  children: PropTypes.node,
 };
 
 ListEditForm.defaultProps = {
   onSuccess: () => {},
+  children: null,
 };
 
 export default ListEditForm;

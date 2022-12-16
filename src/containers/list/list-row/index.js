@@ -11,9 +11,11 @@ import ListEditForm from "../list-edit-form";
 import DisclosureButton from "./disclosure-button";
 import Add from "./add";
 import Remove from "./remove";
+import ListAccountsList from "../list-accounts-list";
+import ListAddSelectedButton from "../list-add-selected-button";
+import ListRemoveSelectedButton from "../list-remove-selected-button";
 
 import "./styles.css";
-import ListAccountsList from "../list-accounts-list";
 
 function ListRow({ title, id: listId, selectedItems }) {
   const { data } = useGetListAccounts({ listId });
@@ -96,16 +98,31 @@ function ListRow({ title, id: listId, selectedItems }) {
         </header>
         <Collapsible.Content>
           {action === "edit" ? (
-            <>
+            <div className="c-list-row-edit-wrapper | stack">
               <ListEditForm
                 listId={listId}
                 title={title}
                 onSuccess={() => {
                   setOpen(false);
                 }}
-              />
+              >
+                {selectedItems.size > 0 ? (
+                  <div className="cluster">
+                    <ListAddSelectedButton
+                      listId={listId}
+                      accounts={accounts}
+                      selectedItems={selectedItems}
+                    />
+                    <ListRemoveSelectedButton
+                      listId={listId}
+                      accounts={accounts}
+                      selectedItems={selectedItems}
+                    />
+                  </div>
+                ) : null}
+              </ListEditForm>
               <ListAccountsList listId={listId} />
-            </>
+            </div>
           ) : null}
           {action === "delete" ? (
             <ListDeleteButton
