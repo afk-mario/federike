@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://federike.social">
-    <img src="logo.svg" width="400" alt="Federike app logo">
+    <img src="https://raw.githubusercontent.com/afk-mario/federike/main/public/favicon.svg" width="400" alt="Federike app logo">
   </a>
 </p>
 
