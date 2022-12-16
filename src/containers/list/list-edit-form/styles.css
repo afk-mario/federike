@@ -6,4 +6,15 @@
 
 .c-list-edit-form input {
   flex: 1 1 auto;
+  width: 100%;
+}
+
+.c-list-edit-form-footer {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.c-list-edit-form button[type="submit"] {
+  margin-left: auto;
 }

@@ -76,3 +76,9 @@ header.c-list-row-header {
 .c-list-row form {
   background-color: var(--color-bg);
 }
+
+.c-list-row-edit-wrapper {
+  --space: var(--spacing-01);
+
+  background-color: var(--color-bg);
+}

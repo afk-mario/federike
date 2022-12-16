@@ -23,6 +23,7 @@ function FollowingRow({
   onItemSelection,
   onDragStart,
   onItemFocus,
+  onItemBlur,
 }) {
   const ref = React.useRef();
   const { isDragging } = useDragLayer(
@@ -74,6 +75,9 @@ function FollowingRow({
       onFocus={() => {
         onItemFocus({ index, id });
       }}
+      onBlur={() => {
+        onItemBlur({ index, id });
+      }}
       data-dragging={isDragging && isSelected}
       data-selected={isSelected}
       data-is-current-cursor={cursor === index}
@@ -119,6 +123,7 @@ FollowingRow.propTypes = {
   onItemSelection: PropTypes.func,
   onDragStart: PropTypes.func,
   onItemFocus: PropTypes.func,
+  onItemBlur: PropTypes.func,
 };
 
 FollowingRow.defaultProps = {
@@ -128,6 +133,7 @@ FollowingRow.defaultProps = {
   onItemSelection: () => {},
   onDragStart: () => {},
   onItemFocus: () => {},
+  onItemBlur: () => {},
 };
 
 export default FollowingRow;
