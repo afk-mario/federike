@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [0.1.4](https://github.com/afk-mario/federike/compare/v0.1.3...v0.1.4) (2022-12-16)
+
+
+### Features
+
+* add remove/add selected items to list row on expanded view fix [#23](https://github.com/afk-mario/federike/issues/23) ([705d6e7](https://github.com/afk-mario/federike/commit/705d6e72107b4916cec1a4f762b95e25a580939b))
+* on mobile make all following rows function as if cmd key was pressed fix [#24](https://github.com/afk-mario/federike/issues/24) ([45ff81b](https://github.com/afk-mario/federike/commit/45ff81b0a8e1272d003be973d9c87137cc5e4adb))
+
+
+### Bug Fixes
+
+* virtual list focus on shift+key ([390f6e4](https://github.com/afk-mario/federike/commit/390f6e41cfaa7ddde230efd83a53bcb8d02c6feb))
+
 ### [0.1.3](https://github.com/afk-mario/federike/compare/v0.1.1...v0.1.3) (2022-12-11)
 
 
