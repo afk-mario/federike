@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+### [0.1.5](https://github.com/afk-mario/federike/compare/v0.1.4...v0.1.5) (2022-12-18)
+
+
+### Bug Fixes
+
+* add polyfills for stable features ([72a9ca1](https://github.com/afk-mario/federike/commit/72a9ca1746168e37c4b09f560673876ac4fba9b0))
+
 ### [0.1.4](https://github.com/afk-mario/federike/compare/v0.1.3...v0.1.4) (2022-12-16)
 
 
