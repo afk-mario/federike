@@ -1,4 +1,4 @@
-import { useMastodonApp } from "lib/mastodon/provider";
+import { useMastodonApp } from "lib/mastodon";
 
 import Public from "./public";
 import Lists from "../lists";

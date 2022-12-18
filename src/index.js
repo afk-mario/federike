@@ -1,3 +1,4 @@
+import "react-app-polyfill/stable";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,7 +8,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { Root as Portal } from "@radix-ui/react-portal";
 
-import { MastodonAppProvider } from "lib/mastodon/provider";
+import { MastodonAppProvider } from "lib/mastodon";
 import { FetchProvider } from "lib/fetch";
 
 import { ThemeProvider } from "containers/theme/context";
