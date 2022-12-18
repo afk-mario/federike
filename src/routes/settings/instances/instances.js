@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { useMastodonApp } from "lib/mastodon/provider";
+import { useMastodonApp } from "lib/mastodon";
 
 function Instances() {
   const instancesList = [];

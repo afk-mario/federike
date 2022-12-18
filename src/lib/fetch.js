@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
-
 import axios from "axios";
-import { useMastodonApp } from "./mastodon/provider";
+
+import { useMastodonApp } from "./mastodon";
 
 const FetchContext = createContext();
 const { Provider } = FetchContext;

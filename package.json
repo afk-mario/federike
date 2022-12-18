@@ -1,6 +1,6 @@
 {
   "name": "federike",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.0.1",
@@ -23,6 +23,7 @@
     "lint-staged": ">=10",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
