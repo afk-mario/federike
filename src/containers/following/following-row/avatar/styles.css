@@ -1,12 +1,18 @@
 .c-following-row-avatar-note {
-  padding: var(--spacing-01) var(--spacing-02);
   background: var(--color-input-bg);
   color: var(--color-input-fg);
   z-index: 100;
 }
 
 .c-following-row-avatar-note-content {
+  padding: var(--spacing-01) var(--spacing-02);
   max-width: 30ch;
+}
+
+.c-following-row-avatar-note-footer {
+  font-variant-numeric: tabular-nums;
+  border-top: var(--border);
+  padding: var(--spacing-01) var(--spacing-02);
 }
 
 .c-following-row-avatar-arrow {

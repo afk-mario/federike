@@ -71,4 +71,59 @@ export const sortingOptions = [
       </>
     ),
   },
+  {
+    value: "lists-asc",
+    label: (
+      <>
+        <span>Lists</span>
+        <span>↑</span>
+      </>
+    ),
+  },
+  {
+    value: "lists-dsc",
+    label: (
+      <>
+        <span>Lists</span>
+        <span>↓</span>
+      </>
+    ),
+  },
+  {
+    value: "statuses-count-asc",
+    label: (
+      <>
+        <span>Number of toots</span>
+        <span>↑</span>
+      </>
+    ),
+  },
+  {
+    value: "statuses-count-dsc",
+    label: (
+      <>
+        <span>Number of toots</span>
+        <span>↓</span>
+      </>
+    ),
+  },
+
+  {
+    value: "last-status-at-asc",
+    label: (
+      <>
+        <span>Last status date</span>
+        <span>↑</span>
+      </>
+    ),
+  },
+  {
+    value: "last-status-at-dsc",
+    label: (
+      <>
+        <span>Last status date</span>
+        <span>↓</span>
+      </>
+    ),
+  },
 ];

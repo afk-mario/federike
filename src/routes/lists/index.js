@@ -36,7 +36,7 @@ function ListsRoute() {
       <FollowingDragLayer />
       <main className="r-lists | wrapper">
         <div className="list-following-wrapper | stack">
-          <FollowingProvider>
+          <FollowingProvider accountId={accountId}>
             <FollowingActions accountId={accountId} />
             <FollowingList accountId={accountId} />
           </FollowingProvider>

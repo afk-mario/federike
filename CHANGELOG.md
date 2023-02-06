@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.6](https://github.com/afk-mario/federike/compare/v0.1.5...v0.1.6) (2023-02-06)
+
+
+### Features
+
+* sorting by lists, number of status and last status date ([d42b76b](https://github.com/afk-mario/federike/commit/d42b76b1a2a4dd03109b047a0bacd34964a9f0a3))
+
 ### [0.1.5](https://github.com/afk-mario/federike/compare/v0.1.4...v0.1.5) (2022-12-18)
 
 

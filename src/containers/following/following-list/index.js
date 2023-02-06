@@ -4,20 +4,18 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 
 import { useGetFollowing } from "api/following";
-import { getAllItemsFromPaginatedRes } from "api/helpers";
 
 import { useListRouteState, useListRouteUpdater } from "routes/lists/context";
 
 import Spinner from "components/spinner";
 import Message from "components/message";
 
-import { getSortedItems, filterFollowing } from "../helpers";
-
 import FollowingRow from "../following-row";
 import FollowingLoadMoreButton from "../following-load-more-button";
 
-import "./styles.css";
 import { useFollowingState } from "./context";
+
+import "./styles.css";
 
 const isTouch = "ontouchstart" in window || navigator.msMaxTouchPoints > 0;
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
@@ -28,26 +26,15 @@ function FollowingList({ accountId }) {
 
   const selectedItems = useListRouteState();
   const setSelectedItems = useListRouteUpdater();
-  const { sort, filter } = useFollowingState();
+  const { sort, items, rawItems } = useFollowingState();
   const [cursor, setCursor] = React.useState(-1);
   const [lastSelectedIndex, setLastSelectedIndex] = React.useState(-1);
-  const { data, isLoading } = useGetFollowing({
+  const { isLoading } = useGetFollowing({
     accountId,
     config: {
       enabled: accountId != null,
     },
   });
-
-  const unsortedItems = React.useMemo(() => {
-    return getAllItemsFromPaginatedRes(data);
-  }, [data]);
-
-  const items = React.useMemo(() => {
-    return getSortedItems(
-      unsortedItems.filter((item) => filterFollowing(item, filter)),
-      sort
-    );
-  }, [unsortedItems, sort, filter]);
 
   React.useLayoutEffect(() => {
     parentOffsetRef.current = parentRef.current?.offsetTop ?? 0;
@@ -129,7 +116,7 @@ function FollowingList({ accountId }) {
 
   const isDSC = sort.includes("dsc");
 
-  if (unsortedItems.length === 0) {
+  if (rawItems.length === 0) {
     return (
       <Message>
         <p>
