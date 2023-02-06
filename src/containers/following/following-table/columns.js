@@ -42,14 +42,6 @@ const columns = [
     },
   },
   {
-    header: "Lists",
-    id: "lists",
-    cell: (props) => {
-      const accountId = props.row.original.id;
-      return <FollowingLists accountId={accountId} />;
-    },
-  },
-  {
     header: "Followers",
     accessorKey: "followers_count",
     cell: (props) => parseInt(props.getValue(), 10).toLocaleString("en-US"),

@@ -64,7 +64,33 @@ export function getSortedItems(items, sort) {
       return items.sort((a, b) => a.display_name < b.display_name);
     case "displayname-asc":
       return items.sort((a, b) => a.display_name > b.display_name);
+    case "lists-dsc":
+      return items.sort((a, b) => {
+        const listsA = a.lists.map((item) => item.title).join();
+        const listsB = b.lists.map((item) => item.title).join();
+        return listsA < listsB;
+      });
 
+    case "lists-asc":
+      return items.sort((a, b) => {
+        const listsA = a.lists.map((item) => item.title).join();
+        const listsB = b.lists.map((item) => item.title).join();
+        return listsA > listsB;
+      });
+
+    case "statuses-count-dsc":
+      return items.sort((a, b) => a.statuses_count < b.statuses_count);
+    case "statuses-count-asc":
+      return items.sort((a, b) => a.statuses_count > b.statuses_count);
+
+    case "last-status-at-dsc":
+      return items.sort(
+        (a, b) => new Date(a.last_status_at) < new Date(b.last_status_at)
+      );
+    case "last-status-at-asc":
+      return items.sort(
+        (a, b) => new Date(a.last_status_at) > new Date(b.last_status_at)
+      );
     default:
       console.warn("sorting not supported", sort);
       return items;

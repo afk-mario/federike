@@ -2,9 +2,17 @@
 import PropTypes from "prop-types";
 import * as HoverCard from "@radix-ui/react-hover-card";
 
+import Time from "components/time";
+
 import "./styles.css";
 
-function FollowingAvatar({ avatar, username, note }) {
+function FollowingAvatar({
+  avatar,
+  username,
+  note,
+  statusesCount,
+  lastStatusAt,
+}) {
   return (
     <HoverCard.Root>
       <HoverCard.Trigger asChild>
@@ -26,6 +34,20 @@ function FollowingAvatar({ avatar, username, note }) {
             className="c-following-row-avatar-note-content"
             dangerouslySetInnerHTML={{ __html: note }}
           />
+
+          <footer className="c-following-row-avatar-note-footer">
+            <span>
+              {statusesCount === 0 ? "no" : statusesCount} toots
+              {statusesCount === 0 ? " yet" : null}
+            </span>
+
+            {lastStatusAt ? (
+              <span>
+                {", "}
+                last one on <Time>{lastStatusAt}</Time>
+              </span>
+            ) : null}
+          </footer>
           <HoverCard.Arrow className="c-following-row-avatar-arrow" />
         </HoverCard.Content>
       </HoverCard.Portal>
@@ -37,11 +59,14 @@ FollowingAvatar.propTypes = {
   avatar: PropTypes.string,
   username: PropTypes.string.isRequired,
   note: PropTypes.string,
+  statusesCount: PropTypes.number.isRequired,
+  lastStatusAt: PropTypes.string,
 };
 
 FollowingAvatar.defaultProps = {
   avatar: null,
   note: null,
+  lastStatusAt: null,
 };
 
 export default FollowingAvatar;
