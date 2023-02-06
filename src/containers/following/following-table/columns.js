@@ -1,8 +1,6 @@
 import CellBool from "components/table/cell-bool";
 import Time from "components/time";
 
-import FollowingLists from "../following-lists";
-
 const columns = [
   {
     header: "Bot",

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.7](https://github.com/afk-mario/federike/compare/v0.1.6...v0.1.7) (2023-02-06)
+
+
+### Bug Fixes
+
+* remove eslint cra ([9f21e57](https://github.com/afk-mario/federike/commit/9f21e57c5237127452c68a1f9560eda40d4657fb))
+
 ## [0.1.6](https://github.com/afk-mario/federike/compare/v0.1.5...v0.1.6) (2023-02-06)
 
 
