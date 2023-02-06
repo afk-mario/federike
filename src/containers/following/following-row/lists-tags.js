@@ -1,25 +1,25 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { getListsFromQueries } from "containers/following/helpers";
-import { useGetAllListsAccounts } from "api/lists";
-import ListTag from "./list-tag";
+import Tag from "components/tag";
 
-function ListTags({ id }) {
-  const queries = useGetAllListsAccounts();
-  const lists = getListsFromQueries(queries, id);
-
+function ListTags({ lists }) {
   return (
     <div className="c-following-row-tag-list | cluster">
       {lists.map((item) => (
-        <ListTag key={item} listId={parseInt(item, 10)} />
+        <Tag key={item.id}>{item.title || item.id}</Tag>
       ))}
     </div>
   );
 }
 
 ListTags.propTypes = {
-  id: PropTypes.string.isRequired,
+  lists: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ListTags;

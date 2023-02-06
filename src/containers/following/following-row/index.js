@@ -16,9 +16,12 @@ function FollowingRow({
   cursor,
   username,
   display_name: displayName,
+  statuses_count: statusesCount,
+  last_status_at: lastStatusAt,
   acct,
   avatar,
   note,
+  lists,
   isSelected,
   onItemSelection,
   onDragStart,
@@ -83,7 +86,13 @@ function FollowingRow({
       data-is-current-cursor={cursor === index}
     >
       <div className="c-following-row-content | cluster">
-        <FollowingRowAvatar username={username} avatar={avatar} note={note} />
+        <FollowingRowAvatar
+          username={username}
+          avatar={avatar}
+          note={note}
+          statusesCount={statusesCount}
+          lastStatusAt={lastStatusAt}
+        />
         <div className="c-following-row-info | stack">
           <span className="c-following-row-title | cluster">
             <a
@@ -97,7 +106,7 @@ function FollowingRow({
             <span className="redacted">{displayName}</span>
           </span>
           <span className="c-following-row-subtitle | redacted">{acct}</span>
-          <ListTags id={id} />
+          <ListTags lists={lists} />
         </div>
       </div>
       <span className="c-following-row-drag" ref={dragRef}>
@@ -115,8 +124,16 @@ FollowingRow.propTypes = {
   index: PropTypes.number.isRequired,
   cursor: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
+  lists: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   display_name: PropTypes.string,
   acct: PropTypes.string.isRequired,
+  statuses_count: PropTypes.number.isRequired,
+  last_status_at: PropTypes.string,
   avatar: PropTypes.string.isRequired,
   note: PropTypes.string,
   isSelected: PropTypes.bool,
@@ -130,6 +147,7 @@ FollowingRow.defaultProps = {
   display_name: null,
   note: null,
   isSelected: false,
+  last_status_at: null,
   onItemSelection: () => {},
   onDragStart: () => {},
   onItemFocus: () => {},
