@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.8](https://github.com/afk-mario/federike/compare/v0.1.7...v0.1.8) (2023-02-08)
+
+
+### Bug Fixes
+
+* sorting inconsistencies between browsers ([97257ca](https://github.com/afk-mario/federike/commit/97257cab11aef69d71933acab8f8f7a786ae414b)), closes [#30](https://github.com/afk-mario/federike/issues/30)
+
 ## [0.1.7](https://github.com/afk-mario/federike/compare/v0.1.6...v0.1.7) (2023-02-06)
 
 
