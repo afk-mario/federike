@@ -47,49 +47,49 @@ export function getSortedItems(items, sort) {
       return [...items].reverse();
 
     case "instance-dsc":
-      return items.sort(
-        (a, b) => getInstanceFromAcct(a.acct) < getInstanceFromAcct(b.acct)
+      return items.sort((a, b) =>
+        getInstanceFromAcct(b.acct).localeCompare(getInstanceFromAcct(a.acct))
       );
     case "instance-asc":
-      return items.sort(
-        (a, b) => getInstanceFromAcct(a.acct) > getInstanceFromAcct(b.acct)
+      return items.sort((a, b) =>
+        getInstanceFromAcct(a.acct).localeCompare(getInstanceFromAcct(b.acct))
       );
 
     case "username-dsc":
-      return items.sort((a, b) => a.username < b.username);
+      return items.sort((a, b) => b.username.localeCompare(a.username));
     case "username-asc":
-      return items.sort((a, b) => a.username > b.username);
+      return items.sort((a, b) => a.username.localeCompare(b.username));
 
     case "displayname-dsc":
-      return items.sort((a, b) => a.display_name < b.display_name);
+      return items.sort((a, b) => b.display_name.localeCompare(a.display_name));
     case "displayname-asc":
-      return items.sort((a, b) => a.display_name > b.display_name);
+      return items.sort((a, b) => a.display_name.localeCompare(b.display_name));
     case "lists-dsc":
       return items.sort((a, b) => {
         const listsA = a.lists.map((item) => item.title).join();
         const listsB = b.lists.map((item) => item.title).join();
-        return listsA < listsB;
+        return listsB.localeCompare(listsA);
       });
 
     case "lists-asc":
       return items.sort((a, b) => {
         const listsA = a.lists.map((item) => item.title).join();
         const listsB = b.lists.map((item) => item.title).join();
-        return listsA > listsB;
+        return listsA.localeCompare(listsB);
       });
 
     case "statuses-count-dsc":
-      return items.sort((a, b) => a.statuses_count < b.statuses_count);
+      return items.sort((a, b) => b.statuses_count - a.statuses_count);
     case "statuses-count-asc":
-      return items.sort((a, b) => a.statuses_count > b.statuses_count);
+      return items.sort((a, b) => a.statuses_count - b.statuses_count);
 
     case "last-status-at-dsc":
       return items.sort(
-        (a, b) => new Date(a.last_status_at) < new Date(b.last_status_at)
+        (a, b) => new Date(b.last_status_at) - new Date(a.last_status_at)
       );
     case "last-status-at-asc":
       return items.sort(
-        (a, b) => new Date(a.last_status_at) > new Date(b.last_status_at)
+        (a, b) => new Date(a.last_status_at) - new Date(b.last_status_at)
       );
     default:
       console.warn("sorting not supported", sort);
